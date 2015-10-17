@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1">
+        <file>
+            <url>src/com/khaos/Notes</url>
+            <bookmark id="1">
+                <name/>
+                <line>0</line>
+                <key/>
+            </bookmark>
+        </file>
+    </editor-bookmarks>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/D:/Documents/Java%20Apps/KhaosEngine/src/com/khaos/core/file/Defaults.java</file>
+            <file>file:/D:/Documents/Java%20Apps/KhaosEngine/src/com/khaos/core/file/FileSystem.java</file>
+            <file>file:/D:/Documents/Java%20Apps/KhaosEngine/src/com/khaos/client/KhaosEngine.java</file>
+            <file>file:/D:/Documents/Java%20Apps/KhaosEngine/src/com/khaos/RunClient.java</file>
+            <file>file:/D:/Documents/Java%20Apps/KhaosEngine/src/com/khaos/core/threads/UpdateThread.java</file>
+            <file>file:/D:/Documents/Java%20Apps/KhaosEngine/src/com/khaos/core/gui/CharacterSelect.java</file>
+        </group>
+    </open-files>
+</project-private>
