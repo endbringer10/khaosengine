@@ -21,6 +21,8 @@ public interface Defaults {
     public static final String FOLDER_CONFIG = "config" + SEPARATOR;
     public static final String FOLDER_DATA = "data" + SEPARATOR;
     public static final String FOLDER_DOWNLOADS = "downloads" + SEPARATOR;
+    public static final String FOLDER_TEXTURES = "textures" + SEPARATOR;
+    public static final String FOLDER_MODS = "mods" + SEPARATOR;
 
     public static final String FILE_CONFIG = "settings.xml";
     public static final String FILE_LOGO = "logo.png";

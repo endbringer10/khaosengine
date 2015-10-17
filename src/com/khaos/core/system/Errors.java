@@ -14,7 +14,8 @@ public enum Errors {
     THREAD_STOP(-1002, "An error occured stopping a thread"),
     SERVER_CONNECTION(-1003, "An error occured while connecting to server"),
     FILE_WRITE(-1004, "An error occured while writing to a file"),
-    SPLASH_INTERRUPT(-1005, "Splash screen was interrupted");
+    SPLASH_INTERRUPT(-1005, "Splash screen was interrupted"),
+    IMAGE_LOAD(-1006, "Error loading image");
 
     private final int num;
     private final String message;

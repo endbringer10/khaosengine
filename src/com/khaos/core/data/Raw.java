@@ -15,11 +15,8 @@ public class Raw {
     private final String raw;
     private int caret = 0;
 
-    
-
-    public Raw(String path) throws IOException {
-        File file = new dFile(path);
-        raw = FileUtils.readFileToString(file);
+    public Raw(dFile path) throws IOException {
+        raw = FileUtils.readFileToString(path);
     }
 
     public Entry next() {
