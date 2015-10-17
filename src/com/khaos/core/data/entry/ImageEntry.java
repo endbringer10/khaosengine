@@ -1,5 +1,6 @@
-package com.khaos.core.data;
+package com.khaos.core.data.entry;
 
+import com.khaos.core.data.Meta;
 import com.khaos.core.file.FileSystem;
 import java.awt.image.BufferedImage;
 

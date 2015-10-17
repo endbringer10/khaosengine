@@ -1,7 +1,8 @@
 package com.khaos.core;
 
-import com.khaos.core.data.Entry;
+import com.khaos.core.data.entry.SettingsEntry;
 import com.khaos.core.data.Raw;
+import com.khaos.core.data.raw.RawSettings;
 import com.khaos.core.file.FileSystem;
 import com.khaos.core.file.FileTypes;
 import com.khaos.core.file.FileWriter;
@@ -73,9 +74,9 @@ public enum Settings {
     public static void load() {
         dFile file = FileSystem.FILE_USER_SETTINGS.getFile();
         try {
-            Raw raw = new Raw(file);
+            RawSettings raw = new RawSettings(file);
 
-            Entry next;
+            SettingsEntry next;
             while ((next = raw.next()) != null) {
                 try {
                     Settings.valueOf(next.getMeta()).setValue(next.getValue());

@@ -10,6 +10,7 @@ public interface Defaults {
     public static final String NEWLINE = System.getProperty("line.separator");
     public static final String TAB = "\t";
 
+    public static final String XML_START = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>";
     public static final String ENTRY_START = "<entry>";
     public static final String ENTRY_END = "</entry>";
     public static final String META_START = "<meta>";
@@ -23,6 +24,8 @@ public interface Defaults {
     public static final String FOLDER_DOWNLOADS = "downloads" + SEPARATOR;
     public static final String FOLDER_TEXTURES = "textures" + SEPARATOR;
     public static final String FOLDER_MODS = "mods" + SEPARATOR;
+    public static final String FOLDER_ARCHITECTURE = "architecture" + SEPARATOR;
+    public static final String FOLDER_MATERIALS = "materials" + SEPARATOR;
 
     public static final String FILE_CONFIG = "settings.xml";
     public static final String FILE_LOGO = "logo.png";
