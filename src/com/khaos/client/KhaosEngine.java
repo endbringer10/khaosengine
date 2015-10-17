@@ -68,6 +68,7 @@ public class KhaosEngine implements ConnectionHook {
     private synchronized void openGame() {
         Game game = new Game(connection, resources);
         game.init();
+        game.start();
     }
 
     @Override

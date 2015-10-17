@@ -12,12 +12,10 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Documents/Java%20Apps/KhaosEngine/src/com/khaos/core/file/Defaults.java</file>
-            <file>file:/D:/Documents/Java%20Apps/KhaosEngine/src/com/khaos/core/file/FileSystem.java</file>
-            <file>file:/D:/Documents/Java%20Apps/KhaosEngine/src/com/khaos/client/KhaosEngine.java</file>
-            <file>file:/D:/Documents/Java%20Apps/KhaosEngine/src/com/khaos/RunClient.java</file>
-            <file>file:/D:/Documents/Java%20Apps/KhaosEngine/src/com/khaos/core/threads/UpdateThread.java</file>
-            <file>file:/D:/Documents/Java%20Apps/KhaosEngine/src/com/khaos/core/gui/CharacterSelect.java</file>
+            <file>file:/C:/Users/endbr/Documents/GitHub/khaosengine/src/com/khaos/client/KhaosEngine.java</file>
+            <file>file:/C:/Users/endbr/Documents/GitHub/khaosengine/src/com/khaos/core/file/FileSystem.java</file>
+            <file>file:/C:/Users/endbr/Documents/GitHub/khaosengine/src/com/khaos/core/gui/Game.java</file>
+            <file>file:/C:/Users/endbr/Documents/GitHub/khaosengine/src/com/khaos/core/data/Resources.java</file>
         </group>
     </open-files>
 </project-private>

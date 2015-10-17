@@ -1,7 +1,7 @@
 Unsupported: throw new UnsupportedOperationException("Not supported yet.");
 
 
-
+Licensing: http://choosealicense.com/
 Documentation: https://docs.oracle.com/javase/tutorial/java/annotations/declaring.html
 Enum Advanced: http://docs.oracle.com/javase/1.5.0/docs/guide/language/enums.html
 JFrame Icon: http://stackoverflow.com/questions/1614772/how-to-change-jframe-icon

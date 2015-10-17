@@ -5,6 +5,7 @@ import com.khaos.core.data.Raw;
 import com.khaos.core.file.FileSystem;
 import com.khaos.core.file.FileTypes;
 import com.khaos.core.file.FileWriter;
+import com.khaos.core.file.dFile;
 import com.khaos.core.system.Errors;
 import com.khaos.core.system.Messages;
 import com.khaos.core.system.SysLog;
@@ -70,7 +71,7 @@ public enum Settings {
     }
 
     public static void load() {
-        String file = FileSystem.FILE_USER_SETTINGS.getPath();
+        dFile file = FileSystem.FILE_USER_SETTINGS.getFile();
         try {
             Raw raw = new Raw(file);
 

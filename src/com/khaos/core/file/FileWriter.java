@@ -18,7 +18,7 @@ public class FileWriter {
     private String toPrint;
 
     public FileWriter(FileSystem file, FileTypes type) {
-        this.file = new dFile(file);
+        this.file = new dFile(file.getPath());
         this.type = type.getType();
 
         toPrint = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + Defaults.NEWLINE;

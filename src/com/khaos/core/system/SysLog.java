@@ -19,6 +19,15 @@ public class SysLog {
             System.out.println(line);
         }
     }
+    
+    public synchronized static void log(String msg) {
+        String line = "[ Log ]" + msg;
+        history.add(line);
+
+        if (Settings.DEBUG.parseBoolean()) {
+            System.out.println(line);
+        }
+    }
 
     public synchronized static void err(Errors code, Exception ex) {
         String line = "[Error][" + code.getNum() + "] " + code.getMessage();
