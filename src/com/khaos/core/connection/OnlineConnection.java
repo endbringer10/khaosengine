@@ -1,8 +1,8 @@
 package com.khaos.core.connection;
 
 import com.khaos.core.Settings;
-import com.khaos.core.data.comm.Command;
-import com.khaos.core.data.comm.Packet;
+import com.khaos.core.data.commands.Command;
+import com.khaos.core.data.packets.Packet;
 import com.khaos.core.exception.ServerConnectionException;
 import com.khaos.core.system.Errors;
 import com.khaos.core.system.Messages;

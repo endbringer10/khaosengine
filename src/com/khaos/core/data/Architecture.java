@@ -1,8 +1,8 @@
 package com.khaos.core.data;
 
 import com.khaos.core.data.entry.MaterialEntry;
-import com.khaos.core.data.raw.RawMaterial;
 import com.khaos.core.file.FileSystem;
+import com.khaos.core.file.builder.MaterialBuilder;
 import com.khaos.core.file.dFile;
 import com.khaos.core.system.Errors;
 import com.khaos.core.system.SysLog;
@@ -28,9 +28,12 @@ public class Architecture {
                 //dFile file = new dFile(index);
                 if (file.isFile()) {
                     try {
-                        RawMaterial raw = new RawMaterial(file);
-                        MaterialEntry next = raw.next();
-                        materials.add(next);
+                        MaterialBuilder builder = new MaterialBuilder(file);
+
+                        MaterialEntry next;// = builder.next();
+                        if ((next = builder.next()) != null) {
+                            materials.add(next);
+                        }
                     } catch (IOException ex) {
                         SysLog.err(Errors.IMAGE_LOAD, ex);
                     }

@@ -1,5 +1,6 @@
 package com.khaos.core.data;
 
+import com.khaos.core.data.entry.Meta;
 import java.util.ArrayList;
 
 /**

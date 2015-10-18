@@ -1,7 +1,7 @@
 package com.khaos.core.connection;
 
-import com.khaos.core.data.comm.Command;
-import com.khaos.core.data.comm.Packet;
+import com.khaos.core.data.commands.Command;
+import com.khaos.core.data.packets.Packet;
 
 /**
  *

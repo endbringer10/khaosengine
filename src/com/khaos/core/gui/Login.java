@@ -4,7 +4,7 @@ import com.khaos.core.Localized;
 import com.khaos.core.Settings;
 import com.khaos.core.connection.Connection;
 import com.khaos.core.data.Resources;
-import com.khaos.core.data.comm.commands.LoginCommand;
+import com.khaos.core.data.commands.LoginCommand;
 import com.khaos.core.system.Errors;
 
 /**
