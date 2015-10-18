@@ -10,4 +10,4 @@ public class MaterialEntry extends Meta {
         super(meta);
     }
 
-}
+}//End Class

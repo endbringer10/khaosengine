@@ -16,8 +16,8 @@ public class MaterialBuilder extends Raw {
 
     @Override
     public MaterialEntry next() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return null;
+        //throw new UnsupportedOperationException("Not supported yet.");
     }
-
 
 }//End Class

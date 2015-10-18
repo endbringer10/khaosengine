@@ -13,7 +13,7 @@ public class ImageEntry extends Meta {
     public ImageEntry(String path, BufferedImage image) {
         super(path);
         this.image = image;
-        System.out.println(super.getMeta());
+        //System.out.println(super.getMeta());
     }
 
     /*private static String edit(String path) {
