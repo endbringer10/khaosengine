@@ -1,10 +1,10 @@
 package com.khaos.core.connection;
 
-import com.khaos.core.data.comm.Command;
-import com.khaos.core.data.comm.Packet;
-import com.khaos.core.data.comm.commands.LoginCommand;
-import com.khaos.core.data.comm.packets.CommandNotSupportedPacket;
-import com.khaos.core.data.comm.packets.ValidLoginPacket;
+import com.khaos.core.data.commands.Command;
+import com.khaos.core.data.packets.Packet;
+import com.khaos.core.data.commands.LoginCommand;
+import com.khaos.core.data.packets.CommandNotSupportedPacket;
+import com.khaos.core.data.packets.ValidLoginPacket;
 import com.khaos.core.system.Errors;
 import com.khaos.core.system.SysLog;
 import java.util.concurrent.LinkedBlockingQueue;

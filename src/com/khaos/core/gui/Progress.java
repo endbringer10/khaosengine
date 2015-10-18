@@ -1,16 +1,9 @@
 package com.khaos.core.gui;
 
-import com.khaos.core.Localized;
 import com.khaos.core.data.Resources;
-import com.khaos.core.gui.progress.SplashPanel;
-import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Insets;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
-import unused.NewJFrame;
 
 /**
  *

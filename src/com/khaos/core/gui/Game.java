@@ -4,6 +4,8 @@ import com.khaos.client.KhaosEngine;
 import com.khaos.core.Localized;
 import com.khaos.core.Settings;
 import com.khaos.core.connection.Connection;
+import com.khaos.core.data.Architecture;
+import com.khaos.core.data.GameData;
 import com.khaos.core.data.Resources;
 
 /**
@@ -12,6 +14,8 @@ import com.khaos.core.data.Resources;
  */
 public class Game extends javax.swing.JFrame {
 
+    private final Architecture arch = new Architecture();
+    private final GameData data = new GameData();
     private final Resources resources;
     private final Connection connection;
 
@@ -28,9 +32,10 @@ public class Game extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setVisible(true);
     }
-    
-    public void start(){
+
+    public void start() {
         resources.load();
+        arch.load();
     }
 
     @SuppressWarnings("unchecked")

@@ -1,7 +1,5 @@
 package com.khaos.core;
 
-import com.khaos.core.data.Entry;
-import com.khaos.core.data.Raw;
 import com.khaos.core.file.FileSystem;
 import com.khaos.core.file.FileTypes;
 import com.khaos.core.file.FileWriter;
@@ -10,6 +8,8 @@ import com.khaos.core.system.Errors;
 import com.khaos.core.system.Messages;
 import com.khaos.core.system.SysLog;
 import java.io.IOException;
+import com.khaos.core.data.entry.SettingEntry;
+import com.khaos.core.file.builder.SettingBuilder;
 
 /**
  *
@@ -73,10 +73,13 @@ public enum Settings {
     public static void load() {
         dFile file = FileSystem.FILE_USER_SETTINGS.getFile();
         try {
-            Raw raw = new Raw(file);
+            SettingBuilder builder = new SettingBuilder(file);
 
-            Entry next;
-            while ((next = raw.next()) != null) {
+            SettingEntry next;
+            while ((next = builder.next()) != null) {
+                //System.out.println(next.getMeta());
+                //System.out.println(next.getValue());
+                //System.out.println(Settings.valueOf(next.getMeta()));
                 try {
                     Settings.valueOf(next.getMeta()).setValue(next.getValue());
                 } catch (IllegalArgumentException ex) {

@@ -7,7 +7,7 @@ package com.khaos.core.threads;
 
 import com.khaos.core.Localized;
 import com.khaos.core.connection.ConnectionHook;
-import com.khaos.core.data.comm.packets.UpToDatePacket;
+import com.khaos.core.data.packets.UpToDatePacket;
 import com.khaos.core.gui.Progress;
 
 /**

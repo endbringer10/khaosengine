@@ -1,5 +1,6 @@
 package com.khaos.core.data;
 
+import com.khaos.core.data.entry.ImageEntry;
 import com.khaos.core.file.FileSystem;
 import com.khaos.core.file.dFile;
 import com.khaos.core.system.Errors;
@@ -7,7 +8,6 @@ import com.khaos.core.system.Messages;
 import com.khaos.core.system.SysLog;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
