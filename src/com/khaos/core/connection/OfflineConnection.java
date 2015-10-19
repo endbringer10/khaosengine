@@ -1,5 +1,6 @@
 package com.khaos.core.connection;
 
+import com.khaos.core.EngineHook;
 import com.khaos.core.data.commands.Command;
 import com.khaos.core.data.packets.Packet;
 import com.khaos.core.data.commands.LoginCommand;
@@ -21,9 +22,9 @@ public class OfflineConnection implements Connection {
     private final ExecuteThread execute;
     private final ProcessThread process;
 
-    public OfflineConnection(ConnectionHook parent) {
+    public OfflineConnection(EngineHook engine) {
         this.execute = new ExecuteThread();
-        this.process = new ProcessThread(parent);
+        this.process = new ProcessThread(engine);
     }
 
     @Override
@@ -44,7 +45,8 @@ public class OfflineConnection implements Connection {
             while (running) {
                 try {
                     Command command = commands.take();
-                    packets.add(this.execute(command));
+                    //packets.add(this.execute(command));
+                    packets.add(command.process());
                 } catch (InterruptedException ex) {
                     SysLog.err(Errors.THREAD_RUNNING, ex);
                 }
@@ -54,14 +56,13 @@ public class OfflineConnection implements Connection {
             running = false;
         }
 
-        private Packet execute(Command command) {
-            if (command instanceof LoginCommand) {
-                return new ValidLoginPacket();
-            }
+        /*private Packet execute(Command command) {
+         if (command instanceof LoginCommand) {
+         return new ValidLoginPacket();
+         }
 
-            return new CommandNotSupportedPacket();
-        }
-
+         return new CommandNotSupportedPacket();
+         }*/
         @Override
         public void interrupt() {
             super.interrupt();
@@ -71,10 +72,10 @@ public class OfflineConnection implements Connection {
 
     private class ProcessThread extends Thread {
 
-        private final ConnectionHook parent;
+        private final EngineHook engine;
 
-        public ProcessThread(ConnectionHook parent) {
-            this.parent = parent;
+        public ProcessThread(EngineHook parent) {
+            this.engine = parent;
         }
 
         @Override
@@ -82,7 +83,8 @@ public class OfflineConnection implements Connection {
             while (running) {
                 try {
                     Packet packet = packets.take();
-                    parent.process(packet);
+                    //parent.process(packet);
+                    packet.process(engine);
                 } catch (InterruptedException ex) {
                     SysLog.err(Errors.THREAD_RUNNING, ex);
                 }

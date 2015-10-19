@@ -1,5 +1,6 @@
 package com.khaos.core.connection;
 
+import com.khaos.core.EngineHook;
 import com.khaos.core.Settings;
 import com.khaos.core.data.commands.Command;
 import com.khaos.core.data.packets.Packet;
@@ -24,12 +25,12 @@ public class OnlineConnection implements Connection {
     private final SendThread send;
     private final ReceiveThread receive;
 
-    public OnlineConnection(ConnectionHook parent) throws ServerConnectionException {
+    public OnlineConnection(EngineHook engine) throws ServerConnectionException {
         try {
             Socket socket = new Socket(Settings.HOST_IP.parseString(), Settings.HOST_PORT.parseInt());
 
             send = new SendThread(new ObjectOutputStream(socket.getOutputStream()));
-            receive = new ReceiveThread(new ObjectInputStream(socket.getInputStream()), parent);
+            receive = new ReceiveThread(new ObjectInputStream(socket.getInputStream()), engine);
         } catch (IOException ex) {
             SysLog.err(Errors.SERVER_CONNECTION, ex);
             throw new ServerConnectionException(ex);
@@ -92,11 +93,11 @@ public class OnlineConnection implements Connection {
     private class ReceiveThread extends Thread {
 
         private final ObjectInputStream in;
-        private final ConnectionHook parent;
+        private final EngineHook engine;
 
-        public ReceiveThread(ObjectInputStream in, ConnectionHook parent) {
+        public ReceiveThread(ObjectInputStream in, EngineHook engine) {
             this.in = in;
-            this.parent = parent;
+            this.engine = engine;
         }
 
         @Override
@@ -104,7 +105,8 @@ public class OnlineConnection implements Connection {
             while (running) {
                 try {
                     Packet packet = (Packet) (in.readObject());
-                    parent.process(packet);
+                    packet.process(engine);
+                    //parent.process(packet);
                 } catch (ClassNotFoundException | IOException ex) {
                     SysLog.err(Errors.THREAD_RUNNING, ex);
                 }
