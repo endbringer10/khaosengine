@@ -15,7 +15,8 @@ public enum Localized {
     CANCEL("Quit"),
     AUTO_LOGIN("Auto Login"),
     LOADING("Loading"),
-    UPDATING("Updating");
+    UPDATING("Updating"),
+    CHARACTER_SELECT("Character Select");
 
     private final String english;
     private String localized;

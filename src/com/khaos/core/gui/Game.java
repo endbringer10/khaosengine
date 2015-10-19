@@ -3,10 +3,12 @@ package com.khaos.core.gui;
 import com.khaos.client.KhaosEngine;
 import com.khaos.core.Localized;
 import com.khaos.core.Settings;
-import com.khaos.core.connection.Connection;
+import com.khaos.core.connection.ConnectionHook;
 import com.khaos.core.data.Architecture;
 import com.khaos.core.data.GameData;
 import com.khaos.core.data.Resources;
+import com.khaos.core.data.commands.CharacterSelectCommand;
+import com.khaos.core.gui.internalframe.CharacterSelect;
 
 /**
  *
@@ -17,9 +19,9 @@ public class Game extends javax.swing.JFrame {
     private final Architecture arch = new Architecture();
     private final GameData data = new GameData();
     private final Resources resources;
-    private final Connection connection;
+    private final ConnectionHook connection;
 
-    public Game(Connection connection, Resources resources) {
+    public Game(ConnectionHook connection, Resources resources) {
         initComponents();
         this.connection = connection;
         this.resources = resources;
@@ -36,27 +38,34 @@ public class Game extends javax.swing.JFrame {
     public void start() {
         resources.load();
         arch.load();
+        connection.addCommand(new CharacterSelectCommand());
+    }
+
+    public void openCharacterSelect() {
+        CharacterSelect select = new CharacterSelect(connection);
+        this.desktopPane.add(select);
+        select.init();
     }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jDesktopPane1 = new javax.swing.JDesktopPane();
+        desktopPane = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
-        jDesktopPane1.setLayout(jDesktopPane1Layout);
-        jDesktopPane1Layout.setHorizontalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout desktopPaneLayout = new javax.swing.GroupLayout(desktopPane);
+        desktopPane.setLayout(desktopPaneLayout);
+        desktopPaneLayout.setHorizontalGroup(
+            desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 780, Short.MAX_VALUE)
         );
-        jDesktopPane1Layout.setVerticalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        desktopPaneLayout.setVerticalGroup(
+            desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 557, Short.MAX_VALUE)
         );
 
@@ -74,14 +83,14 @@ public class Game extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jDesktopPane1)
+                .addComponent(desktopPane)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jDesktopPane1)
+                .addComponent(desktopPane)
                 .addContainerGap())
         );
 
@@ -89,7 +98,7 @@ public class Game extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JDesktopPane jDesktopPane1;
+    private javax.swing.JDesktopPane desktopPane;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;

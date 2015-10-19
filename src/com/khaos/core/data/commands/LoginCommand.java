@@ -1,5 +1,8 @@
 package com.khaos.core.data.commands;
 
+import com.khaos.core.data.packets.Packet;
+import com.khaos.core.data.packets.ValidLoginPacket;
+
 /**
  *
  * @author endbr
@@ -18,6 +21,11 @@ public class LoginCommand extends Command {
     public void clear() {
         username = "null";
         password = "null";
+    }
+
+    @Override
+    public Packet process() {
+        return new ValidLoginPacket();
     }
 
 }//End Class

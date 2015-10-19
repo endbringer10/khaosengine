@@ -6,10 +6,8 @@ import com.khaos.core.data.commands.Command;
  *
  * @author endbr
  */
-public interface Connection {
+public interface Connection extends ConnectionHook {
 
     public void start();
-
-    public void addCommand(Command command);
 
 }//End Class
