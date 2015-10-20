@@ -1,5 +1,6 @@
 package com.khaos.core.data.commands;
 
+import com.khaos.core.Database;
 import com.khaos.core.data.packets.CharacterSelectPacket;
 import com.khaos.core.data.packets.Packet;
 
@@ -10,8 +11,8 @@ import com.khaos.core.data.packets.Packet;
 public class CharacterSelectCommand extends Command {
 
     @Override
-    public Packet process() {
-        return new CharacterSelectPacket();
+    public Packet process(Database data) {
+        return data.getCharactersList();
     }
 
 }//End Class

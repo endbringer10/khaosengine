@@ -35,10 +35,10 @@ public class Resources {
 
         if (files != null) {
             for (dFile file : files) {
-                //dFile file = new dFile(index);
                 if (file.isFile()) {
                     try {
                         BufferedImage image = ImageIO.read(file);
+                        //System.out.println(file.getRelativePath());
                         textures.add(new ImageEntry(file.getRelativePath(), image));
                     } catch (IOException ex) {
                         SysLog.err(Errors.IMAGE_LOAD, ex);

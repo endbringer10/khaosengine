@@ -17,20 +17,25 @@ import org.joda.time.DateTime;
 public class ImagePanel extends JPanel {
 
     public static final int SCALE_SIZE = 25;
+
     private BufferedImage image;
     private final Dimension offset = new Dimension(0, 0);
     private Dimension absoluteSize = new Dimension(0, 0);
 
-    public ImagePanel(BufferedImage image, Point location) {
+    public ImagePanel() {
+        this.image = null;
+        this.setVisible(true);
+        //this.calcLocation(location.x, location.y);
+        this.setOpaque(false);
+    }
+
+    public ImagePanel(BufferedImage image) {
         this.image = image;
         this.setVisible(true);
         //this.calcLocation(location.x, location.y);
         this.setOpaque(false);
     }
 
-    /*public void init() {
-     this.resize();
-     }*/
     @Override
     public void setLocation(Point p) {
         this.calcLocation(p.x, p.y);
@@ -55,6 +60,7 @@ public class ImagePanel extends JPanel {
     public void setImage(BufferedImage update) {
         if (update != null) {
             this.image = update;
+            this.setSize();
         }
     }
 
@@ -65,10 +71,10 @@ public class ImagePanel extends JPanel {
     public void setSize() {
         if (absoluteSize.height > 0 || absoluteSize.width > 0) {
             super.setSize(absoluteSize);
-        } else if (absoluteSize.height == 0 || absoluteSize.width == 0) {
+        } else if (image != null && (absoluteSize.height == 0 || absoluteSize.width == 0)) {
             super.setSize(image.getWidth(), image.getHeight());
         } else {
-            super.setSize(1, 1);
+            super.setSize(0, 0);
         }
     }
 
@@ -91,7 +97,7 @@ public class ImagePanel extends JPanel {
     @Override
     public void paint(Graphics g) {
         super.paint(g);
-        
+
         if (this.image != null) {
             g.drawImage(image, offset.width, offset.height, null);
         }

@@ -12,18 +12,11 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/endbr/Documents/GitHub/khaosengine/src/com/khaos/core/data/Array2D.java</file>
             <file>file:/C:/Users/endbr/Documents/GitHub/khaosengine/src/com/khaos/client/KhaosEngine.java</file>
-            <file>file:/C:/Users/endbr/Documents/GitHub/khaosengine/src/com/khaos/core/gui/panel/TilePanel.java</file>
-            <file>file:/C:/Users/endbr/Documents/GitHub/khaosengine/src/com/khaos/core/data/game/MapData.java</file>
             <file>file:/C:/Users/endbr/Documents/GitHub/khaosengine/src/com/khaos/core/EngineHook.java</file>
             <file>file:/C:/Users/endbr/Documents/GitHub/khaosengine/src/com/khaos/core/data/GameData.java</file>
-            <file>file:/C:/Users/endbr/Documents/GitHub/khaosengine/src/com/khaos/core/data/game/Tile.java</file>
-            <file>file:/C:/Users/endbr/Documents/GitHub/khaosengine/src/com/khaos/core/gui/panel/ImagePanel.java</file>
-            <file>file:/C:/Users/endbr/Documents/GitHub/khaosengine/src/com/khaos/core/data/packets/CharacterLoadPacket.java</file>
             <file>file:/C:/Users/endbr/Documents/GitHub/khaosengine/src/com/khaos/core/gui/Game.java</file>
-            <file>file:/C:/Users/endbr/Documents/GitHub/khaosengine/src/com/khaos/core/data/commands/CharacterLoadCommand.java</file>
-            <file>file:/C:/Users/endbr/Documents/GitHub/khaosengine/src/com/khaos/core/data/Resources.java</file>
+            <file>file:/C:/Users/endbr/Documents/GitHub/khaosengine/src/com/khaos/core/gui/panel/CharacterPanel.java</file>
         </group>
     </open-files>
 </project-private>

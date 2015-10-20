@@ -6,11 +6,11 @@ import com.khaos.core.EngineHook;
  *
  * @author endbr
  */
-public class ValidLoginPacket extends Packet{
+public class ValidLoginPacket extends LoginValidationPacket{
 
     @Override
     public void process(EngineHook engine) {
         engine.openUpdate();
     }
     
-}
+}//End Class

@@ -9,11 +9,12 @@ import com.khaos.core.data.Architecture;
 import com.khaos.core.data.GameData;
 import com.khaos.core.data.Resources;
 import com.khaos.core.data.commands.CharacterSelectCommand;
+import com.khaos.core.data.game.DisplayGrid;
 import com.khaos.core.gui.internalframe.CharacterSelect;
+import com.khaos.core.gui.panel.CharacterPanel;
 import com.khaos.core.gui.panel.ImagePanel;
 import com.khaos.core.gui.panel.TilePanel;
 import java.awt.Point;
-import java.util.ArrayList;
 
 /**
  *
@@ -31,12 +32,13 @@ public class Game extends javax.swing.JFrame {
         this.connection = connection;
         this.resources = resources;
 
-        Array2D<TilePanel> grid = this.initGrid();
-        this.game = new GameData(resources, grid);
-    }
+        resources.load();
+        arch.load();
 
-    private Array2D<TilePanel> initGrid() {
-        Array2D<TilePanel> grid = new Array2D<>();
+        CharacterPanel character = new CharacterPanel(new Point(10, 10));
+        this.desktopPane.add(character);
+
+        DisplayGrid grid = new DisplayGrid();
         int columns = (this.desktopPane.getWidth() / ImagePanel.SCALE_SIZE) + 1;
         int rows = (this.desktopPane.getHeight() / ImagePanel.SCALE_SIZE) + 1;
 
@@ -49,7 +51,9 @@ public class Game extends javax.swing.JFrame {
             }
         }
 
-        return grid;
+        //CharacterPanel character = new CharacterPanel(resources.getTexture("character.png"), new Point(columns / 2, rows / 2));
+        //this.desktopPane.add(character);
+        this.game = new GameData(resources, grid, character);
     }
 
     public synchronized void init() {
@@ -61,8 +65,6 @@ public class Game extends javax.swing.JFrame {
     }
 
     public synchronized void start() {
-        resources.load();
-        arch.load();
         connection.addCommand(new CharacterSelectCommand());
     }
 
