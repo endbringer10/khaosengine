@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.image.BufferedImage;
 import javax.swing.JPanel;
+import org.joda.time.DateTime;
 
 /**
  *
@@ -22,14 +23,14 @@ public class ImagePanel extends JPanel {
 
     public ImagePanel(BufferedImage image, Point location) {
         this.image = image;
-        this.calcLocation(location.x, location.y);
+        this.setVisible(true);
+        //this.calcLocation(location.x, location.y);
         this.setOpaque(false);
     }
 
-    public void init() {
-        this.resize();
-    }
-
+    /*public void init() {
+     this.resize();
+     }*/
     @Override
     public void setLocation(Point p) {
         this.calcLocation(p.x, p.y);
@@ -51,8 +52,10 @@ public class ImagePanel extends JPanel {
         this.setSize();
     }
 
-    public void setImage(BufferedImage image) {
-        this.image = image;
+    public void setImage(BufferedImage update) {
+        if (update != null) {
+            this.image = update;
+        }
     }
 
     public void setAbsoluteSize(Dimension absoluteSize) {
@@ -60,10 +63,12 @@ public class ImagePanel extends JPanel {
     }
 
     public void setSize() {
-        if (absoluteSize.height == 0 || absoluteSize.width == 0) {
+        if (absoluteSize.height > 0 || absoluteSize.width > 0) {
+            super.setSize(absoluteSize);
+        } else if (absoluteSize.height == 0 || absoluteSize.width == 0) {
             super.setSize(image.getWidth(), image.getHeight());
         } else {
-            super.setSize(absoluteSize);
+            super.setSize(1, 1);
         }
     }
 
@@ -86,8 +91,8 @@ public class ImagePanel extends JPanel {
     @Override
     public void paint(Graphics g) {
         super.paint(g);
-
-        if (image != null) {
+        
+        if (this.image != null) {
             g.drawImage(image, offset.width, offset.height, null);
         }
     }

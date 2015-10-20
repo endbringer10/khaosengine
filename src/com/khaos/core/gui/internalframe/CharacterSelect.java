@@ -10,28 +10,28 @@ import java.awt.Dimension;
  * @author endbr
  */
 public class CharacterSelect extends javax.swing.JInternalFrame {
-    
+
     private final ConnectionHook connection;
-    
+
     public CharacterSelect(ConnectionHook connection) {
         initComponents();
         this.connection = connection;
     }
-    
+
     public void init() {
         this.setTitle(Localized.CHARACTER_SELECT.getLocalized());
         this.align();
         this.setVisible(true);
     }
-    
+
     private void align() {
         Dimension parent = this.getParent().getSize();
         int x = (parent.width - this.getWidth()) / 2;
         int y = (parent.height - this.getHeight()) / 2;
-        
+
         this.setLocation(x, y);
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

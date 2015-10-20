@@ -1,9 +1,9 @@
 package com.khaos.core.data;
 
-import com.khaos.core.gui.panel.ImagePanel;
+import com.khaos.core.data.game.CharacterData;
+import com.khaos.core.data.game.MapData;
+import com.khaos.core.data.game.Tile;
 import com.khaos.core.gui.panel.TilePanel;
-import java.awt.Dimension;
-import java.util.ArrayList;
 
 /**
  *
@@ -11,17 +11,32 @@ import java.util.ArrayList;
  */
 public class GameData {
 
-    private final ArrayList<TilePanel> grid = new ArrayList<>();
+    private final Array2D<TilePanel> grid;
+    private final Resources resources;
+    private MapData map;
+    private CharacterData character;
 
-    public void loadTiles(Dimension parentSize) {
-        int rows = parentSize.width / ImagePanel.SCALE_SIZE;
-        int columns = parentSize.height / ImagePanel.SCALE_SIZE;
+    public GameData(Resources resources, Array2D<TilePanel> grid) {
+        this.resources = resources;
+        this.grid = grid;
+        System.out.println(grid.get(1, 1).getLocation());
+    }
 
-        for (int x = 0; x < columns; x++) {
-            for (int y = 0; y < rows; y++) {
-
+    public void updateGrid() {
+        for (int x = 0; x < grid.getColumns(); x++) {
+            for (int y = 0; y < grid.getRows(); y++) {
+                Tile temp = map.get(x, y);
+                grid.get(x, y).update(resources.getTexture(temp.getTexture()));
             }
         }
+    }
+
+    public synchronized void update(CharacterData data) {
+        this.character = data;
+    }
+
+    public synchronized void update(MapData data) {
+        this.map = data;
     }
 
 }//End Class

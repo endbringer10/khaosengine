@@ -5,11 +5,11 @@ import com.khaos.core.Localized;
 import com.khaos.core.connection.Connection;
 import com.khaos.core.connection.OfflineConnection;
 import com.khaos.core.connection.OnlineConnection;
+import com.khaos.core.data.GameData;
 import com.khaos.core.data.Resources;
 import com.khaos.core.exception.ServerConnectionException;
 import com.khaos.core.gui.Game;
 import com.khaos.core.gui.Login;
-import com.khaos.core.gui.internalframe.CharacterSelect;
 import com.khaos.core.gui.progress.SplashPanel;
 import com.khaos.core.threads.UpdateThread;
 import com.khaos.core.threads.WaitThread;
@@ -72,13 +72,13 @@ public class KhaosEngine implements EngineHook {
     }
 
     @Override
-    public void openCharacterSelect() {
+    public synchronized void openCharacterSelect() {
         game.openCharacterSelect();
     }
 
     @Override
-    public void loadCharacter() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public synchronized GameData getGameData() {
+        return game.getGame();
     }
 
 }//End Class

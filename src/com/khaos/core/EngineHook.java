@@ -1,5 +1,7 @@
 package com.khaos.core;
 
+import com.khaos.core.data.GameData;
+
 /**
  *
  * @author endbr
@@ -14,6 +16,6 @@ public interface EngineHook {
 
     public void openCharacterSelect();
     
-    public void loadCharacter();
+    public GameData getGameData();
 
 }//End CLass
