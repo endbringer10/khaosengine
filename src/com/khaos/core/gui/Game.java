@@ -1,6 +1,7 @@
 package com.khaos.core.gui;
 
 import com.khaos.client.KhaosEngine;
+import com.khaos.core.data.Array2D;
 import com.khaos.core.Localized;
 import com.khaos.core.Settings;
 import com.khaos.core.connection.ConnectionHook;
@@ -9,6 +10,10 @@ import com.khaos.core.data.GameData;
 import com.khaos.core.data.Resources;
 import com.khaos.core.data.commands.CharacterSelectCommand;
 import com.khaos.core.gui.internalframe.CharacterSelect;
+import com.khaos.core.gui.panel.ImagePanel;
+import com.khaos.core.gui.panel.TilePanel;
+import java.awt.Point;
+import java.util.ArrayList;
 
 /**
  *
@@ -17,17 +22,37 @@ import com.khaos.core.gui.internalframe.CharacterSelect;
 public class Game extends javax.swing.JFrame {
 
     private final Architecture arch = new Architecture();
-    private final GameData data = new GameData();
     private final Resources resources;
+    private final GameData game;
     private final ConnectionHook connection;
 
     public Game(ConnectionHook connection, Resources resources) {
         initComponents();
         this.connection = connection;
         this.resources = resources;
+
+        Array2D<TilePanel> grid = this.initGrid();
+        this.game = new GameData(resources, grid);
     }
 
-    public void init() {
+    private Array2D<TilePanel> initGrid() {
+        Array2D<TilePanel> grid = new Array2D<>();
+        int columns = (this.desktopPane.getWidth() / ImagePanel.SCALE_SIZE) + 1;
+        int rows = (this.desktopPane.getHeight() / ImagePanel.SCALE_SIZE) + 1;
+
+        for (int x = 0; x < columns; x++) {
+            for (int y = 0; y < rows; y++) {
+                TilePanel panel = new TilePanel(new Point(x, y));
+                grid.add(x, y, panel);
+                this.desktopPane.add(panel);
+                //panel.init();
+            }
+        }
+
+        return grid;
+    }
+
+    public synchronized void init() {
         this.setSize(Settings.SCREEN_WIDTH.parseInt(), Settings.SCREEN_HEIGHT.parseInt());
         this.setIconImage(Resources.LOGO);
         this.setTitle(Localized.KHAOS_ENGINE.getLocalized() + " v" + KhaosEngine.VERSION);
@@ -35,16 +60,20 @@ public class Game extends javax.swing.JFrame {
         this.setVisible(true);
     }
 
-    public void start() {
+    public synchronized void start() {
         resources.load();
         arch.load();
         connection.addCommand(new CharacterSelectCommand());
     }
 
-    public void openCharacterSelect() {
+    public synchronized void openCharacterSelect() {
         CharacterSelect select = new CharacterSelect(connection);
         this.desktopPane.add(select);
         select.init();
+    }
+
+    public synchronized GameData getGame() {
+        return game;
     }
 
     @SuppressWarnings("unchecked")

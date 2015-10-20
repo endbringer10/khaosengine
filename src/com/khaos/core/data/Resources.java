@@ -60,4 +60,13 @@ public class Resources {
         }
     }
 
+    public BufferedImage getTexture(String texture) {
+        int index = textures.indexOf(texture);
+        if (index != -1) {
+            return textures.get(index).getImage();
+        }
+
+        return null;
+    }
+
 }//End Class
