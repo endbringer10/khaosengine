@@ -81,9 +81,4 @@ public class KhaosEngine implements EngineHook {
         return game.getGame();
     }
 
-    @Override
-    public void loadCharacter() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
 }//End Class

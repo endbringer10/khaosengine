@@ -16,7 +16,6 @@ public class CharacterPanel extends ImagePanel {
     
     public void update(BufferedImage image) {
         this.setImage(image);
-        //this.repaint();
     }
 
 }//End CLass

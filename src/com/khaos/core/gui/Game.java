@@ -35,7 +35,7 @@ public class Game extends javax.swing.JFrame {
         resources.load();
         arch.load();
 
-        CharacterPanel character = new CharacterPanel(new Point(10, 10));
+        CharacterPanel character = new CharacterPanel(new Point(0, 0));
         this.desktopPane.add(character);
 
         DisplayGrid grid = new DisplayGrid();
@@ -51,8 +51,6 @@ public class Game extends javax.swing.JFrame {
             }
         }
 
-        //CharacterPanel character = new CharacterPanel(resources.getTexture("character.png"), new Point(columns / 2, rows / 2));
-        //this.desktopPane.add(character);
         this.game = new GameData(resources, grid, character);
     }
 
