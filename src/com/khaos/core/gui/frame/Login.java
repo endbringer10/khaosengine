@@ -1,4 +1,4 @@
-package com.khaos.core.gui;
+package com.khaos.core.gui.frame;
 
 import com.khaos.core.Localized;
 import com.khaos.core.Settings;
