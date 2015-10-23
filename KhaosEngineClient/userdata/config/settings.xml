@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings>
+	<entry>
+		<meta>DEBUG</meta>
+		<value>true</value>
+	</entry>
+	<entry>
+		<meta>HOST_IP</meta>
+		<value>localhost</value>
+	</entry>
+	<entry>
+		<meta>HOST_PORT</meta>
+		<value>10101</value>
+	</entry>
+</settings>
