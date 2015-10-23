@@ -1,9 +1,10 @@
 package com.khaos.core.data;
 
 import com.khaos.core.data.game.CharacterData;
+import com.khaos.core.data.game.DisplayGrid;
 import com.khaos.core.data.game.MapData;
 import com.khaos.core.data.game.Tile;
-import com.khaos.core.gui.panel.TilePanel;
+import com.khaos.core.gui.panel.CharacterPanel;
 
 /**
  *
@@ -11,32 +12,40 @@ import com.khaos.core.gui.panel.TilePanel;
  */
 public class GameData {
 
-    private final Array2D<TilePanel> grid;
+    private final DisplayGrid grid;
+    private final CharacterPanel me;
     private final Resources resources;
     private MapData map;
     private CharacterData character;
 
-    public GameData(Resources resources, Array2D<TilePanel> grid) {
+    public GameData(Resources resources, DisplayGrid grid, CharacterPanel character) {
         this.resources = resources;
         this.grid = grid;
-        System.out.println(grid.get(1, 1).getLocation());
+        this.me = character;
     }
 
-    public void updateGrid() {
+    private void updateGrid() {
         for (int x = 0; x < grid.getColumns(); x++) {
             for (int y = 0; y < grid.getRows(); y++) {
                 Tile temp = map.get(x, y);
-                grid.get(x, y).update(resources.getTexture(temp.getTexture()));
+                grid.update(x, y, resources.getTexture(temp.getTexture()));
             }
         }
     }
 
     public synchronized void update(CharacterData data) {
         this.character = data;
+        me.update(resources.getTexture(character.getTexture()));
     }
 
     public synchronized void update(MapData data) {
         this.map = data;
+        this.updateGrid();
+    }
+
+    public synchronized void repaint() {
+        me.repaint();
+        grid.repaint();
     }
 
 }//End Class

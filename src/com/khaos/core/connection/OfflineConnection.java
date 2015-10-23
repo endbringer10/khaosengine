@@ -1,11 +1,9 @@
 package com.khaos.core.connection;
 
+import com.khaos.core.Database;
 import com.khaos.core.EngineHook;
 import com.khaos.core.data.commands.Command;
 import com.khaos.core.data.packets.Packet;
-import com.khaos.core.data.commands.LoginCommand;
-import com.khaos.core.data.packets.CommandNotSupportedPacket;
-import com.khaos.core.data.packets.ValidLoginPacket;
 import com.khaos.core.system.Errors;
 import com.khaos.core.system.SysLog;
 import java.util.concurrent.LinkedBlockingQueue;
@@ -21,6 +19,7 @@ public class OfflineConnection implements Connection {
     private volatile boolean running = true;
     private final ExecuteThread execute;
     private final ProcessThread process;
+    private final Database database = new Database();
 
     public OfflineConnection(EngineHook engine) {
         this.execute = new ExecuteThread();
@@ -46,7 +45,7 @@ public class OfflineConnection implements Connection {
                 try {
                     Command command = commands.take();
                     //packets.add(this.execute(command));
-                    packets.add(command.process());
+                    packets.add(command.process(database));
                 } catch (InterruptedException ex) {
                     SysLog.err(Errors.THREAD_RUNNING, ex);
                 }

@@ -8,8 +8,8 @@ import com.khaos.core.connection.OnlineConnection;
 import com.khaos.core.data.GameData;
 import com.khaos.core.data.Resources;
 import com.khaos.core.exception.ServerConnectionException;
-import com.khaos.core.gui.Game;
-import com.khaos.core.gui.Login;
+import com.khaos.core.gui.frame.Game;
+import com.khaos.core.gui.frame.Login;
 import com.khaos.core.gui.progress.SplashPanel;
 import com.khaos.core.threads.UpdateThread;
 import com.khaos.core.threads.WaitThread;
@@ -22,7 +22,7 @@ public class KhaosEngine implements EngineHook {
 
     private static final String release = "00";
     private static final String beta = "00";
-    private static final String patch = "16";
+    private static final String patch = "20151023";
     public static final String VERSION = release + "." + beta + "." + patch;
 
     private final Resources resources = new Resources();

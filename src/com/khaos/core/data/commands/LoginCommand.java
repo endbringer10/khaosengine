@@ -1,5 +1,6 @@
 package com.khaos.core.data.commands;
 
+import com.khaos.core.Database;
 import com.khaos.core.data.packets.Packet;
 import com.khaos.core.data.packets.ValidLoginPacket;
 
@@ -24,8 +25,8 @@ public class LoginCommand extends Command {
     }
 
     @Override
-    public Packet process() {
-        return new ValidLoginPacket();
+    public Packet process(Database data) {
+        return data.validateLogin();
     }
 
 }//End Class

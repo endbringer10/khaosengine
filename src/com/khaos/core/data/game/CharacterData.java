@@ -9,9 +9,15 @@ import java.awt.Point;
 public class CharacterData {
 
     private Point coor;
+    private String texture;
 
-    public CharacterData(Point coor) {
+    public CharacterData(Point coor, String texture) {
         this.coor = coor;
+        this.texture = texture;
+    }
+
+    public String getTexture() {
+        return texture;
     }
 
 }//End Class

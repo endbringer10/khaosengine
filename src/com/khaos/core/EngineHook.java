@@ -15,7 +15,7 @@ public interface EngineHook {
     public void openGame();
 
     public void openCharacterSelect();
-    
+
     public GameData getGameData();
 
 }//End CLass
