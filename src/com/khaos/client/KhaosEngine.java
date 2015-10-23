@@ -78,7 +78,7 @@ public class KhaosEngine implements EngineHook {
 
     @Override
     public synchronized GameData getGameData() {
-        return game.getGame();
+        return game.getGameData();
     }
 
 }//End Class

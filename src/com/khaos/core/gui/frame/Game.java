@@ -55,7 +55,7 @@ public class Game extends javax.swing.JFrame {
         select.init();
     }
 
-    public synchronized GameData getGame() {
+    public synchronized GameData getGameData() {
         return game;
     }
 
