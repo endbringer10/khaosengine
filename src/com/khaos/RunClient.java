@@ -1,6 +1,6 @@
 package com.khaos;
 
-import com.khaos.client.KhaosEngine;
+import com.khaos.core.KhaosEngine;
 import com.khaos.core.Localized;
 import com.khaos.core.Settings;
 import com.khaos.core.gui.progress.SplashPanel;

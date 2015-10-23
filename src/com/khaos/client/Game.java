@@ -1,6 +1,6 @@
-package com.khaos.core.gui.frame;
+package com.khaos.client;
 
-import com.khaos.client.KhaosEngine;
+import com.khaos.core.KhaosEngine;
 import com.khaos.core.Localized;
 import com.khaos.core.Settings;
 import com.khaos.core.connection.ConnectionHook;
@@ -9,17 +9,18 @@ import com.khaos.core.data.GameData;
 import com.khaos.core.data.Resources;
 import com.khaos.core.data.commands.CharacterSelectCommand;
 import com.khaos.core.gui.DisplayPane;
-import com.khaos.core.gui.internalframe.CharacterSelect;
+import javax.swing.JInternalFrame;
+import newclass.EngineGUI;
 
 /**
  *
  * @author endbr
  */
-public class Game extends javax.swing.JFrame {
+public class Game extends javax.swing.JFrame implements EngineGUI {
 
     private final Architecture arch = new Architecture();
     private final Resources resources;
-    private final GameData game;
+    private final GameData data;
     private final ConnectionHook connection;
     private final DisplayPane display = new DisplayPane();
 
@@ -34,9 +35,10 @@ public class Game extends javax.swing.JFrame {
         resources.load();
         arch.load();
 
-        this.game = new GameData(resources, display.initGrid(), display.initPlayer());
+        this.data = new GameData(resources, display.initGrid(), display.initPlayer());
     }
 
+    @Override
     public synchronized void init() {
         this.setSize(Settings.SCREEN_WIDTH.parseInt(), Settings.SCREEN_HEIGHT.parseInt());
         this.setIconImage(Resources.LOGO);
@@ -45,18 +47,19 @@ public class Game extends javax.swing.JFrame {
         this.setVisible(true);
     }
 
+    @Override
     public synchronized void start() {
         connection.addCommand(new CharacterSelectCommand());
     }
 
-    public synchronized void openCharacterSelect() {
-        CharacterSelect select = new CharacterSelect(connection);
-        this.display.add(select);
-        select.init();
+    @Override
+    public synchronized GameData getGuiData() {
+        return data;
     }
 
-    public synchronized GameData getGameData() {
-        return game;
+    @Override
+    public void openInternalFrame(JInternalFrame frame) {
+        this.display.add(frame);
     }
 
     @SuppressWarnings("unchecked")
@@ -96,4 +99,5 @@ public class Game extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     // End of variables declaration//GEN-END:variables
+
 }//End Class

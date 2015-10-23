@@ -1,6 +1,7 @@
 package com.khaos.core.data.packets;
 
 import com.khaos.core.EngineHook;
+import com.khaos.core.gui.internalframe.CharacterSelect;
 
 /**
  *
@@ -10,7 +11,9 @@ public class CharacterSelectPacket extends Packet {
 
     @Override
     public void process(EngineHook engine) {
-        engine.openCharacterSelect();
+        CharacterSelect select = new CharacterSelect(engine.getConnection());
+        engine.getGUI().openInternalFrame(select);
+        select.init();
     }
 
 }//End CLass

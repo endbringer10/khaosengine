@@ -21,7 +21,7 @@ public class CharacterLoadPacket extends Packet {
 
     @Override
     public void process(EngineHook engine) {
-        GameData data = engine.getGameData();
+        GameData data = engine.getGuiData();
         data.update(character);
         data.update(map);
         data.repaint();

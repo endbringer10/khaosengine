@@ -3,6 +3,7 @@ package com.khaos.core.gui.internalframe;
 import com.khaos.core.Localized;
 import com.khaos.core.connection.ConnectionHook;
 import com.khaos.core.data.commands.CharacterLoadCommand;
+import java.awt.Container;
 import java.awt.Dimension;
 
 /**
@@ -16,20 +17,24 @@ public class CharacterSelect extends javax.swing.JInternalFrame {
     public CharacterSelect(ConnectionHook connection) {
         initComponents();
         this.connection = connection;
+
+        this.setTitle(Localized.CHARACTER_SELECT.getLocalized());
     }
 
     public void init() {
-        this.setTitle(Localized.CHARACTER_SELECT.getLocalized());
         this.align();
         this.setVisible(true);
     }
 
     private void align() {
-        Dimension parent = this.getParent().getSize();
-        int x = (parent.width - this.getWidth()) / 2;
-        int y = (parent.height - this.getHeight()) / 2;
+        Container container = this.getParent();
+        if (container != null) {
+            Dimension parent = this.getParent().getSize();
+            int x = (parent.width - this.getWidth()) / 2;
+            int y = (parent.height - this.getHeight()) / 2;
 
-        this.setLocation(x, y);
+            this.setLocation(x, y);
+        }
     }
 
     @SuppressWarnings("unchecked")
