@@ -1,11 +1,11 @@
 package com.khaos.core.gui.panel;
 
+import com.khaos.core.gui.Layer;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.image.BufferedImage;
 import javax.swing.JPanel;
-import org.joda.time.DateTime;
 
 /**
  *
@@ -101,6 +101,10 @@ public class ImagePanel extends JPanel {
         if (this.image != null) {
             g.drawImage(image, offset.width, offset.height, null);
         }
+    }
+
+    public int getLayer() {
+        return Layer.BOTTOM.getLayer();
     }
 
 }//End CLass

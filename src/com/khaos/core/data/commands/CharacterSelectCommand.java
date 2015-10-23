@@ -1,7 +1,6 @@
 package com.khaos.core.data.commands;
 
 import com.khaos.core.Database;
-import com.khaos.core.data.packets.CharacterSelectPacket;
 import com.khaos.core.data.packets.Packet;
 
 /**

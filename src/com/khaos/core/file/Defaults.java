@@ -30,4 +30,4 @@ public interface Defaults {
     public static final String FILE_CONFIG = "settings.xml";
     public static final String FILE_LOGO = "logo.png";
 
-}
+}//End CLass

@@ -1,7 +1,5 @@
 package com.khaos.core;
 
-import com.khaos.client.KhaosEngine;
-
 /**
  *
  * @author endbr

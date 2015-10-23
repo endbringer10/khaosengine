@@ -1,4 +1,4 @@
-package com.khaos.core.gui;
+package com.khaos.core.gui.frame;
 
 import com.khaos.core.data.Resources;
 import java.awt.Insets;

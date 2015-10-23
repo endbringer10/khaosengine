@@ -77,9 +77,6 @@ public enum Settings {
 
             SettingEntry next;
             while ((next = builder.next()) != null) {
-                //System.out.println(next.getMeta());
-                //System.out.println(next.getValue());
-                //System.out.println(Settings.valueOf(next.getMeta()));
                 try {
                     Settings.valueOf(next.getMeta()).setValue(next.getValue());
                 } catch (IllegalArgumentException ex) {

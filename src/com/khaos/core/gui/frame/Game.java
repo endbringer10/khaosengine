@@ -1,7 +1,6 @@
-package com.khaos.core.gui;
+package com.khaos.core.gui.frame;
 
 import com.khaos.client.KhaosEngine;
-import com.khaos.core.data.Array2D;
 import com.khaos.core.Localized;
 import com.khaos.core.Settings;
 import com.khaos.core.connection.ConnectionHook;
@@ -47,10 +46,11 @@ public class Game extends javax.swing.JFrame {
                 TilePanel panel = new TilePanel(new Point(x, y));
                 grid.add(x, y, panel);
                 this.desktopPane.add(panel);
-                //panel.init();
+                this.desktopPane.setLayer(panel, panel.getLayer());
+                //this.desktopPane.setPosition(panel, Layer.getPosition(x, y)); //does getPosition work if x and y start at max and decrease (x--)?
+                this.desktopPane.setPosition(panel, (columns - x - 1) + ((rows - y - 1) * (columns)));
             }
         }
-
         this.game = new GameData(resources, grid, character);
     }
 

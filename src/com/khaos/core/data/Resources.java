@@ -38,7 +38,6 @@ public class Resources {
                 if (file.isFile()) {
                     try {
                         BufferedImage image = ImageIO.read(file);
-                        //System.out.println(file.getRelativePath());
                         textures.add(new ImageEntry(file.getRelativePath(), image));
                     } catch (IOException ex) {
                         SysLog.err(Errors.IMAGE_LOAD, ex);
