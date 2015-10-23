@@ -1,5 +1,7 @@
 package com.khaos.core.connection;
 
+import com.khaos.core.data.commands.Command;
+
 /**
  *
  * @author endbr

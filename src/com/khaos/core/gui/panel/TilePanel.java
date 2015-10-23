@@ -1,9 +1,10 @@
 package com.khaos.core.gui.panel;
 
-import com.khaos.core.gui.Layer;
 import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.image.BufferedImage;
+import javax.swing.border.EtchedBorder;
 
 /**
  *
@@ -19,11 +20,7 @@ public class TilePanel extends ImagePanel {
 
     public void update(BufferedImage image) {
         this.setImage(image);
-    }
-    
-    @Override
-    public int getLayer() {
-        return Layer.TILE.getLayer();
+        //this.repaint();
     }
 
 }//End Class

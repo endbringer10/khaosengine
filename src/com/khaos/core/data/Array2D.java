@@ -22,6 +22,13 @@ public class Array2D<E> extends ArrayList<ArrayList<E>> {
         }
 
         return super.get(x).add(e);
+
+        /*if (x < this.size() && y < this.get(x).size()) {
+         return super.get(x).add(e);
+         } else { //New Column
+         super.add(new ArrayList<>());
+         return super.get(x).add(e);
+         }*/
     }
 
     public synchronized int getColumns() {

@@ -25,11 +25,12 @@ public class Architecture {
 
         if (files != null) {
             for (dFile file : files) {
+                //dFile file = new dFile(index);
                 if (file.isFile()) {
                     try {
                         MaterialBuilder builder = new MaterialBuilder(file);
 
-                        MaterialEntry next;
+                        MaterialEntry next;// = builder.next();
                         if ((next = builder.next()) != null) {
                             materials.add(next);
                         }

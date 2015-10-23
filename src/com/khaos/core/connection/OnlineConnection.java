@@ -106,6 +106,7 @@ public class OnlineConnection implements Connection {
                 try {
                     Packet packet = (Packet) (in.readObject());
                     packet.process(engine);
+                    //parent.process(packet);
                 } catch (ClassNotFoundException | IOException ex) {
                     SysLog.err(Errors.THREAD_RUNNING, ex);
                 }
@@ -131,4 +132,4 @@ public class OnlineConnection implements Connection {
 
     }//End CLass
 
-}//End CLass
+}

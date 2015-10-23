@@ -19,6 +19,7 @@ public class OfflineConnection implements Connection {
     private volatile boolean running = true;
     private final ExecuteThread execute;
     private final ProcessThread process;
+    private final Database database = new Database();
 
     public OfflineConnection(EngineHook engine) {
         this.execute = new ExecuteThread();
@@ -38,22 +39,29 @@ public class OfflineConnection implements Connection {
 
     private class ExecuteThread extends Thread {
 
-        private final Database database = new Database();
-
         @Override
         public void run() {
             while (running) {
                 try {
                     Command command = commands.take();
+                    //packets.add(this.execute(command));
                     packets.add(command.process(database));
                 } catch (InterruptedException ex) {
                     SysLog.err(Errors.THREAD_RUNNING, ex);
                 }
+
             }
 
             running = false;
         }
 
+        /*private Packet execute(Command command) {
+         if (command instanceof LoginCommand) {
+         return new ValidLoginPacket();
+         }
+
+         return new CommandNotSupportedPacket();
+         }*/
         @Override
         public void interrupt() {
             super.interrupt();
@@ -74,6 +82,7 @@ public class OfflineConnection implements Connection {
             while (running) {
                 try {
                     Packet packet = packets.take();
+                    //parent.process(packet);
                     packet.process(engine);
                 } catch (InterruptedException ex) {
                     SysLog.err(Errors.THREAD_RUNNING, ex);

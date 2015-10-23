@@ -1,6 +1,5 @@
 package com.khaos.core.gui.panel;
 
-import com.khaos.core.gui.Layer;
 import java.awt.Point;
 import java.awt.image.BufferedImage;
 
@@ -14,14 +13,9 @@ public class CharacterPanel extends ImagePanel {
         this.resize();
         this.setLocation(location);
     }
-
+    
     public void update(BufferedImage image) {
         this.setImage(image);
-    }
-
-    @Override
-    public int getLayer() {
-        return Layer.CHARACTER.getLayer();
     }
 
 }//End CLass

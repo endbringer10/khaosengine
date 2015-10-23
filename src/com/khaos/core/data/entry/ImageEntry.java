@@ -20,4 +20,8 @@ public class ImageEntry extends Meta {
         return image;
     }
 
+    /*private static String edit(String path) {
+     path = path.replace(FileSystem.FOLDER_TEXTURES.getPath2(), "");
+     return path;
+     }*/
 }//end class
