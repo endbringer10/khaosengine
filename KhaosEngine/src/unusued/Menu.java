@@ -1,11 +1,15 @@
-package com.khaos.core.gui.internalframe;
+package unusued;
 
 import com.khaos.core.EngineHook;
+import com.khaos.core.KeyBinds;
 import com.khaos.core.Localized;
 import com.khaos.core.gui.interfaces.Aligned;
 import com.khaos.core.system.Errors;
 import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import javax.swing.AbstractAction;
+import javax.swing.JComponent;
 
 /**
  *
@@ -25,6 +29,10 @@ public class Menu extends javax.swing.JInternalFrame implements Aligned {
         this.setTitle(Localized.MENU.getLocalized());
         this.setLayer(this.getPreferredLayer());
         this.moveToFront();
+        
+        int ancestor = JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT;
+        this.getInputMap(ancestor).put(KeyBinds.ESC.getKey(), KeyBinds.ESC.getAction());
+        this.getActionMap().put(KeyBinds.ESC.getAction(), new EscAction());
     }
 
     @Override
@@ -117,4 +125,15 @@ public class Menu extends javax.swing.JInternalFrame implements Aligned {
     private javax.swing.JButton buttonExit;
     private javax.swing.JButton buttonSettings;
     // End of variables declaration//GEN-END:variables
+
+    private class EscAction extends AbstractAction {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            dispose();
+        }
+
+    }//End Class
+
+
 }//End Class

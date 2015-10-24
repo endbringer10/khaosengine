@@ -29,6 +29,7 @@ public enum Settings {
     SCREEN_HEIGHT(600);
 
     private String value;
+    private static String change;
 
     Settings(boolean value) {
         this.value = Boolean.toString(value);
@@ -40,6 +41,10 @@ public enum Settings {
 
     Settings(String value) {
         this.value = value;
+    }
+
+    public String getChange() {
+        return change;
     }
 
     public boolean parseBoolean() {
@@ -100,6 +105,8 @@ public enum Settings {
         writer.cache(DEBUG);
         writer.cache(HOST_IP);
         writer.cache(HOST_PORT);
+        writer.cache(AUTO_LOGIN);
+        writer.cache(NIMBUS);
         writer.print();
     }
 

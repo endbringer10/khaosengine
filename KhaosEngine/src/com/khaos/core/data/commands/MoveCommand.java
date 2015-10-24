@@ -18,7 +18,7 @@ public class MoveCommand implements Command {
 
     @Override
     public Packet process(DatabaseHook data) {
-        return data.move(Direction.UP);
+        return data.move(direction);
     }
 
 }//End Class

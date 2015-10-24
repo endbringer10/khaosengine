@@ -2,7 +2,7 @@ package com.khaos.core.threads;
 
 import com.khaos.core.EngineHook;
 import com.khaos.core.Localized;
-import com.khaos.core.data.commands.GameInitCommand;
+import com.khaos.core.data.packets.GameInitPacket;
 import com.khaos.core.gui.frame.Progress;
 
 /**
@@ -29,9 +29,8 @@ public class UpdateThread extends Thread {
          Logger.getLogger(UpdateThread.class.getName()).log(Level.SEVERE, null, ex);
          }*/
         progress.dispose();
-        //hook.process(new UpToDatePacket());
-        engine.getConnection().addCommand(new GameInitCommand());
-        //new UpToDatePacket().process(hook);
+        new GameInitPacket().process(engine);
+        //engine.getConnection().addCommand(new GameInitCommand());
     }
 
 }//End Class

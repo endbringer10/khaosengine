@@ -1,7 +1,7 @@
 package com.khaos.core.data.game;
 
 import com.khaos.core.data.Array2D;
-import com.khaos.core.gui.panel.TilePanel;
+import com.khaos.core.gui.gamevisuals.TilePanel;
 import java.awt.image.BufferedImage;
 
 /**

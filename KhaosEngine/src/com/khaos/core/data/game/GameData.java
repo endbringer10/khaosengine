@@ -1,11 +1,7 @@
 package com.khaos.core.data.game;
 
 import com.khaos.core.data.Resources;
-import com.khaos.core.data.game.CharacterData;
-import com.khaos.core.data.game.DisplayGrid;
-import com.khaos.core.data.game.MapData;
-import com.khaos.core.data.game.Tile;
-import com.khaos.core.gui.panel.CharacterPanel;
+import com.khaos.core.gui.gamevisuals.CharacterPanel;
 
 /**
  *
@@ -36,7 +32,7 @@ public class GameData {
 
     public synchronized void update(CharacterData data) {
         this.character = data;
-        me.update(resources.getTexture(character.getTexture()));
+        me.update(resources.getTexture(character.getTexture()), data.getCoord());
     }
 
     public synchronized void update(MapData data) {
@@ -48,8 +44,8 @@ public class GameData {
         me.repaint();
         grid.repaint();
     }
-    
-    public int getCharacterSpeed(){
+
+    public int getCharacterSpeed() {
         return character.getSpeed();
     }
 

@@ -1,52 +1,32 @@
-package com.khaos.core.gui.internalframe;
+package com.khaos.core.gui.panel;
 
 import com.khaos.core.EngineHook;
 import com.khaos.core.Localized;
 import com.khaos.core.Settings;
-import com.khaos.core.gui.interfaces.Aligned;
-import java.awt.Container;
-import java.awt.Dimension;
+import javax.swing.JInternalFrame;
 
 /**
  *
  * @author endbringer10
  * @since 20151024
  */
-public class SettingsEditor extends javax.swing.JInternalFrame implements Aligned {
+public class SettingsEditorPanel extends javax.swing.JPanel {
 
     private final EngineHook engine;
+    private final JInternalFrame parent;
 
-    public SettingsEditor(EngineHook engine) {
+    public SettingsEditorPanel(EngineHook engine, JInternalFrame parent) {
         initComponents();
         this.engine = engine;
+        this.parent = parent;
 
         this.checkBoxAutoLogin.setText(Localized.ENABLED.getLocalized());
         this.labelAutoLogin.setText(Localized.AUTO_LOGIN.getLocalized());
         this.buttonCancel.setText(Localized.DISCARD.getLocalized());
         this.buttonReset.setText(Localized.RESET.getLocalized());
         this.buttonSave.setText(Localized.SAVE.getLocalized());
-        this.setTitle(Localized.SETTINGS.getLocalized());
-        this.setLayer(this.getPreferredLayer());
-        this.moveToFront();
-    }
-
-    @Override
-    public void init() {
         this.setComponents();
-        this.align();
-        this.setVisible(true);
-    }
-
-    @Override
-    public void align() {
-        Container container = this.getParent();
-        if (container != null) {
-            Dimension parent = this.getParent().getSize();
-            int x = (parent.width - this.getWidth()) / 2;
-            int y = (parent.height - this.getHeight()) / 2;
-
-            this.setLocation(x, y);
-        }
+        this.setSize(this.getPreferredSize());
     }
 
     private void setComponents() {
@@ -67,15 +47,6 @@ public class SettingsEditor extends javax.swing.JInternalFrame implements Aligne
         buttonCancel = new javax.swing.JButton();
         buttonReset = new javax.swing.JButton();
         buttonSave = new javax.swing.JButton();
-
-        setClosable(true);
-        addHierarchyBoundsListener(new java.awt.event.HierarchyBoundsListener() {
-            public void ancestorMoved(java.awt.event.HierarchyEvent evt) {
-            }
-            public void ancestorResized(java.awt.event.HierarchyEvent evt) {
-                formAncestorResized(evt);
-            }
-        });
 
         labelAutoLogin.setText("Auto Login:");
 
@@ -102,8 +73,8 @@ public class SettingsEditor extends javax.swing.JInternalFrame implements Aligne
             }
         });
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -128,32 +99,28 @@ public class SettingsEditor extends javax.swing.JInternalFrame implements Aligne
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelAutoLogin)
                     .addComponent(checkBoxAutoLogin))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonCancel)
                     .addComponent(buttonReset)
                     .addComponent(buttonSave))
                 .addContainerGap())
         );
-
-        pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void formAncestorResized(java.awt.event.HierarchyEvent evt) {//GEN-FIRST:event_formAncestorResized
-        this.align();
-    }//GEN-LAST:event_formAncestorResized
+    private void buttonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelActionPerformed
+        parent.dispose();
+    }//GEN-LAST:event_buttonCancelActionPerformed
 
     private void buttonResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonResetActionPerformed
         this.setComponents();
     }//GEN-LAST:event_buttonResetActionPerformed
 
-    private void buttonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelActionPerformed
-        this.dispose();
-    }//GEN-LAST:event_buttonCancelActionPerformed
-
     private void buttonSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSaveActionPerformed
         this.saveSettings();
+        parent.dispose();
     }//GEN-LAST:event_buttonSaveActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonCancel;
@@ -162,4 +129,5 @@ public class SettingsEditor extends javax.swing.JInternalFrame implements Aligne
     private javax.swing.JCheckBox checkBoxAutoLogin;
     private javax.swing.JLabel labelAutoLogin;
     // End of variables declaration//GEN-END:variables
+
 }//End Class

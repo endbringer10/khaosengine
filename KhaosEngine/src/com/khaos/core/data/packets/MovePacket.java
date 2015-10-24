@@ -1,6 +1,7 @@
 package com.khaos.core.data.packets;
 
 import com.khaos.core.EngineHook;
+import com.khaos.core.data.game.CharacterData;
 
 /**
  *
@@ -9,10 +10,16 @@ import com.khaos.core.EngineHook;
  */
 public class MovePacket implements Packet {
 
+    private final CharacterData character;
+
+    public MovePacket(CharacterData character) {
+        this.character = character;
+    }
+
     @Override
     public void process(EngineHook engine) {
-        //engine.getGuiData().update(character);
-        System.out.println("Moved");
+        engine.getGuiData().update(character);
+        //engine.getGuiData().repaint();
     }
 
 }//End Class

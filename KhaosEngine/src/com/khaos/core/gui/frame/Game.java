@@ -14,7 +14,9 @@ import com.khaos.core.data.game.GameData;
 import com.khaos.core.data.game.HardCap;
 import com.khaos.core.gui.DisplayPane;
 import com.khaos.core.gui.EngineGUI;
-import com.khaos.core.gui.internalframe.Menu;
+import com.khaos.core.gui.internalframe.KeyBoundFrame;
+import com.khaos.core.gui.internalframe.PanelHolder;
+import com.khaos.core.gui.panel.MenuPanel;
 import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
 import javax.swing.JComponent;
@@ -27,7 +29,7 @@ import org.joda.time.DateTime;
  */
 public class Game extends javax.swing.JFrame implements EngineGUI {
 
-    private final int MOVE_DELAY_MILLIS = 500;
+    private final int MOVE_DELAY_MILLIS = 300;
 
     private final Architecture arch = new Architecture();
     private final GameData data;
@@ -163,11 +165,11 @@ public class Game extends javax.swing.JFrame implements EngineGUI {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            Menu menu = new Menu(engine);
-            display.setLayer(menu, menu.getPreferredLayer());
-            display.setPosition(menu, 0);
+            PanelHolder menu = new KeyBoundFrame(Localized.MENU.getLocalized());
             display.add(menu);
-            menu.init();
+            menu.addPanel(new MenuPanel(engine, menu));
+            //display.setLayer(menu, menu.getPreferredLayer());
+            //display.setPosition(menu, 0);
         }
 
     }//End Class
