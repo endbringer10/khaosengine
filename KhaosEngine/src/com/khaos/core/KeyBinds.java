@@ -23,7 +23,7 @@ public enum KeyBinds {
     DOWN(KeyStroke.getKeyStroke(KeyEvent.VK_DOWN, 0), "Move Down"),
     LEFT(KeyStroke.getKeyStroke(KeyEvent.VK_LEFT, 0), "Move Left"),
     RIGHT(KeyStroke.getKeyStroke(KeyEvent.VK_RIGHT, 0), "Move Right"),
-    ESC(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), "Close Window");
+    CLOSE(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), "Close Window");
 
     private KeyStroke key;
     private final String action;
@@ -64,12 +64,17 @@ public enum KeyBinds {
         }
     }
 
+    public static void save() {
+        KeyBinds.generate();
+    }
+
     private static void generate() {
         FileWriter writer = new FileWriter(FileSystem.FILE_USER_KEYBINDS, FileTypes.KEYBINDS);
         writer.cache(UP);
         writer.cache(DOWN);
         writer.cache(LEFT);
         writer.cache(RIGHT);
+        writer.cache(CLOSE);
         writer.print();
     }
 

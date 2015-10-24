@@ -50,7 +50,6 @@ public class Game extends javax.swing.JFrame implements EngineGUI {
         arch.load();
 
         this.data = new GameData(engine.getResources(), display.initGrid(), display.initPlayer());
-        this.addKeyBinds();
     }
 
     @Override
@@ -77,7 +76,8 @@ public class Game extends javax.swing.JFrame implements EngineGUI {
         this.display.add(frame);
     }
 
-    private void addKeyBinds() {
+    @Override
+    public void addKeyBinds() {
         int focus = JComponent.WHEN_FOCUSED;
         int window = JComponent.WHEN_IN_FOCUSED_WINDOW;
         int ancestor = JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT;
@@ -94,8 +94,8 @@ public class Game extends javax.swing.JFrame implements EngineGUI {
         display.getInputMap(window).put(KeyBinds.RIGHT.getKey(), KeyBinds.RIGHT.getAction());
         display.getActionMap().put(KeyBinds.RIGHT.getAction(), new MoveAction(Direction.RIGHT));
 
-        display.getInputMap(window).put(KeyBinds.ESC.getKey(), KeyBinds.ESC.getAction());
-        display.getActionMap().put(KeyBinds.ESC.getAction(), new EscAction());
+        display.getInputMap(window).put(KeyBinds.CLOSE.getKey(), KeyBinds.CLOSE.getAction());
+        display.getActionMap().put(KeyBinds.CLOSE.getAction(), new EscAction());
     }
 
     @SuppressWarnings("unchecked")
@@ -107,6 +107,11 @@ public class Game extends javax.swing.JFrame implements EngineGUI {
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
@@ -129,6 +134,12 @@ public class Game extends javax.swing.JFrame implements EngineGUI {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        System.out.println("Checking when Game.formWindowClosing(evt) is called");
+        Settings.save();
+        KeyBinds.save();
+    }//GEN-LAST:event_formWindowClosing
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu jMenu1;
@@ -165,7 +176,7 @@ public class Game extends javax.swing.JFrame implements EngineGUI {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            PanelHolder menu = new KeyBoundFrame(Localized.MENU.getLocalized());
+            PanelHolder menu = new KeyBoundFrame(Localized.MENU.getLocalized(), true, false);
             display.add(menu);
             menu.addPanel(new MenuPanel(engine, menu));
             //display.setLayer(menu, menu.getPreferredLayer());

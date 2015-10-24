@@ -1,8 +1,8 @@
 package com.khaos.core.data.packets;
 
 import com.khaos.core.EngineHook;
-import com.khaos.core.data.game.GameData;
 import com.khaos.core.data.game.CharacterData;
+import com.khaos.core.data.game.GameData;
 import com.khaos.core.data.game.MapData;
 
 /**
@@ -25,6 +25,7 @@ public class CharacterLoadPacket implements Packet {
         data.update(character);
         data.update(map);
         data.repaint();
+        engine.getGUI().addKeyBinds();
     }
 
 }//End Class

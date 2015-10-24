@@ -29,10 +29,16 @@ public class Login extends javax.swing.JFrame {
     }
 
     public void init() {
-        this.checkBoxAuto.setSelected(Settings.AUTO_LOGIN.parseBoolean());
+        this.setComponents();
 
         this.setLocationRelativeTo(null);
         this.setVisible(true);
+    }
+
+    private void setComponents() {
+        this.checkBoxAuto.setSelected(Settings.AUTO_LOGIN.parseBoolean());
+        this.textFieldPassword.setText(Settings.PASSWORD.parseString());
+        this.textFieldUsername.setText(Settings.USERNAME.parseString());
     }
 
     private void login() {

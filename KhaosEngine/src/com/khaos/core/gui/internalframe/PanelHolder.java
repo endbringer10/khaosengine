@@ -15,13 +15,27 @@ import javax.swing.plaf.basic.BasicInternalFrameUI;
  * @author endbringer10
  * @since 20151024
  */
-public abstract class PanelHolder extends javax.swing.JInternalFrame {
+public class PanelHolder extends javax.swing.JInternalFrame {
 
     private static final int PADDING = 10;
 
     public PanelHolder(String title) {
-        initComponents();
+        this.construct(title, false, false);
+    }
+
+    public PanelHolder(String title, boolean closeable, boolean iconifiable) {
+        this.construct(title, closeable, iconifiable);
+    }
+
+    private void construct(String title, boolean closeable, boolean iconifiable) {
+        this.initComponents();
         this.setTitle(title);
+        this.setClosable(closeable);
+        this.setIconifiable(iconifiable);
+
+        //Move off screen to prevent stutter when temperarilly visible but empty
+        //most be visible for getNorthPane() below to get proper height
+        this.setLocation(-1000, -1000);
 
         this.setLayer(Layer.INTERNALFRAME.getLayer());
         this.moveToFront();
@@ -29,12 +43,12 @@ public abstract class PanelHolder extends javax.swing.JInternalFrame {
     }
 
     public void addPanel(JPanel panel) {
+        panel.setSize(panel.getPreferredSize());
         this.add(panel);
         panel.setLocation(PADDING, PADDING);
 
         Insets insets = this.getInsets();
         int titleBarHeight = ((BasicInternalFrameUI) this.getUI()).getNorthPane().getHeight();
-
         this.setSize(panel.getWidth() + insets.left + insets.right + (PADDING * 2), panel.getHeight() + insets.top + insets.bottom + titleBarHeight + (PADDING * 2));
 
         this.align();
@@ -76,11 +90,11 @@ public abstract class PanelHolder extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 233, Short.MAX_VALUE)
+            .addGap(0, 112, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 189, Short.MAX_VALUE)
+            .addGap(0, 115, Short.MAX_VALUE)
         );
 
         pack();

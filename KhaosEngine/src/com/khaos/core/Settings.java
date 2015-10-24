@@ -20,8 +20,8 @@ public enum Settings {
 
     AUTO_LOGIN(false),
     DEBUG(true),
-    USERNAME("null"),
-    PASSWORD("null"),
+    USERNAME("username"),
+    PASSWORD("password"),
     HOST_IP("localhost"),
     HOST_PORT(10101),
     NIMBUS(true),
@@ -88,7 +88,7 @@ public enum Settings {
     }
 
     public void clear() {
-        this.value = "null";
+        this.value = "";
     }
 
     public static void save() {
@@ -102,6 +102,10 @@ public enum Settings {
         writer.cache(HOST_PORT);
         writer.cache(AUTO_LOGIN);
         writer.cache(NIMBUS);
+        if (AUTO_LOGIN.parseBoolean()) {
+            writer.cache(USERNAME);
+            writer.cache(PASSWORD);
+        }
         writer.print();
     }
 

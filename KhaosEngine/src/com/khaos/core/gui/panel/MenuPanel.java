@@ -24,7 +24,7 @@ public class MenuPanel extends javax.swing.JPanel {
 
         this.buttonSettings.setText(Localized.SETTINGS.getLocalized());
         this.buttonExit.setText(Localized.EXIT.getLocalized());
-        this.setSize(this.getPreferredSize());
+        //this.setSize(this.getPreferredSize());
     }
 
     @SuppressWarnings("unchecked")
@@ -73,13 +73,9 @@ public class MenuPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonSettingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSettingsActionPerformed
-        PanelHolder settings = new KeyBoundFrame(Localized.SETTINGS.getLocalized());
+        PanelHolder settings = new KeyBoundFrame(Localized.SETTINGS.getLocalized(), true, false);
         engine.getGUI().openInternalFrame(settings);
         settings.addPanel(new SettingsEditorPanel(engine, settings));
-
-        //SettingsEditor frame = new SettingsEditor(engine);
-        //engine.getGUI().openInternalFrame(frame);
-        //frame.init();
         parent.dispose();
     }//GEN-LAST:event_buttonSettingsActionPerformed
 

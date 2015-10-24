@@ -20,6 +20,7 @@ public enum Localized {
     RESET("Reset"),
     SAVE("Save"),
     ENABLED("Enabled"),
+    SELECT("Select"),
     CHARACTER_SELECT("Character Select");
 
     private final String english;

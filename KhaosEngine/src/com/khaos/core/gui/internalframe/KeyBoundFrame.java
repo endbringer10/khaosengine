@@ -14,12 +14,18 @@ public class KeyBoundFrame extends PanelHolder {
 
     public KeyBoundFrame(String title) {
         super(title);
+        this.bindKeys();
     }
 
-    public void bindKeys() {
+    public KeyBoundFrame(String title, boolean closeable, boolean iconifiable) {
+        super(title, closeable, iconifiable);
+        this.bindKeys();
+    }
+
+    private void bindKeys() {
         int ancestor = JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT;
-        this.getInputMap(ancestor).put(KeyBinds.ESC.getKey(), KeyBinds.ESC.getAction());
-        this.getActionMap().put(KeyBinds.ESC.getAction(), new EscAction());
+        this.getInputMap(ancestor).put(KeyBinds.CLOSE.getKey(), KeyBinds.CLOSE.getAction());
+        this.getActionMap().put(KeyBinds.CLOSE.getAction(), new EscAction());
     }
 
     private class EscAction extends AbstractAction {
