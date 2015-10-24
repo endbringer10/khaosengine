@@ -7,6 +7,7 @@ package com.khaos.core.file;
 public enum FileTypes {
 
     SETTINGS("settings"),
+    KEYBINDS("keybinds"),
     MATERIAL("material");
 
     private final String type;

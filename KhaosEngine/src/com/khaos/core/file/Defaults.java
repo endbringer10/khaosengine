@@ -28,6 +28,7 @@ public interface Defaults {
     public static final String FOLDER_MATERIALS = "materials" + SEPARATOR;
 
     public static final String FILE_CONFIG = "settings.xml";
+    public static final String FILE_KEYBINDS = "keybinds.xml";
     public static final String FILE_LOGO = "logo.png";
 
 }

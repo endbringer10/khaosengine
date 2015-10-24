@@ -8,7 +8,7 @@ import java.io.IOException;
  *
  * @author endbr
  */
-public class MaterialBuilder extends Raw {
+public class MaterialBuilder extends Builder {
 
     public MaterialBuilder(dFile file) throws IOException {
         super(file);
@@ -17,7 +17,6 @@ public class MaterialBuilder extends Raw {
     @Override
     public MaterialEntry next() {
         return null;
-        //throw new UnsupportedOperationException("Not supported yet.");
     }
 
 }//End Class

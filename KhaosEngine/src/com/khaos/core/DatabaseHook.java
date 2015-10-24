@@ -7,6 +7,7 @@ import com.khaos.core.data.game.Tile;
 import com.khaos.core.data.packets.CharacterLoadPacket;
 import com.khaos.core.data.packets.CharacterSelectPacket;
 import com.khaos.core.data.packets.GameInitPacket;
+import com.khaos.core.data.packets.MovePacket;
 import com.khaos.core.data.packets.Packet;
 import com.khaos.core.data.packets.ValidLoginPacket;
 import java.awt.Point;
@@ -57,7 +58,7 @@ public class DatabaseHook {
 
     
     public Packet move(Direction d) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return new MovePacket();
     }
 
 }//End Class

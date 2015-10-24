@@ -15,6 +15,7 @@ public enum FileSystem {
     FOLDER_MODS(Defaults.FOLDER_MODS),
     FOLDER_MATERIALS(Defaults.FOLDER_DATA + Defaults.FOLDER_ARCHITECTURE + Defaults.FOLDER_MATERIALS),
     FILE_USER_SETTINGS(Defaults.FOLDER_USERDATA + Defaults.FOLDER_CONFIG + Defaults.FILE_CONFIG),
+    FILE_USER_KEYBINDS(Defaults.FOLDER_USERDATA + Defaults.FOLDER_CONFIG + Defaults.FILE_KEYBINDS),
     FILE_LOGO(Defaults.FOLDER_DATA + Defaults.FILE_LOGO);
 
     private final String path;

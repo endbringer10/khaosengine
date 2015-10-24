@@ -1,5 +1,6 @@
-package com.khaos.core.data;
+package com.khaos.core.data.game;
 
+import com.khaos.core.data.Resources;
 import com.khaos.core.data.game.CharacterData;
 import com.khaos.core.data.game.DisplayGrid;
 import com.khaos.core.data.game.MapData;
@@ -46,6 +47,10 @@ public class GameData {
     public synchronized void repaint() {
         me.repaint();
         grid.repaint();
+    }
+    
+    public int getCharacterSpeed(){
+        return character.getSpeed();
     }
 
 }//End Class

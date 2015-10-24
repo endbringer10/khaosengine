@@ -1,7 +1,7 @@
 package com.khaos.core.data.packets;
 
 import com.khaos.core.EngineHook;
-import com.khaos.core.data.GameData;
+import com.khaos.core.data.game.GameData;
 import com.khaos.core.data.game.CharacterData;
 import com.khaos.core.data.game.MapData;
 

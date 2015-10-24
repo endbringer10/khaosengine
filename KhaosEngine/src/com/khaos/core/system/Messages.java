@@ -9,6 +9,7 @@ public enum Messages {
 
     DEFAULT("Null message"),
     NO_SETTINGS_FILE("Settings file generated"),
+    NO_KEYBINDS_FILE("Keybinds file generated"),
     CONNECTED_TO_SERVER("Connected to server"),
     UNSUPPORTED_PACKET("Unsupported packet found"),
     TEXTURES_LOADED("Textures loaded");

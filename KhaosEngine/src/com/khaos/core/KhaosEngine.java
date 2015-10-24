@@ -1,7 +1,7 @@
 package com.khaos.core;
 
 import com.khaos.core.connection.Connection;
-import com.khaos.core.data.GameData;
+import com.khaos.core.data.game.GameData;
 import com.khaos.core.data.Resources;
 import com.khaos.core.gui.EngineGUI;
 import com.khaos.core.gui.frame.Login;

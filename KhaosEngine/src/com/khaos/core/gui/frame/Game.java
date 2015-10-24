@@ -7,16 +7,18 @@ import com.khaos.core.Settings;
 import com.khaos.core.connection.ConnectionHook;
 import com.khaos.core.data.Architecture;
 import com.khaos.core.data.Direction;
-import com.khaos.core.data.GameData;
 import com.khaos.core.data.Resources;
 import com.khaos.core.data.commands.CharacterSelectCommand;
 import com.khaos.core.data.commands.MoveCommand;
+import com.khaos.core.data.game.GameData;
+import com.khaos.core.data.game.HardCap;
 import com.khaos.core.gui.DisplayPane;
 import com.khaos.core.gui.EngineGUI;
 import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
 import javax.swing.JComponent;
 import javax.swing.JInternalFrame;
+import org.joda.time.DateTime;
 
 /**
  *
@@ -24,11 +26,15 @@ import javax.swing.JInternalFrame;
  */
 public class Game extends javax.swing.JFrame implements EngineGUI {
 
+    private final int MOVE_DELAY_MILLIS = 500;
+
     private final Architecture arch = new Architecture();
     private final Resources resources;
     private final GameData data;
     private final ConnectionHook connection;
     private final DisplayPane display;
+
+    private DateTime nextMove = DateTime.now();
 
     public Game(ConnectionHook connection, Resources resources) {
         initComponents();
@@ -77,6 +83,18 @@ public class Game extends javax.swing.JFrame implements EngineGUI {
 
         display.getInputMap(window).put(KeyBinds.UP.getKey(), KeyBinds.UP.getAction());
         display.getActionMap().put(KeyBinds.UP.getAction(), new MoveAction(Direction.UP));
+
+        display.getInputMap(window).put(KeyBinds.DOWN.getKey(), KeyBinds.DOWN.getAction());
+        display.getActionMap().put(KeyBinds.DOWN.getAction(), new MoveAction(Direction.DOWN));
+
+        display.getInputMap(window).put(KeyBinds.LEFT.getKey(), KeyBinds.LEFT.getAction());
+        display.getActionMap().put(KeyBinds.LEFT.getAction(), new MoveAction(Direction.LEFT));
+
+        display.getInputMap(window).put(KeyBinds.RIGHT.getKey(), KeyBinds.RIGHT.getAction());
+        display.getActionMap().put(KeyBinds.RIGHT.getAction(), new MoveAction(Direction.RIGHT));
+
+        display.getInputMap(window).put(KeyBinds.ESC.getKey(), KeyBinds.ESC.getAction());
+        display.getActionMap().put(KeyBinds.ESC.getAction(), new EscAction());
     }
 
     @SuppressWarnings("unchecked")
@@ -127,8 +145,28 @@ public class Game extends javax.swing.JFrame implements EngineGUI {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            connection.addCommand(new MoveCommand(this.direction));
+            DateTime now = DateTime.now();
+            if (now.isAfter(nextMove)) {
+                connection.addCommand(new MoveCommand(this.direction));
+
+                int delay = MOVE_DELAY_MILLIS - data.getCharacterSpeed();
+                if (delay < HardCap.MOVE_SPEED) {
+                    delay = HardCap.MOVE_SPEED;
+                }
+
+                nextMove = now.plusMillis(delay);
+            }
         }
-    }
+
+    }//End Class
+
+    private class EscAction extends AbstractAction {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
+        }
+
+    }//End Class
 
 }//End Class

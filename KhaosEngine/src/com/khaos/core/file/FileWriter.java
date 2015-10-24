@@ -1,5 +1,6 @@
 package com.khaos.core.file;
 
+import com.khaos.core.KeyBinds;
 import com.khaos.core.Settings;
 import com.khaos.core.system.Errors;
 import com.khaos.core.system.SysLog;
@@ -29,6 +30,13 @@ public class FileWriter {
         toPrint += Defaults.TAB + Defaults.ENTRY_START + Defaults.NEWLINE;
         toPrint += Defaults.TAB + Defaults.TAB + Defaults.META_START + setting.toString() + Defaults.META_END + Defaults.NEWLINE;
         toPrint += Defaults.TAB + Defaults.TAB + Defaults.VALUE_START + setting.parseString() + Defaults.VALUE_END + Defaults.NEWLINE;
+        toPrint += Defaults.TAB + Defaults.ENTRY_END + Defaults.NEWLINE;
+    }
+
+    public void cache(KeyBinds key) {
+        toPrint += Defaults.TAB + Defaults.ENTRY_START + Defaults.NEWLINE;
+        toPrint += Defaults.TAB + Defaults.TAB + Defaults.META_START + key.toString() + Defaults.META_END + Defaults.NEWLINE;
+        toPrint += Defaults.TAB + Defaults.TAB + Defaults.VALUE_START + key.getKey().toString() + Defaults.VALUE_END + Defaults.NEWLINE;
         toPrint += Defaults.TAB + Defaults.ENTRY_END + Defaults.NEWLINE;
     }
 

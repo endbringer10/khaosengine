@@ -10,6 +10,7 @@ public class CharacterData {
 
     private Point coor;
     private String texture;
+    private int speed = 100;
 
     public CharacterData(Point coor, String texture) {
         this.coor = coor;
@@ -18,6 +19,10 @@ public class CharacterData {
 
     public String getTexture() {
         return texture;
+    }
+
+    public int getSpeed() {
+        return speed;
     }
 
 }//End Class

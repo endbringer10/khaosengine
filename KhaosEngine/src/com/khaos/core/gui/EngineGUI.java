@@ -1,6 +1,6 @@
 package com.khaos.core.gui;
 
-import com.khaos.core.data.GameData;
+import com.khaos.core.data.game.GameData;
 import javax.swing.JInternalFrame;
 
 /**
