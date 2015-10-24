@@ -18,16 +18,19 @@ public class Login extends javax.swing.JFrame {
     public Login(EngineHook engine) {
         initComponents();
         this.engine = engine;
-    }
 
-    public void init() {
-        this.setTitle(Localized.LOGIN.getLocalized());
         this.setIconImage(Resources.LOGO);
+        this.setTitle(Localized.LOGIN.getLocalized());
         this.labelUsername.setText(Localized.USERNAME.getLocalized());
         this.labelPassword.setText(Localized.PASSWORD.getLocalized());
         this.buttonCancel.setText(Localized.EXIT.getLocalized());
         this.buttonLogin.setText(Localized.LOGIN.getLocalized());
         this.checkBoxAuto.setText(Localized.AUTO_LOGIN.getLocalized());
+    }
+
+    public void init() {
+        this.checkBoxAuto.setSelected(Settings.AUTO_LOGIN.parseBoolean());
+
         this.setLocationRelativeTo(null);
         this.setVisible(true);
     }

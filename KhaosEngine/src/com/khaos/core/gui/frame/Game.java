@@ -55,7 +55,7 @@ public class Game extends javax.swing.JFrame implements EngineGUI {
 
     @Override
     public synchronized void init() {
-        this.setSize(Settings.SCREEN_WIDTH.parseInt(), Settings.SCREEN_HEIGHT.parseInt());
+        this.setSize(Settings.SCREEN_WIDTH.parseInteger(), Settings.SCREEN_HEIGHT.parseInteger());
         this.setIconImage(Resources.LOGO);
         this.setTitle(Localized.KHAOS_ENGINE.getLocalized() + " v" + KhaosEngine.VERSION);
         this.setLocationRelativeTo(null);

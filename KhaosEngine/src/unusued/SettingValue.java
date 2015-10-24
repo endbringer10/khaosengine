@@ -1,5 +1,6 @@
 package unusued;
 
+import com.khaos.core.Settings;
 import com.khaos.core.data.entry.Meta;
 
 /**
@@ -11,7 +12,7 @@ public class SettingValue extends Meta {
 
     private String value;
 
-    public SettingValue(NewSettings name, String value) {
+    public SettingValue(Settings name, String value) {
         super(name.toString());
         this.value = value;
     }
