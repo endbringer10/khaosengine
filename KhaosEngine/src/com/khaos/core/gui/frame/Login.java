@@ -1,8 +1,8 @@
 package com.khaos.core.gui.frame;
 
+import com.khaos.core.EngineHook;
 import com.khaos.core.Localized;
 import com.khaos.core.Settings;
-import com.khaos.core.connection.Connection;
 import com.khaos.core.data.Resources;
 import com.khaos.core.data.commands.LoginCommand;
 import com.khaos.core.system.Errors;
@@ -13,11 +13,11 @@ import com.khaos.core.system.Errors;
  */
 public class Login extends javax.swing.JFrame {
 
-    private final Connection connection;
+    private final EngineHook engine;
 
-    public Login(Connection connection) {
+    public Login(EngineHook engine) {
         initComponents();
-        this.connection = connection;
+        this.engine = engine;
     }
 
     public void init() {
@@ -25,7 +25,7 @@ public class Login extends javax.swing.JFrame {
         this.setIconImage(Resources.LOGO);
         this.labelUsername.setText(Localized.USERNAME.getLocalized());
         this.labelPassword.setText(Localized.PASSWORD.getLocalized());
-        this.buttonCancel.setText(Localized.CANCEL.getLocalized());
+        this.buttonCancel.setText(Localized.EXIT.getLocalized());
         this.buttonLogin.setText(Localized.LOGIN.getLocalized());
         this.checkBoxAuto.setText(Localized.AUTO_LOGIN.getLocalized());
         this.setLocationRelativeTo(null);
@@ -33,7 +33,7 @@ public class Login extends javax.swing.JFrame {
     }
 
     private void login() {
-        connection.addCommand(new LoginCommand(this.textFieldUsername.getText(), this.textFieldPassword.getText()));
+        engine.getConnection().addCommand(new LoginCommand(this.textFieldUsername.getText(), this.textFieldPassword.getText()));
         if (this.checkBoxAuto.isSelected()) {
             Settings.AUTO_LOGIN.setValue(true);
             Settings.USERNAME.setValue(this.textFieldUsername.getText());
@@ -128,7 +128,7 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelActionPerformed
-        System.exit(Errors.NO_ERROR.getNum());
+        System.exit(Errors.NO_ERROR.getCode());
     }//GEN-LAST:event_buttonCancelActionPerformed
 
     private void buttonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLoginActionPerformed

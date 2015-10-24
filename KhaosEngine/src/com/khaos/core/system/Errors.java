@@ -18,11 +18,11 @@ public enum Errors {
     IMAGE_LOAD(-1006, "Error loading image"),
     NULL_IMAGE(-1007, "Image was not found");
 
-    private final int num;
+    private final int code;
     private final String message;
 
-    Errors(int num, String message) {
-        this.num = num;
+    Errors(int code, String message) {
+        this.code = code;
         this.message = message;
     }
 
@@ -30,8 +30,8 @@ public enum Errors {
         return message;
     }
 
-    public int getNum() {
-        return num;
+    public int getCode() {
+        return code;
     }
 
 }//End Class

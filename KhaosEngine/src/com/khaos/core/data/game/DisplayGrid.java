@@ -22,4 +22,12 @@ public class DisplayGrid extends Array2D<TilePanel> {
         }
     }
 
+    public void setVisible(boolean visible) {
+        for (int x = 0; x < this.getColumns(); x++) {
+            for (int y = 0; y < this.getRows(); y++) {
+                this.get(x, y).setVisible(visible);
+            }
+        }
+    }
+
 }//End Class

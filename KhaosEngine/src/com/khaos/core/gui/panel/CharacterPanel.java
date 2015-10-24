@@ -20,7 +20,7 @@ public class CharacterPanel extends ImagePanel {
     }
 
     @Override
-    public int getLayer() {
+    public int getPreferredLayer() {
         return Layer.PLAYER.getLayer();
     }
 

@@ -11,7 +11,7 @@ public class CharacterSelectPacket implements Packet {
 
     @Override
     public void process(EngineHook engine) {
-        CharacterSelect select = new CharacterSelect(engine.getConnection());
+        CharacterSelect select = new CharacterSelect(engine);
         engine.getGUI().openInternalFrame(select);
         select.init();
     }

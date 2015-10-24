@@ -8,7 +8,8 @@ public enum Layer {
 
     BOTTOM(0),
     TILE(1),
-    PLAYER(99);
+    PLAYER(99),
+    INTERNALFRAME(100);
 
     private final int layer;
 

@@ -11,7 +11,7 @@ public class GameInitPacket implements Packet {
 
     @Override
     public void process(EngineHook engine) {
-        engine.openGUI(new Game(engine.getConnection(), engine.getResources()));
+        engine.openGUI(new Game(engine));
     }
 
 }//End Class

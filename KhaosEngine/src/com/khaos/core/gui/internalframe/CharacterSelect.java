@@ -1,8 +1,9 @@
 package com.khaos.core.gui.internalframe;
 
-import com.khaos.core.data.commands.CharacterLoadCommand;
+import com.khaos.core.EngineHook;
 import com.khaos.core.Localized;
-import com.khaos.core.connection.ConnectionHook;
+import com.khaos.core.data.commands.CharacterLoadCommand;
+import com.khaos.core.gui.interfaces.Aligned;
 import java.awt.Container;
 import java.awt.Dimension;
 
@@ -10,15 +11,17 @@ import java.awt.Dimension;
  *
  * @author endbr
  */
-public class CharacterSelect extends javax.swing.JInternalFrame {
+public class CharacterSelect extends javax.swing.JInternalFrame implements Aligned {
 
-    private final ConnectionHook connection;
+    private final EngineHook engine;
 
-    public CharacterSelect(ConnectionHook connection) {
+    public CharacterSelect(EngineHook engine) {
         initComponents();
-        this.connection = connection;
+        this.engine = engine;
 
         this.setTitle(Localized.CHARACTER_SELECT.getLocalized());
+        this.setLayer(this.getPreferredLayer());
+        this.moveToFront();
     }
 
     public void init() {
@@ -26,7 +29,7 @@ public class CharacterSelect extends javax.swing.JInternalFrame {
         this.setVisible(true);
     }
 
-    private void align() {
+    public void align() {
         Container container = this.getParent();
         if (container != null) {
             Dimension parent = this.getParent().getSize();
@@ -159,7 +162,7 @@ public class CharacterSelect extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_formAncestorResized
 
     private void selectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectActionPerformed
-        connection.addCommand(new CharacterLoadCommand());
+        engine.getConnection().addCommand(new CharacterLoadCommand());
         this.dispose();
     }//GEN-LAST:event_selectActionPerformed
 

@@ -1,8 +1,8 @@
 package com.khaos.core;
 
 import com.khaos.core.connection.Connection;
-import com.khaos.core.data.game.GameData;
 import com.khaos.core.data.Resources;
+import com.khaos.core.data.game.GameData;
 import com.khaos.core.gui.EngineGUI;
 import com.khaos.core.gui.frame.Login;
 import com.khaos.core.threads.UpdateThread;
@@ -30,13 +30,13 @@ public class KhaosEngine implements EngineHook {
 
     @Override
     public synchronized void openLogin() {
-        Login login = new Login(connection);
+        Login login = new Login(this);
         login.init();
     }
 
     @Override
     public synchronized void openUpdate() {
-        UpdateThread update = new UpdateThread(connection);
+        UpdateThread update = new UpdateThread(this);
         update.start();
     }
 

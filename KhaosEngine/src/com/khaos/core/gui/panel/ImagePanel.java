@@ -107,7 +107,7 @@ public class ImagePanel extends JPanel {
         }
     }
     
-    public int getLayer(){
+    public int getPreferredLayer(){
         return Layer.BOTTOM.getLayer();
     }
 

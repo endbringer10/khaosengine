@@ -1,10 +1,10 @@
 package com.khaos.core.gui.frame;
 
+import com.khaos.core.EngineHook;
 import com.khaos.core.KeyBinds;
 import com.khaos.core.KhaosEngine;
 import com.khaos.core.Localized;
 import com.khaos.core.Settings;
-import com.khaos.core.connection.ConnectionHook;
 import com.khaos.core.data.Architecture;
 import com.khaos.core.data.Direction;
 import com.khaos.core.data.Resources;
@@ -14,6 +14,7 @@ import com.khaos.core.data.game.GameData;
 import com.khaos.core.data.game.HardCap;
 import com.khaos.core.gui.DisplayPane;
 import com.khaos.core.gui.EngineGUI;
+import com.khaos.core.gui.internalframe.Menu;
 import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
 import javax.swing.JComponent;
@@ -29,26 +30,24 @@ public class Game extends javax.swing.JFrame implements EngineGUI {
     private final int MOVE_DELAY_MILLIS = 500;
 
     private final Architecture arch = new Architecture();
-    private final Resources resources;
     private final GameData data;
-    private final ConnectionHook connection;
+    private final EngineHook engine;
     private final DisplayPane display;
 
     private DateTime nextMove = DateTime.now();
 
-    public Game(ConnectionHook connection, Resources resources) {
+    public Game(EngineHook engine) {
         initComponents();
 
-        this.connection = connection;
-        this.resources = resources;
+        this.engine = engine;
         display = new DisplayPane();
         this.add(display);
         display.init();
 
-        resources.load();
+        engine.getResources().load();
         arch.load();
 
-        this.data = new GameData(resources, display.initGrid(), display.initPlayer());
+        this.data = new GameData(engine.getResources(), display.initGrid(), display.initPlayer());
         this.addKeyBinds();
     }
 
@@ -63,7 +62,7 @@ public class Game extends javax.swing.JFrame implements EngineGUI {
 
     @Override
     public synchronized void start() {
-        connection.addCommand(new CharacterSelectCommand());
+        engine.getConnection().addCommand(new CharacterSelectCommand());
     }
 
     @Override
@@ -147,7 +146,7 @@ public class Game extends javax.swing.JFrame implements EngineGUI {
         public void actionPerformed(ActionEvent e) {
             DateTime now = DateTime.now();
             if (now.isAfter(nextMove)) {
-                connection.addCommand(new MoveCommand(this.direction));
+                engine.getConnection().addCommand(new MoveCommand(this.direction));
 
                 int delay = MOVE_DELAY_MILLIS - data.getCharacterSpeed();
                 if (delay < HardCap.MOVE_SPEED) {
@@ -164,7 +163,11 @@ public class Game extends javax.swing.JFrame implements EngineGUI {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-
+            Menu menu = new Menu(engine);
+            display.setLayer(menu, menu.getPreferredLayer());
+            display.setPosition(menu, 0);
+            display.add(menu);
+            menu.init();
         }
 
     }//End Class

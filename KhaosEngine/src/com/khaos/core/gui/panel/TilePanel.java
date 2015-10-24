@@ -23,7 +23,7 @@ public class TilePanel extends ImagePanel {
     }
     
     @Override
-    public int getLayer(){
+    public int getPreferredLayer(){
         return Layer.TILE.getLayer();
     }
 

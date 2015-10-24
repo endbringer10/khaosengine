@@ -10,10 +10,16 @@ public enum Localized {
     LOGIN("Login"),
     USERNAME("Username"),
     PASSWORD("Password"),
-    CANCEL("Quit"),
+    EXIT("Exit"),
+    DISCARD("Discard"),
     AUTO_LOGIN("Auto Login"),
     LOADING("Loading"),
     UPDATING("Updating"),
+    MENU("Menu"),
+    SETTINGS("Settings"),
+    RESET("Reset"),
+    SAVE("Save"),
+    ENABLED("Enabled"),
     CHARACTER_SELECT("Character Select");
 
     private final String english;

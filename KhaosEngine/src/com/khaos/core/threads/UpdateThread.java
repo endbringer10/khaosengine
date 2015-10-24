@@ -1,7 +1,7 @@
 package com.khaos.core.threads;
 
+import com.khaos.core.EngineHook;
 import com.khaos.core.Localized;
-import com.khaos.core.connection.Connection;
 import com.khaos.core.data.commands.GameInitCommand;
 import com.khaos.core.gui.frame.Progress;
 
@@ -12,12 +12,12 @@ import com.khaos.core.gui.frame.Progress;
 public class UpdateThread extends Thread {
 
     private final Progress progress;
-    private final Connection connection;
+    private final EngineHook engine;
 
-    public UpdateThread(Connection connection) {
+    public UpdateThread(EngineHook engine) {
         progress = new Progress(Localized.UPDATING.getLocalized());
         progress.init();
-        this.connection = connection;
+        this.engine = engine;
     }
 
     @Override
@@ -30,7 +30,7 @@ public class UpdateThread extends Thread {
          }*/
         progress.dispose();
         //hook.process(new UpToDatePacket());
-        connection.addCommand(new GameInitCommand());
+        engine.getConnection().addCommand(new GameInitCommand());
         //new UpToDatePacket().process(hook);
     }
 

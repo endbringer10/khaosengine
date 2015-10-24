@@ -30,7 +30,7 @@ public class SysLog {
     }
 
     public synchronized static void err(Errors code, Exception ex) {
-        String line = "[Error][" + code.getNum() + "] " + code.getMessage();
+        String line = "[Error][" + code.getCode() + "] " + code.getMessage();
         history.add(line);
 
         if (Settings.DEBUG.parseBoolean()) {

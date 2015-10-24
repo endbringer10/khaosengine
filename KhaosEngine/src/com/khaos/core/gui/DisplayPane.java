@@ -29,7 +29,7 @@ public class DisplayPane extends JDesktopPane {
     public CharacterPanel initPlayer() {
         CharacterPanel character = new CharacterPanel(new Point(9, 9));
         this.add(character);
-        this.setLayer(character, character.getLayer());
+        this.setLayer(character, character.getPreferredLayer());
         this.setPosition(character, 0);
 
         return character;
@@ -44,7 +44,7 @@ public class DisplayPane extends JDesktopPane {
                 TilePanel panel = new TilePanel(new Point(x, y));
                 grid.add(x, y, panel);
                 this.add(panel);
-                this.setLayer(panel, panel.getLayer());
+                this.setLayer(panel, panel.getPreferredLayer());
                 this.setPosition(panel, (columns - x - 1) + ((rows - y - 1) * columns));
             }
         }
