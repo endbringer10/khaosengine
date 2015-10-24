@@ -1,6 +1,6 @@
 package com.khaos;
 
-import com.khaos.client.Database;
+import com.khaos.client.data.Database;
 import com.khaos.core.KhaosEngine;
 import com.khaos.core.Settings;
 

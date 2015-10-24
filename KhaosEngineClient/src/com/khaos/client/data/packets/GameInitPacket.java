@@ -1,4 +1,4 @@
-package com.khaos.client.data;
+package com.khaos.client.data.packets;
 
 import com.khaos.client.Game;
 import com.khaos.core.EngineHook;
@@ -8,7 +8,7 @@ import com.khaos.core.data.packets.Packet;
  *
  * @author endbr
  */
-public class GameInitPacket extends Packet {
+public class GameInitPacket implements Packet {
 
     @Override
     public void process(EngineHook engine) {

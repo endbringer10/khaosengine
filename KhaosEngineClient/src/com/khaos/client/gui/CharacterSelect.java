@@ -1,8 +1,8 @@
 package com.khaos.client.gui;
 
+import com.khaos.client.data.commands.CharacterLoadCommand;
 import com.khaos.core.Localized;
 import com.khaos.core.connection.ConnectionHook;
-import com.khaos.client.data.CharacterLoadCommand;
 import java.awt.Container;
 import java.awt.Dimension;
 
@@ -171,4 +171,5 @@ public class CharacterSelect extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     // End of variables declaration//GEN-END:variables
+
 }//End Class

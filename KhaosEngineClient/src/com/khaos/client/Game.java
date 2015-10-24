@@ -1,6 +1,6 @@
 package com.khaos.client;
 
-import com.khaos.client.data.CharacterSelectCommand;
+import com.khaos.client.data.commands.CharacterSelectCommand;
 import com.khaos.core.KhaosEngine;
 import com.khaos.core.Localized;
 import com.khaos.core.Settings;
@@ -22,15 +22,16 @@ public class Game extends javax.swing.JFrame implements EngineGUI {
     private final Resources resources;
     private final GameData data;
     private final ConnectionHook connection;
-    private final DisplayPane display = new DisplayPane();
+    private final DisplayPane display;
 
     public Game(ConnectionHook connection, Resources resources) {
         initComponents();
-        this.add(display);
-        display.init();
-
+ 
         this.connection = connection;
         this.resources = resources;
+        display = new DisplayPane(this.connection);
+        this.add(display);
+        display.init();
 
         resources.load();
         arch.load();

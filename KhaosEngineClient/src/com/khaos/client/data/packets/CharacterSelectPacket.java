@@ -1,14 +1,14 @@
-package com.khaos.client.data;
+package com.khaos.client.data.packets;
 
-import com.khaos.core.EngineHook;
 import com.khaos.client.gui.CharacterSelect;
+import com.khaos.core.EngineHook;
 import com.khaos.core.data.packets.Packet;
 
 /**
  *
  * @author endbr
  */
-public class CharacterSelectPacket extends Packet {
+public class CharacterSelectPacket implements Packet {
 
     @Override
     public void process(EngineHook engine) {

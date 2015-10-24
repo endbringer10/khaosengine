@@ -7,9 +7,9 @@ import java.io.Serializable;
  *
  * @author endbr
  */
-public abstract class Packet implements Serializable {
+public interface Packet extends Serializable {
 
-    private static final long serialVersionUID = 0L;
+    public static final long serialVersionUID = 0L;
 
     public abstract void process(EngineHook engine);
 

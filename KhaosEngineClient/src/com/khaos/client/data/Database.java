@@ -1,13 +1,14 @@
-package com.khaos.client;
+package com.khaos.client.data;
 
-import com.khaos.client.data.CharacterLoadPacket;
-import com.khaos.client.data.CharacterSelectPacket;
-import com.khaos.client.data.GameInitPacket;
+import com.khaos.client.data.packets.CharacterLoadPacket;
+import com.khaos.client.data.packets.CharacterSelectPacket;
+import com.khaos.client.data.packets.GameInitPacket;
 import com.khaos.core.DatabaseHook;
+import com.khaos.core.data.Direction;
 import com.khaos.core.data.game.CharacterData;
 import com.khaos.core.data.game.MapData;
 import com.khaos.core.data.game.Tile;
-import com.khaos.core.data.packets.LoginValidationPacket;
+import com.khaos.core.data.packets.Packet;
 import com.khaos.core.data.packets.ValidLoginPacket;
 import java.awt.Point;
 import java.util.Random;
@@ -16,17 +17,18 @@ import java.util.Random;
  *
  * @author endbr
  */
-public class Database implements DatabaseHook{
+public class Database implements DatabaseHook {
 
-    public LoginValidationPacket validateLogin() {
+    @Override
+    public Packet validateLogin() {
         return new ValidLoginPacket();
     }
 
-    public CharacterSelectPacket getCharactersList() {
+    public Packet getCharactersList() {
         return new CharacterSelectPacket();
     }
 
-    public CharacterLoadPacket loadCharacter() {
+    public Packet loadCharacter() {
         MapData map = new MapData();
 
         for (int x = 0; x < 50; x++) {
@@ -48,8 +50,14 @@ public class Database implements DatabaseHook{
         return new CharacterLoadPacket(new CharacterData(new Point(10, 10), "character.png"), map);
     }
 
-    public GameInitPacket getGui() {
+    @Override
+    public Packet getGui() {
         return new GameInitPacket();
+    }
+
+    @Override
+    public Packet move(Direction d) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }//End CLass

@@ -45,9 +45,7 @@ public class OfflineConnection implements Connection {
             while (running) {
                 try {
                     Command command = commands.take();
-                    //packets.add(this.execute(command));
-                    Packet p = command.process(database);
-                    packets.add(p);
+                    packets.add(command.process(database));
                 } catch (InterruptedException ex) {
                     SysLog.err(Errors.THREAD_RUNNING, ex);
                 }
@@ -57,13 +55,6 @@ public class OfflineConnection implements Connection {
             running = false;
         }
 
-        /*private Packet execute(Command command) {
-         if (command instanceof LoginCommand) {
-         return new ValidLoginPacket();
-         }
-
-         return new CommandNotSupportedPacket();
-         }*/
         @Override
         public void interrupt() {
             super.interrupt();
@@ -84,7 +75,6 @@ public class OfflineConnection implements Connection {
             while (running) {
                 try {
                     Packet packet = packets.take();
-                    //parent.process(packet);
                     packet.process(engine);
                 } catch (InterruptedException ex) {
                     SysLog.err(Errors.THREAD_RUNNING, ex);

@@ -7,7 +7,7 @@ import com.khaos.core.data.packets.Packet;
  *
  * @author endbr
  */
-public class GameInitCommand extends Command<DatabaseHook>{
+public class GameInitCommand implements Command{
 
     @Override
     public Packet process(DatabaseHook data) {

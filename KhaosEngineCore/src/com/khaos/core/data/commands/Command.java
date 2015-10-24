@@ -7,14 +7,15 @@ import java.io.Serializable;
 /**
  *
  * @author endbr
+ * @idea: public abstract <E extends DatabaseHook> Packet process(E data);
  */
-public abstract class Command<E extends DatabaseHook> implements Serializable {
+public interface Command extends Serializable {
 
-    private static final long serialVersionUID = 0L;
+    public static final long serialVersionUID = 0L;
 
-    public abstract Packet process(E data);
+    public abstract Packet process(DatabaseHook data);
 
-    public void clear() {
+    default void clear() {
 
     }
 

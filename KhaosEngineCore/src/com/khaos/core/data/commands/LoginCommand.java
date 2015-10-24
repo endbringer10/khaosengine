@@ -7,7 +7,7 @@ import com.khaos.core.data.packets.Packet;
  *
  * @author endbr
  */
-public class LoginCommand extends Command<DatabaseHook> {
+public class LoginCommand implements Command {
 
     private String username;
     private String password;
