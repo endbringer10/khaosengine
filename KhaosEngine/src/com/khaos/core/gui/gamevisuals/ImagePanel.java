@@ -1,4 +1,4 @@
-package com.khaos.core.gui.panel;
+package com.khaos.core.gui.gamevisuals;
 
 import com.khaos.core.gui.Layer;
 import java.awt.Dimension;
@@ -10,9 +10,9 @@ import javax.swing.JPanel;
 /**
  *
  * @author endbr
- * @idea zoom level: take size and multiply by zoom to increase size. has
- * multiple sets of textures for this
+ * @idea zoom level: take size and multiply by zoom to increase size. has multiple sets of textures for this
  * @idea resizeble boolean to lock size
+ * @idea doublebuffer
  */
 public class ImagePanel extends JPanel {
 
@@ -21,7 +21,7 @@ public class ImagePanel extends JPanel {
     private BufferedImage image;
     private final Dimension offset = new Dimension(0, 0);
     private Dimension absoluteSize = new Dimension(0, 0);
-    private Point grid = new Point(0,0);
+    private Point grid = new Point(0, 0);
 
     public ImagePanel() {
         this.image = null;
@@ -45,7 +45,7 @@ public class ImagePanel extends JPanel {
 
     @Override
     public void setLocation(int x, int y) {
-        grid = new Point(x,y);
+        grid = new Point(x, y);
         this.calcLocation();
     }
 
@@ -106,8 +106,8 @@ public class ImagePanel extends JPanel {
             g.drawImage(image, offset.width, offset.height, null);
         }
     }
-    
-    public int getPreferredLayer(){
+
+    public int getPreferredLayer() {
         return Layer.BOTTOM.getLayer();
     }
 

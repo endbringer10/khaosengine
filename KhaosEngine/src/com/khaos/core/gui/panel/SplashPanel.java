@@ -1,4 +1,4 @@
-package com.khaos.core.gui.progress;
+package com.khaos.core.gui.panel;
 
 /**
  *

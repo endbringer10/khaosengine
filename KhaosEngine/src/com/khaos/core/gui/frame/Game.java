@@ -14,7 +14,9 @@ import com.khaos.core.data.game.GameData;
 import com.khaos.core.data.game.HardCap;
 import com.khaos.core.gui.DisplayPane;
 import com.khaos.core.gui.EngineGUI;
-import com.khaos.core.gui.internalframe.Menu;
+import com.khaos.core.gui.internalframe.KeyBoundFrame;
+import com.khaos.core.gui.internalframe.PanelHolder;
+import com.khaos.core.gui.panel.MenuPanel;
 import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
 import javax.swing.JComponent;
@@ -27,7 +29,7 @@ import org.joda.time.DateTime;
  */
 public class Game extends javax.swing.JFrame implements EngineGUI {
 
-    private final int MOVE_DELAY_MILLIS = 500;
+    private final int MOVE_DELAY_MILLIS = 300;
 
     private final Architecture arch = new Architecture();
     private final GameData data;
@@ -48,12 +50,11 @@ public class Game extends javax.swing.JFrame implements EngineGUI {
         arch.load();
 
         this.data = new GameData(engine.getResources(), display.initGrid(), display.initPlayer());
-        this.addKeyBinds();
     }
 
     @Override
     public synchronized void init() {
-        this.setSize(Settings.SCREEN_WIDTH.parseInt(), Settings.SCREEN_HEIGHT.parseInt());
+        this.setSize(Settings.SCREEN_WIDTH.parseInteger(), Settings.SCREEN_HEIGHT.parseInteger());
         this.setIconImage(Resources.LOGO);
         this.setTitle(Localized.KHAOS_ENGINE.getLocalized() + " v" + KhaosEngine.VERSION);
         this.setLocationRelativeTo(null);
@@ -75,7 +76,8 @@ public class Game extends javax.swing.JFrame implements EngineGUI {
         this.display.add(frame);
     }
 
-    private void addKeyBinds() {
+    @Override
+    public void addKeyBinds() {
         int focus = JComponent.WHEN_FOCUSED;
         int window = JComponent.WHEN_IN_FOCUSED_WINDOW;
         int ancestor = JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT;
@@ -92,8 +94,8 @@ public class Game extends javax.swing.JFrame implements EngineGUI {
         display.getInputMap(window).put(KeyBinds.RIGHT.getKey(), KeyBinds.RIGHT.getAction());
         display.getActionMap().put(KeyBinds.RIGHT.getAction(), new MoveAction(Direction.RIGHT));
 
-        display.getInputMap(window).put(KeyBinds.ESC.getKey(), KeyBinds.ESC.getAction());
-        display.getActionMap().put(KeyBinds.ESC.getAction(), new EscAction());
+        display.getInputMap(window).put(KeyBinds.CLOSE.getKey(), KeyBinds.CLOSE.getAction());
+        display.getActionMap().put(KeyBinds.CLOSE.getAction(), new EscAction());
     }
 
     @SuppressWarnings("unchecked")
@@ -105,6 +107,11 @@ public class Game extends javax.swing.JFrame implements EngineGUI {
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
@@ -127,6 +134,12 @@ public class Game extends javax.swing.JFrame implements EngineGUI {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        System.out.println("Checking when Game.formWindowClosing(evt) is called");
+        Settings.save();
+        KeyBinds.save();
+    }//GEN-LAST:event_formWindowClosing
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu jMenu1;
@@ -163,11 +176,11 @@ public class Game extends javax.swing.JFrame implements EngineGUI {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            Menu menu = new Menu(engine);
-            display.setLayer(menu, menu.getPreferredLayer());
-            display.setPosition(menu, 0);
+            PanelHolder menu = new KeyBoundFrame(Localized.MENU.getLocalized(), true, false);
             display.add(menu);
-            menu.init();
+            menu.addPanel(new MenuPanel(engine, menu));
+            //display.setLayer(menu, menu.getPreferredLayer());
+            //display.setPosition(menu, 0);
         }
 
     }//End Class

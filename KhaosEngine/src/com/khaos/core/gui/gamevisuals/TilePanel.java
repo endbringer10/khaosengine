@@ -1,4 +1,4 @@
-package com.khaos.core.gui.panel;
+package com.khaos.core.gui.gamevisuals;
 
 import com.khaos.core.gui.Layer;
 import java.awt.Dimension;

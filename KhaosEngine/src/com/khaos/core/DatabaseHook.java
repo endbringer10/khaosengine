@@ -6,7 +6,6 @@ import com.khaos.core.data.game.MapData;
 import com.khaos.core.data.game.Tile;
 import com.khaos.core.data.packets.CharacterLoadPacket;
 import com.khaos.core.data.packets.CharacterSelectPacket;
-import com.khaos.core.data.packets.GameInitPacket;
 import com.khaos.core.data.packets.MovePacket;
 import com.khaos.core.data.packets.Packet;
 import com.khaos.core.data.packets.ValidLoginPacket;
@@ -20,7 +19,12 @@ import java.util.Random;
  */
 public class DatabaseHook {
 
-     
+    private CharacterData character;
+
+    public DatabaseHook() {
+        character = new CharacterData(new Point(10, 10), "character.png", 100);
+    }
+
     public Packet validateLogin() {
         return new ValidLoginPacket();
     }
@@ -48,17 +52,12 @@ public class DatabaseHook {
             }
         }
 
-        return new CharacterLoadPacket(new CharacterData(new Point(10, 10), "character.png"), map);
+        return new CharacterLoadPacket(character, map);
     }
 
-    
-    public Packet getGui() {
-        return new GameInitPacket();
-    }
-
-    
     public Packet move(Direction d) {
-        return new MovePacket();
+        character.move(d);
+        return new MovePacket(character);
     }
 
 }//End Class

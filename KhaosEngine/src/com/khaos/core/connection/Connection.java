@@ -3,7 +3,7 @@ package com.khaos.core.connection;
 import com.khaos.core.EngineHook;
 import com.khaos.core.Localized;
 import com.khaos.core.exception.ServerConnectionException;
-import com.khaos.core.gui.progress.SplashPanel;
+import com.khaos.core.gui.panel.SplashPanel;
 import com.khaos.core.threads.WaitThread;
 
 /**

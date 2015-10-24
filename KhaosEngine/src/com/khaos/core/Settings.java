@@ -13,15 +13,15 @@ import java.io.IOException;
 
 /**
  *
- * @author endbr
- * @note getValueAsBoolean renamed to parseBoolean
+ * @author endbringer10
+ * @since 20151024
  */
 public enum Settings {
 
     AUTO_LOGIN(false),
-    DEBUG(false),
-    USERNAME("null"),
-    PASSWORD("null"),
+    DEBUG(true),
+    USERNAME("username"),
+    PASSWORD("password"),
     HOST_IP("localhost"),
     HOST_PORT(10101),
     NIMBUS(true),
@@ -30,43 +30,15 @@ public enum Settings {
 
     private String value;
 
+    Settings(String value) {
+        this.value = value;
+    }
+
     Settings(boolean value) {
         this.value = Boolean.toString(value);
     }
 
     Settings(int value) {
-        this.value = Integer.toString(value);
-    }
-
-    Settings(String value) {
-        this.value = value;
-    }
-
-    public boolean parseBoolean() {
-        return Boolean.parseBoolean(value);
-    }
-
-    public int parseInt() {
-        return Integer.parseInt(value);
-    }
-
-    public String parseString() {
-        return value;
-    }
-
-    public void clear() {
-        this.value = "null";
-    }
-
-    public void setValue(String value) {
-        this.value = value;
-    }
-
-    public void setValue(boolean value) {
-        this.value = Boolean.toString(value);
-    }
-
-    public void setValue(int value) {
         this.value = Integer.toString(value);
     }
 
@@ -91,6 +63,34 @@ public enum Settings {
         Settings.lookAndFeel();
     }
 
+    public void setValue(String value) {
+        this.value = value;
+    }
+
+    public void setValue(boolean value) {
+        this.value = Boolean.toString(value);
+    }
+
+    public void setValue(int value) {
+        this.value = Integer.toString(value);
+    }
+
+    public String parseString() {
+        return value;
+    }
+
+    public boolean parseBoolean() {
+        return Boolean.parseBoolean(value);
+    }
+
+    public int parseInteger() {
+        return Integer.parseInt(value);
+    }
+
+    public void clear() {
+        this.value = "";
+    }
+
     public static void save() {
         Settings.generate();
     }
@@ -100,6 +100,12 @@ public enum Settings {
         writer.cache(DEBUG);
         writer.cache(HOST_IP);
         writer.cache(HOST_PORT);
+        writer.cache(AUTO_LOGIN);
+        writer.cache(NIMBUS);
+        if (AUTO_LOGIN.parseBoolean()) {
+            writer.cache(USERNAME);
+            writer.cache(PASSWORD);
+        }
         writer.print();
     }
 

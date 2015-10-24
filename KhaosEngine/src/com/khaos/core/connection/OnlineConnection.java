@@ -27,7 +27,7 @@ public class OnlineConnection implements Connection {
 
     public OnlineConnection(EngineHook engine) throws ServerConnectionException {
         try {
-            Socket socket = new Socket(Settings.HOST_IP.parseString(), Settings.HOST_PORT.parseInt());
+            Socket socket = new Socket(Settings.HOST_IP.parseString(), Settings.HOST_PORT.parseInteger());
 
             send = new SendThread(new ObjectOutputStream(socket.getOutputStream()));
             receive = new ReceiveThread(new ObjectInputStream(socket.getInputStream()), engine);

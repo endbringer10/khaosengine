@@ -16,4 +16,8 @@
 		<meta>RIGHT</meta>
 		<value>pressed RIGHT</value>
 	</entry>
+	<entry>
+		<meta>CLOSE</meta>
+		<value>pressed ESCAPE</value>
+	</entry>
 </keybinds>

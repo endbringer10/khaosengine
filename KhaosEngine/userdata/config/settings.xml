@@ -12,4 +12,20 @@
 		<meta>HOST_PORT</meta>
 		<value>10101</value>
 	</entry>
+	<entry>
+		<meta>AUTO_LOGIN</meta>
+		<value>true</value>
+	</entry>
+	<entry>
+		<meta>NIMBUS</meta>
+		<value>true</value>
+	</entry>
+	<entry>
+		<meta>USERNAME</meta>
+		<value>dan</value>
+	</entry>
+	<entry>
+		<meta>PASSWORD</meta>
+		<value>pass</value>
+	</entry>
 </settings>

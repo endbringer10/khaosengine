@@ -1,43 +1,29 @@
-package com.khaos.core.gui.internalframe;
+package com.khaos.core.gui.panel;
 
 import com.khaos.core.EngineHook;
 import com.khaos.core.Localized;
 import com.khaos.core.data.commands.CharacterLoadCommand;
-import com.khaos.core.gui.interfaces.Aligned;
-import java.awt.Container;
-import java.awt.Dimension;
+import javax.swing.JInternalFrame;
 
 /**
  *
- * @author endbr
+ * @author endbringer10
+ * @since 20151024
  */
-public class CharacterSelect extends javax.swing.JInternalFrame implements Aligned {
+public class CharacterSelectPanel extends javax.swing.JPanel {
 
     private final EngineHook engine;
+    private final JInternalFrame parent;
 
-    public CharacterSelect(EngineHook engine) {
+    public CharacterSelectPanel(EngineHook engine, JInternalFrame parent) {
         initComponents();
         this.engine = engine;
+        this.parent = parent;
 
-        this.setTitle(Localized.CHARACTER_SELECT.getLocalized());
-        this.setLayer(this.getPreferredLayer());
-        this.moveToFront();
-    }
-
-    public void init() {
-        this.align();
-        this.setVisible(true);
-    }
-
-    public void align() {
-        Container container = this.getParent();
-        if (container != null) {
-            Dimension parent = this.getParent().getSize();
-            int x = (parent.width - this.getWidth()) / 2;
-            int y = (parent.height - this.getHeight()) / 2;
-
-            this.setLocation(x, y);
-        }
+        this.buttonSlot1.setText(Localized.SELECT.getLocalized());
+        this.buttonSlot2.setText(Localized.SELECT.getLocalized());
+        this.buttonSlot3.setText(Localized.SELECT.getLocalized());
+        //this.setSize(this.getPreferredSize());
     }
 
     @SuppressWarnings("unchecked")
@@ -47,17 +33,11 @@ public class CharacterSelect extends javax.swing.JInternalFrame implements Align
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        buttonSlot1 = new javax.swing.JButton();
+        buttonSlot2 = new javax.swing.JButton();
+        buttonSlot3 = new javax.swing.JButton();
 
-        addHierarchyBoundsListener(new java.awt.event.HierarchyBoundsListener() {
-            public void ancestorMoved(java.awt.event.HierarchyEvent evt) {
-            }
-            public void ancestorResized(java.awt.event.HierarchyEvent evt) {
-                formAncestorResized(evt);
-            }
-        });
+        setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -98,44 +78,46 @@ public class CharacterSelect extends javax.swing.JInternalFrame implements Align
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jButton3.setText("Select");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        buttonSlot1.setText("Select");
+        buttonSlot1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                selectActionPerformed(evt);
+                buttonSelect(evt);
             }
         });
 
-        jButton4.setText("Select");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        buttonSlot2.setText("Select");
+        buttonSlot2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                selectActionPerformed(evt);
+                buttonSelect(evt);
             }
         });
 
-        jButton5.setText("Select");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        buttonSlot3.setText("Select");
+        buttonSlot3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                selectActionPerformed(evt);
+                buttonSelect(evt);
             }
         });
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(buttonSlot1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(buttonSlot2, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(buttonSlot3, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -146,33 +128,26 @@ public class CharacterSelect extends javax.swing.JInternalFrame implements Align
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4)
-                    .addComponent(jButton5))
-                .addContainerGap())
+                    .addComponent(buttonSlot1)
+                    .addComponent(buttonSlot2)
+                    .addComponent(buttonSlot3))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-
-        pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void formAncestorResized(java.awt.event.HierarchyEvent evt) {//GEN-FIRST:event_formAncestorResized
-        this.align();
-    }//GEN-LAST:event_formAncestorResized
-
-    private void selectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectActionPerformed
+    private void buttonSelect(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSelect
         engine.getConnection().addCommand(new CharacterLoadCommand());
-        this.dispose();
-    }//GEN-LAST:event_selectActionPerformed
+        parent.dispose();
+    }//GEN-LAST:event_buttonSelect
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
+    private javax.swing.JButton buttonSlot1;
+    private javax.swing.JButton buttonSlot2;
+    private javax.swing.JButton buttonSlot3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     // End of variables declaration//GEN-END:variables
-
 }//End Class

@@ -16,7 +16,8 @@ public enum Errors {
     FILE_WRITE(-1004, "An error occured while writing to a file"),
     SPLASH_INTERRUPT(-1005, "Splash screen was interrupted"),
     IMAGE_LOAD(-1006, "Error loading image"),
-    NULL_IMAGE(-1007, "Image was not found");
+    NULL_IMAGE(-1007, "Image was not found"),
+    INTERNALFRAME_SELECTED(-1008, "Error selecting internalframe");
 
     private final int code;
     private final String message;

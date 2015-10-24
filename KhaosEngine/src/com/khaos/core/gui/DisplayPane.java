@@ -1,9 +1,9 @@
 package com.khaos.core.gui;
 
 import com.khaos.core.data.game.DisplayGrid;
-import com.khaos.core.gui.panel.CharacterPanel;
-import com.khaos.core.gui.panel.ImagePanel;
-import com.khaos.core.gui.panel.TilePanel;
+import com.khaos.core.gui.gamevisuals.CharacterPanel;
+import com.khaos.core.gui.gamevisuals.ImagePanel;
+import com.khaos.core.gui.gamevisuals.TilePanel;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Point;
