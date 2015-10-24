@@ -1,6 +1,4 @@
 /KhaosEngineServer/build/
-/KhaosEngineCore/build/
-/KhaosEngineClient/build/
 /KhaosEngineServer/dist/
-/KhaosEngineCore/dist/
-/KhaosEngineClient/dist/
+/KhaosEngine/build/
+/KhaosEngine/dist/
