@@ -1,6 +1,5 @@
 package com.khaos.core;
 
-import com.khaos.core.data.UniqueArray;
 import com.khaos.core.data.entry.SettingEntry;
 import com.khaos.core.file.FileSystem;
 import com.khaos.core.file.FileTypes;
@@ -11,7 +10,6 @@ import com.khaos.core.system.Errors;
 import com.khaos.core.system.Messages;
 import com.khaos.core.system.SysLog;
 import java.io.IOException;
-import unusued.SettingValue;
 
 /**
  *
@@ -30,20 +28,18 @@ public enum Settings {
     SCREEN_WIDTH(800),
     SCREEN_HEIGHT(600);
 
-    private static UniqueArray<SettingValue> list = new UniqueArray<>();
+    private String value;
 
-    private final String def;
-
-    Settings(String def) {
-        this.def = def;
+    Settings(String value) {
+        this.value = value;
     }
 
-    Settings(boolean def) {
-        this.def = Boolean.toString(def);
+    Settings(boolean value) {
+        this.value = Boolean.toString(value);
     }
 
-    Settings(int def) {
-        this.def = Integer.toString(def);
+    Settings(int value) {
+        this.value = Integer.toString(value);
     }
 
     public static void load() {
@@ -54,8 +50,7 @@ public enum Settings {
             SettingEntry next;
             while ((next = builder.next()) != null) {
                 try {
-                    Settings.valueOf(next.getMeta());
-                    list.add(new SettingValue(Settings.valueOf(next.getMeta()), next.getValue()));
+                    Settings.valueOf(next.getMeta()).setValue(next.getValue());
                 } catch (IllegalArgumentException ex) {
                     SysLog.err(Errors.ENUM_DOES_NOT_EXIST, ex);
                 }
@@ -69,58 +64,31 @@ public enum Settings {
     }
 
     public void setValue(String value) {
-        int index = list.indexOf(this.toString());
-        if (index != -1) {
-            list.get(index).setValue(value);
-        }
+        this.value = value;
     }
 
     public void setValue(boolean value) {
-        int index = list.indexOf(this.toString());
-        if (index != -1) {
-            list.get(index).setValue(value);
-        }
+        this.value = Boolean.toString(value);
     }
 
     public void setValue(int value) {
-        int index = list.indexOf(this.toString());
-        if (index != -1) {
-            list.get(index).setValue(value);
-        }
+        this.value = Integer.toString(value);
     }
 
     public String parseString() {
-        int index = list.indexOf(this.toString());
-        if (index != -1) {
-            return list.get(index).parseString();
-        }
-
-        return def;
+        return value;
     }
 
     public boolean parseBoolean() {
-        int index = list.indexOf(this.toString());
-        if (index != -1) {
-            return list.get(index).parseBoolean();
-        }
-
-        return Boolean.parseBoolean(def);
+        return Boolean.parseBoolean(value);
     }
 
     public int parseInteger() {
-        int index = list.indexOf(this.toString());
-        if (index != -1) {
-            return list.get(index).parseInteger();
-        }
-
-        return Integer.parseInt(def);
+        return Integer.parseInt(value);
     }
 
     public void clear() {
-        int index = list.indexOf(this.toString());
-        if (index != -1) {
-            list.get(index).clear();
-        }
+        this.value = "null";
     }
 
     public static void save() {
