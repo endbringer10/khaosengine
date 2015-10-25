@@ -18,7 +18,7 @@ public class MovePacket implements Packet {
 
     @Override
     public void process(EngineHook engine) {
-        engine.getGuiData().update(character);
+        engine.getGUI().getData().update(character);
         //engine.getGuiData().repaint();
     }
 

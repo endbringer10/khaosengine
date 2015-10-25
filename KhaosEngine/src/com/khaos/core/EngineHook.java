@@ -1,7 +1,6 @@
 package com.khaos.core;
 
 import com.khaos.core.connection.Connection;
-import com.khaos.core.data.game.GameData;
 import com.khaos.core.data.Resources;
 import com.khaos.core.gui.EngineGUI;
 
@@ -16,8 +15,6 @@ public interface EngineHook {
     public Resources getResources();
 
     public EngineGUI getGUI();
-
-    public GameData getGuiData();
 
     public void openLogin();
 

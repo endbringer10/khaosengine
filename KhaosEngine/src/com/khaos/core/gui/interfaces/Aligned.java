@@ -1,6 +1,6 @@
 package com.khaos.core.gui.interfaces;
 
-import com.khaos.core.gui.Layer;
+import com.khaos.core.gui.enums.Layer;
 
 /**
  *
@@ -9,13 +9,13 @@ import com.khaos.core.gui.Layer;
  */
 public interface Aligned {
 
-    default public void init() {
-        this.align();
+    default public void init2() {
+        this.align2();
     }
 
-    public void align();
+    public void align2();
 
-    default public int getPreferredLayer() {
+    default public int getPreferredLayer2() {
         return Layer.INTERNALFRAME.getLayer();
     }
 

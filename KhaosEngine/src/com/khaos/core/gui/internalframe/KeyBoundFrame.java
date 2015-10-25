@@ -1,6 +1,7 @@
 package com.khaos.core.gui.internalframe;
 
 import com.khaos.core.KeyBinds;
+import com.khaos.core.gui.enums.Closeable;
 import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
 import javax.swing.JComponent;
@@ -17,10 +18,15 @@ public class KeyBoundFrame extends PanelHolder {
         this.bindKeys();
     }
 
-    public KeyBoundFrame(String title, boolean closeable, boolean iconifiable) {
-        super(title, closeable, iconifiable);
+    public KeyBoundFrame(String title, Closeable close) {
+        super(title, close);
         this.bindKeys();
     }
+
+    /*public KeyBoundFrame(String title, Alignment align, Iconifiable icon) {
+        super(title, align, icon);
+        this.bindKeys();
+    }*/
 
     private void bindKeys() {
         int ancestor = JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT;

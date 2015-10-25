@@ -15,7 +15,7 @@ public class CharacterSelectPacket implements Packet {
     public void process(EngineHook engine) {
         PanelHolder select = new PanelHolder(Localized.CHARACTER_SELECT.getLocalized());
         engine.getGUI().openInternalFrame(select);
-        select.addPanel(new CharacterSelectPanel(engine, select));
+        select.addCustom(new CharacterSelectPanel(engine, select));
 
         //PanelHolder settings = new KeyBoundFrame(Localized.SETTINGS.getLocalized());
         //engine.getGUI().openInternalFrame(settings);

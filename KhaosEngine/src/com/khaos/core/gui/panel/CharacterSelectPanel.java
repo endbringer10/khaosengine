@@ -37,8 +37,6 @@ public class CharacterSelectPanel extends javax.swing.JPanel {
         buttonSlot2 = new javax.swing.JButton();
         buttonSlot3 = new javax.swing.JButton();
 
-        setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
