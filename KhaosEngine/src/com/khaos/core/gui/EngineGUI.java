@@ -15,7 +15,7 @@ public interface EngineGUI {
 
     public void openInternalFrame(JInternalFrame frame);
 
-    public GameData getGuiData();
+    public GameData getData();
 
     public void addKeyBinds();
 

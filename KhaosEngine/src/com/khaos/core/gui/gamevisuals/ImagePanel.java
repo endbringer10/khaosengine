@@ -1,6 +1,6 @@
 package com.khaos.core.gui.gamevisuals;
 
-import com.khaos.core.gui.Layer;
+import com.khaos.core.enums.gui.Layer;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Point;

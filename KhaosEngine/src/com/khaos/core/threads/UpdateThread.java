@@ -1,7 +1,7 @@
 package com.khaos.core.threads;
 
 import com.khaos.core.EngineHook;
-import com.khaos.core.Localized;
+import com.khaos.core.enums.Localized;
 import com.khaos.core.data.packets.GameInitPacket;
 import com.khaos.core.gui.frame.Progress;
 

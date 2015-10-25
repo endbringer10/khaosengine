@@ -1,8 +1,8 @@
 package com.khaos.core.gui.frame;
 
 import com.khaos.core.EngineHook;
-import com.khaos.core.Localized;
-import com.khaos.core.Settings;
+import com.khaos.core.enums.Localized;
+import com.khaos.core.enums.Settings;
 import com.khaos.core.data.Resources;
 import com.khaos.core.data.commands.LoginCommand;
 import com.khaos.core.system.Errors;

@@ -1,8 +1,8 @@
 package com.khaos.core.gui.panel;
 
 import com.khaos.core.EngineHook;
-import com.khaos.core.Localized;
-import com.khaos.core.Settings;
+import com.khaos.core.enums.Localized;
+import com.khaos.core.enums.Settings;
 import javax.swing.JInternalFrame;
 
 /**
@@ -48,8 +48,6 @@ public class SettingsEditorPanel extends javax.swing.JPanel {
         buttonCancel = new javax.swing.JButton();
         buttonReset = new javax.swing.JButton();
         buttonSave = new javax.swing.JButton();
-
-        setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         labelAutoLogin.setText("Auto Login:");
 
@@ -102,7 +100,7 @@ public class SettingsEditorPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelAutoLogin)
                     .addComponent(checkBoxAutoLogin))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonCancel)
                     .addComponent(buttonReset)

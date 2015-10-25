@@ -1,22 +1,28 @@
 package com.khaos.core.gui.frame;
 
 import com.khaos.core.EngineHook;
-import com.khaos.core.KeyBinds;
 import com.khaos.core.KhaosEngine;
-import com.khaos.core.Localized;
-import com.khaos.core.Settings;
 import com.khaos.core.data.Architecture;
-import com.khaos.core.data.Direction;
 import com.khaos.core.data.Resources;
 import com.khaos.core.data.commands.CharacterSelectCommand;
 import com.khaos.core.data.commands.MoveCommand;
 import com.khaos.core.data.game.GameData;
 import com.khaos.core.data.game.HardCap;
+import com.khaos.core.enums.Direction;
+import com.khaos.core.enums.KeyBinds;
+import com.khaos.core.enums.Localized;
+import com.khaos.core.enums.Settings;
+import com.khaos.core.enums.gui.Alignment;
+import com.khaos.core.enums.gui.Closeable;
+import com.khaos.core.enums.gui.Iconifiable;
+import com.khaos.core.enums.gui.Maximizable;
+import com.khaos.core.enums.gui.Resizeable;
 import com.khaos.core.gui.DisplayPane;
 import com.khaos.core.gui.EngineGUI;
 import com.khaos.core.gui.internalframe.KeyBoundFrame;
 import com.khaos.core.gui.internalframe.PanelHolder;
 import com.khaos.core.gui.panel.MenuPanel;
+import com.khaos.core.system.SysLog;
 import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
 import javax.swing.JComponent;
@@ -50,6 +56,7 @@ public class Game extends javax.swing.JFrame implements EngineGUI {
         arch.load();
 
         this.data = new GameData(engine.getResources(), display.initGrid(), display.initPlayer());
+        this.openConsole();        
     }
 
     @Override
@@ -67,13 +74,19 @@ public class Game extends javax.swing.JFrame implements EngineGUI {
     }
 
     @Override
-    public synchronized GameData getGuiData() {
+    public synchronized GameData getData() {
         return data;
     }
 
     @Override
     public void openInternalFrame(JInternalFrame frame) {
         this.display.add(frame);
+    }
+
+    private void openConsole() {
+        PanelHolder frame = new PanelHolder(Localized.CONSOLE.getLocalized(), Alignment.BOTTOM_LEFT, Iconifiable.TRUE, Resizeable.TRUE, Maximizable.TRUE);
+        this.display.add(frame);
+        frame.addCustom(SysLog.getConsole());
     }
 
     @Override
@@ -176,9 +189,9 @@ public class Game extends javax.swing.JFrame implements EngineGUI {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            PanelHolder menu = new KeyBoundFrame(Localized.MENU.getLocalized(), true, false);
+            PanelHolder menu = new KeyBoundFrame(Localized.MENU.getLocalized(), Closeable.TRUE);
             display.add(menu);
-            menu.addPanel(new MenuPanel(engine, menu));
+            menu.addCustom(new MenuPanel(engine, menu));
             //display.setLayer(menu, menu.getPreferredLayer());
             //display.setPosition(menu, 0);
         }

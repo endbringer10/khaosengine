@@ -1,7 +1,7 @@
 package com.khaos.core.data.commands;
 
 import com.khaos.core.DatabaseHook;
-import com.khaos.core.data.Direction;
+import com.khaos.core.enums.Direction;
 import com.khaos.core.data.packets.Packet;
 
 /**

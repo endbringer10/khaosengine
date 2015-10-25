@@ -1,4 +1,4 @@
-package com.khaos.core;
+package com.khaos.core.enums;
 
 /**
  *
@@ -21,6 +21,7 @@ public enum Localized {
     SAVE("Save"),
     ENABLED("Enabled"),
     SELECT("Select"),
+    CONSOLE("Console"),
     CHARACTER_SELECT("Character Select");
 
     private final String english;

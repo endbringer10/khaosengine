@@ -1,7 +1,8 @@
 package com.khaos.core.gui.panel;
 
 import com.khaos.core.EngineHook;
-import com.khaos.core.Localized;
+import com.khaos.core.enums.Localized;
+import com.khaos.core.enums.gui.Closeable;
 import com.khaos.core.gui.internalframe.KeyBoundFrame;
 import com.khaos.core.gui.internalframe.PanelHolder;
 import com.khaos.core.system.Errors;
@@ -34,8 +35,6 @@ public class MenuPanel extends javax.swing.JPanel {
         buttonSettings = new javax.swing.JButton();
         buttonExit = new javax.swing.JButton();
 
-        setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
         buttonSettings.setText("Settings");
         buttonSettings.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -57,7 +56,7 @@ public class MenuPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(buttonSettings, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE)
+                    .addComponent(buttonSettings, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
                     .addComponent(buttonExit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -73,9 +72,9 @@ public class MenuPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonSettingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSettingsActionPerformed
-        PanelHolder settings = new KeyBoundFrame(Localized.SETTINGS.getLocalized(), true, false);
+        PanelHolder settings = new KeyBoundFrame(Localized.SETTINGS.getLocalized(), Closeable.TRUE);
         engine.getGUI().openInternalFrame(settings);
-        settings.addPanel(new SettingsEditorPanel(engine, settings));
+        settings.addCustom(new SettingsEditorPanel(engine, settings));
         parent.dispose();
     }//GEN-LAST:event_buttonSettingsActionPerformed
 

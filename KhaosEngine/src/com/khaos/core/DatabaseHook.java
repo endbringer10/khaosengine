@@ -1,6 +1,6 @@
 package com.khaos.core;
 
-import com.khaos.core.data.Direction;
+import com.khaos.core.enums.Direction;
 import com.khaos.core.data.game.CharacterData;
 import com.khaos.core.data.game.MapData;
 import com.khaos.core.data.game.Tile;

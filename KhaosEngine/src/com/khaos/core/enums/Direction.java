@@ -1,4 +1,4 @@
-package com.khaos.core.data;
+package com.khaos.core.enums;
 
 /**
  *

@@ -1,37 +1,52 @@
 package com.khaos.core.gui.internalframe;
 
-import com.khaos.core.gui.Layer;
+import com.khaos.core.enums.gui.Alignment;
+import com.khaos.core.enums.gui.Closeable;
+import com.khaos.core.enums.gui.Iconifiable;
+import com.khaos.core.enums.gui.Layer;
+import com.khaos.core.enums.gui.Maximizable;
+import com.khaos.core.enums.gui.Resizeable;
 import com.khaos.core.system.Errors;
 import com.khaos.core.system.SysLog;
+import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Insets;
 import java.beans.PropertyVetoException;
-import javax.swing.JPanel;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 
 /**
  *
  * @author endbringer10
  * @since 20151024
+ * @idea this.setDesktopIcon(desktopIcon);
  */
 public class PanelHolder extends javax.swing.JInternalFrame {
 
     private static final int PADDING = 10;
+    private static final int MARGIN = 2;
+    private Alignment align;
 
     public PanelHolder(String title) {
-        this.construct(title, false, false);
+        this.construct(title, Alignment.CENTER, Closeable.FALSE, Iconifiable.FALSE, Resizeable.FALSE, Maximizable.FALSE);
     }
 
-    public PanelHolder(String title, boolean closeable, boolean iconifiable) {
-        this.construct(title, closeable, iconifiable);
+    public PanelHolder(String title, Closeable close) {
+        this.construct(title, Alignment.CENTER, close, Iconifiable.FALSE, Resizeable.FALSE, Maximizable.FALSE);
     }
 
-    private void construct(String title, boolean closeable, boolean iconifiable) {
+    public PanelHolder(String title, Alignment align, Iconifiable icon, Resizeable resize, Maximizable max) {
+        this.construct(title, align, Closeable.FALSE, icon, resize, max);
+    }
+
+    private void construct(String title, Alignment align, Closeable close, Iconifiable icon, Resizeable resize, Maximizable max) {
+        this.align = align;
         this.initComponents();
         this.setTitle(title);
-        this.setClosable(closeable);
-        this.setIconifiable(iconifiable);
+        this.setClosable(close.isCloseable());
+        this.setIconifiable(icon.isIconifiable());
+        this.setResizable(resize.isResizeable());
+        this.setMaximizable(max.isMaximizable());
 
         //Move off screen to prevent stutter when temperarilly visible but empty
         //most be visible for getNorthPane() below to get proper height
@@ -42,14 +57,20 @@ public class PanelHolder extends javax.swing.JInternalFrame {
         this.setVisible(true);
     }
 
-    public void addPanel(JPanel panel) {
-        panel.setSize(panel.getPreferredSize());
-        this.add(panel);
-        panel.setLocation(PADDING, PADDING);
-
-        Insets insets = this.getInsets();
+    public void addCustom(Component comp) {
+        int NOTSUREWHY4 = 4;
+        int NOTSUREWHY1 = 1;
         int titleBarHeight = ((BasicInternalFrameUI) this.getUI()).getNorthPane().getHeight();
-        this.setSize(panel.getWidth() + insets.left + insets.right + (PADDING * 2), panel.getHeight() + insets.top + insets.bottom + titleBarHeight + (PADDING * 2));
+        Insets insets = this.panelHolder.getInsets();
+
+        comp.setSize(comp.getPreferredSize());
+        this.panelHolder.add(comp);
+
+        this.panelHolder.setLocation(PADDING, PADDING);
+        comp.setLocation(insets.left, insets.top);
+
+        this.panelHolder.setSize(comp.getWidth() + insets.left + insets.right + NOTSUREWHY4, comp.getHeight() + insets.top + insets.bottom - NOTSUREWHY1);
+        this.setSize(this.panelHolder.getWidth() + (PADDING * 2), this.panelHolder.getHeight() + titleBarHeight + (PADDING * 2));
 
         this.align();
         this.setFocus();
@@ -64,6 +85,14 @@ public class PanelHolder extends javax.swing.JInternalFrame {
     }
 
     public void align() {
+        if (align == Alignment.BOTTOM_LEFT) {
+            this.alignBottomLeft();
+        } else { //center
+            this.alignCenter();
+        }
+    }
+
+    private void alignCenter() {
         Container container = this.getParent();
         if (container != null) {
             Dimension parent = this.getParent().getSize();
@@ -74,9 +103,19 @@ public class PanelHolder extends javax.swing.JInternalFrame {
         }
     }
 
+    public void alignBottomLeft() {
+        Container container = this.getParent();
+        if (container != null) {
+            Dimension parent = this.getParent().getSize();
+            this.setLocation(MARGIN, parent.height - this.getHeight() - MARGIN);
+        }
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+
+        panelHolder = new javax.swing.JPanel();
 
         addHierarchyBoundsListener(new java.awt.event.HierarchyBoundsListener() {
             public void ancestorMoved(java.awt.event.HierarchyEvent evt) {
@@ -86,15 +125,34 @@ public class PanelHolder extends javax.swing.JInternalFrame {
             }
         });
 
+        panelHolder.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        javax.swing.GroupLayout panelHolderLayout = new javax.swing.GroupLayout(panelHolder);
+        panelHolder.setLayout(panelHolderLayout);
+        panelHolderLayout.setHorizontalGroup(
+            panelHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 67, Short.MAX_VALUE)
+        );
+        panelHolderLayout.setVerticalGroup(
+            panelHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 48, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 112, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(panelHolder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 115, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(panelHolder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -105,5 +163,6 @@ public class PanelHolder extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_formAncestorResized
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel panelHolder;
     // End of variables declaration//GEN-END:variables
 }//End Class
