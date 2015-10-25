@@ -1,11 +1,11 @@
 package com.khaos.core.gui.internalframe;
 
-import com.khaos.core.gui.enums.Alignment;
-import com.khaos.core.gui.enums.Closeable;
-import com.khaos.core.gui.enums.Iconifiable;
-import com.khaos.core.gui.enums.Layer;
-import com.khaos.core.gui.enums.Maximizable;
-import com.khaos.core.gui.enums.Resizeable;
+import com.khaos.core.enums.gui.Alignment;
+import com.khaos.core.enums.gui.Closeable;
+import com.khaos.core.enums.gui.Iconifiable;
+import com.khaos.core.enums.gui.Layer;
+import com.khaos.core.enums.gui.Maximizable;
+import com.khaos.core.enums.gui.Resizeable;
 import com.khaos.core.system.Errors;
 import com.khaos.core.system.SysLog;
 import java.awt.Component;
@@ -57,34 +57,20 @@ public class PanelHolder extends javax.swing.JInternalFrame {
         this.setVisible(true);
     }
 
-    /*public void addCustom(JPanel text) {
-     text.setSize(text.getPreferredSize());
-     this.add(text);
-     text.setLocation(PADDING, PADDING);
-
-     Insets insets = this.getInsets();
-     int titleBarHeight = ((BasicInternalFrameUI) this.getUI()).getNorthPane().getHeight();
-     this.setSize(text.getWidth() + insets.left + insets.right + (PADDING * 2), text.getHeight() + insets.top + insets.bottom + titleBarHeight + (PADDING * 2));
-
-     this.align();
-     this.setFocus();
-     }*/
     public void addCustom(Component comp) {
         int NOTSUREWHY4 = 4;
         int NOTSUREWHY1 = 1;
-        comp.setSize(comp.getPreferredSize());
-        this.panelHolder.setLocation(PADDING, PADDING);
-
         int titleBarHeight = ((BasicInternalFrameUI) this.getUI()).getNorthPane().getHeight();
         Insets insets = this.panelHolder.getInsets();
 
+        comp.setSize(comp.getPreferredSize());
         this.panelHolder.add(comp);
+
+        this.panelHolder.setLocation(PADDING, PADDING);
         comp.setLocation(insets.left, insets.top);
 
         this.panelHolder.setSize(comp.getWidth() + insets.left + insets.right + NOTSUREWHY4, comp.getHeight() + insets.top + insets.bottom - NOTSUREWHY1);
         this.setSize(this.panelHolder.getWidth() + (PADDING * 2), this.panelHolder.getHeight() + titleBarHeight + (PADDING * 2));
-
-        System.out.println(this.getInsets());
 
         this.align();
         this.setFocus();

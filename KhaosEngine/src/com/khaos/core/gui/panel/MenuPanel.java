@@ -1,8 +1,8 @@
 package com.khaos.core.gui.panel;
 
 import com.khaos.core.EngineHook;
-import com.khaos.core.Localized;
-import com.khaos.core.gui.enums.Closeable;
+import com.khaos.core.enums.Localized;
+import com.khaos.core.enums.gui.Closeable;
 import com.khaos.core.gui.internalframe.KeyBoundFrame;
 import com.khaos.core.gui.internalframe.PanelHolder;
 import com.khaos.core.system.Errors;

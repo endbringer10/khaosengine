@@ -1,7 +1,7 @@
 package com.khaos.core.gui.internalframe;
 
-import com.khaos.core.KeyBinds;
-import com.khaos.core.gui.enums.Closeable;
+import com.khaos.core.enums.KeyBinds;
+import com.khaos.core.enums.gui.Closeable;
 import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
 import javax.swing.JComponent;

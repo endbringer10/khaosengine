@@ -1,6 +1,6 @@
 package com.khaos.core.system;
 
-import com.khaos.core.Settings;
+import com.khaos.core.enums.Settings;
 import javax.swing.JTextArea;
 
 /**
@@ -40,17 +40,6 @@ public class SysLog {
         }
     }
 
-    public synchronized static void dump() {
-
-    }
-
-    public static void setOut(JTextArea area) {
-        console = area;
-    }
-
-    /**
-     * @deprecated
-     */
     public static JTextArea getConsole() {
         return console;
     }

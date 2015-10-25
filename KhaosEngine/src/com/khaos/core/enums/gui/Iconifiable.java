@@ -1,4 +1,4 @@
-package com.khaos.core.gui.enums;
+package com.khaos.core.enums.gui;
 
 /**
  *

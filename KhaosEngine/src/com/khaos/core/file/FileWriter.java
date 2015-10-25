@@ -1,7 +1,7 @@
 package com.khaos.core.file;
 
-import com.khaos.core.KeyBinds;
-import com.khaos.core.Settings;
+import com.khaos.core.enums.KeyBinds;
+import com.khaos.core.enums.Settings;
 import com.khaos.core.system.Errors;
 import com.khaos.core.system.SysLog;
 import java.io.File;

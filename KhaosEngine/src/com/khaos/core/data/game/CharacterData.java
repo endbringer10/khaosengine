@@ -1,6 +1,6 @@
 package com.khaos.core.data.game;
 
-import com.khaos.core.data.Direction;
+import com.khaos.core.enums.Direction;
 import java.awt.Point;
 
 /**

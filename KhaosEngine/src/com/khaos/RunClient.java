@@ -1,8 +1,8 @@
 package com.khaos;
 
-import com.khaos.core.KeyBinds;
+import com.khaos.core.enums.KeyBinds;
 import com.khaos.core.KhaosEngine;
-import com.khaos.core.Settings;
+import com.khaos.core.enums.Settings;
 
 /**
  *

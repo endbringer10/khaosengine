@@ -1,7 +1,7 @@
 package com.khaos.core.gui.panel;
 
 import com.khaos.core.EngineHook;
-import com.khaos.core.Localized;
+import com.khaos.core.enums.Localized;
 import com.khaos.core.data.commands.CharacterLoadCommand;
 import javax.swing.JInternalFrame;
 

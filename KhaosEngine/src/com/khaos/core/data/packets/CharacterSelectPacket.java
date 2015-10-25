@@ -1,7 +1,7 @@
 package com.khaos.core.data.packets;
 
 import com.khaos.core.EngineHook;
-import com.khaos.core.Localized;
+import com.khaos.core.enums.Localized;
 import com.khaos.core.gui.internalframe.PanelHolder;
 import com.khaos.core.gui.panel.CharacterSelectPanel;
 

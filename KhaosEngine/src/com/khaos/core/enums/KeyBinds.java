@@ -1,4 +1,4 @@
-package com.khaos.core;
+package com.khaos.core.enums;
 
 import com.khaos.core.data.entry.KeyBindsEntry;
 import com.khaos.core.file.FileSystem;
