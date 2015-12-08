@@ -14,13 +14,6 @@ import org.apache.commons.io.FileUtils;
  */
 public class FileReader {
 
-    private static final String ENTRY_START = "<entry>";
-    private static final String ENTRY_END = "</entry>";
-    private static final String HEADER_START = "<meta>";
-    private static final String HEADER_END = "</meta>";
-    private static final String VALUE_START = "<value>";
-    private static final String VALUE_END = "</value>";
-
     private final String raw;
     private int caret = 0;
 
@@ -44,8 +37,8 @@ public class FileReader {
     }
 
     private String nextValue(String entry) {
-        int start = entry.indexOf(VALUE_START) + VALUE_START.length();
-        int end = entry.indexOf(VALUE_END);
+        int start = entry.indexOf(Files.VALUE_START) + Files.VALUE_START.length();
+        int end = entry.indexOf(Files.VALUE_END);
 
         if (start != -1 && end != -1) {
             return entry.substring(start, end);
@@ -55,8 +48,8 @@ public class FileReader {
     }
 
     private String nextHeader(String entry) {
-        int start = entry.indexOf(HEADER_START) + HEADER_START.length();
-        int end = entry.indexOf(HEADER_END);
+        int start = entry.indexOf(Files.HEADER_START) + Files.HEADER_START.length();
+        int end = entry.indexOf(Files.HEADER_END);
 
         if (start != -1 && end != -1) {
             return entry.substring(start, end);
@@ -66,9 +59,9 @@ public class FileReader {
     }
 
     private String nextEntry() {
-        int start = raw.indexOf(ENTRY_START, caret);
-        int end = raw.indexOf(ENTRY_END, caret) + ENTRY_END.length();
-        int next = raw.indexOf(ENTRY_START, start + ENTRY_START.length());
+        int start = raw.indexOf(Files.ENTRY_START, caret);
+        int end = raw.indexOf(Files.ENTRY_END, caret) + Files.ENTRY_END.length();
+        int next = raw.indexOf(Files.ENTRY_START, start + Files.ENTRY_START.length());
 
         if (start != -1 && end != -1) {
 

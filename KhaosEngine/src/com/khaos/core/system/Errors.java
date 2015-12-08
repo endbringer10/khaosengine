@@ -8,7 +8,8 @@ public enum Errors {
 
     GENERIC(-1, "An Error has occurred"),
     NO_ERROR(0, "No Errors"),
-    FILE_READ(-2, "Error reading file");
+    FILE_READ(-2, "Error reading file"),
+    FILE_WRITE(-3, "Error writing to file");
 
     //NIMBUS(-2, "An error occured loading nimbus look and feel"),
     //ENUM_DOES_NOT_EXIST(-1000, "The Enum.valueOf(String) for the value you specified does not exist"),

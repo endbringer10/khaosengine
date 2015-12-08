@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <settings>
 	<entry>
+		<meta>AUTO_LOGIN</meta>
+		<value>false</value>
+	</entry>
+	<entry>
 		<meta>DEBUG</meta>
+		<value>true</value>
+	</entry>
+	<entry>
+		<meta>EXPORTALL</meta>
 		<value>true</value>
 	</entry>
 	<entry>
@@ -13,19 +21,23 @@
 		<value>10101</value>
 	</entry>
 	<entry>
-		<meta>AUTO_LOGIN</meta>
-		<value>true</value>
-	</entry>
-	<entry>
 		<meta>NIMBUS</meta>
 		<value>true</value>
 	</entry>
 	<entry>
-		<meta>USERNAME</meta>
-		<value>dan</value>
+		<meta>PASSWORD</meta>
+		<value>password</value>
 	</entry>
 	<entry>
-		<meta>PASSWORD</meta>
-		<value>pass</value>
+		<meta>USERNAME</meta>
+		<value>username</value>
+	</entry>
+	<entry>
+		<meta>SCREEN_HEIGHT</meta>
+		<value>600</value>
+	</entry>
+	<entry>
+		<meta>SCREEN_WIDTH</meta>
+		<value>800</value>
 	</entry>
 </settings>
