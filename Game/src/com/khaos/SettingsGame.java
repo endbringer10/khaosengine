@@ -3,11 +3,8 @@ package com.khaos;
 import com.khaos.core.Entry;
 import com.khaos.core.FileReader;
 import com.khaos.core.dFile;
-import com.khaos.system.SysLog;
-import com.khaos.system.core.Errors;
 import com.khaos.system.core.Files;
 import java.io.IOException;
-import org.apache.commons.io.FileUtils;
 
 /**
  *
@@ -18,15 +15,15 @@ import org.apache.commons.io.FileUtils;
 public enum SettingsGame {
 
     //AUTO_LOGIN(false),
-    //DEBUG(true),
-    //EXPORTALL(true),
     //USERNAME("username"),
     //PASSWORD("password"),
     HOST_IP("localhost"),
     HOST_PORT(10101);
-    //NIMBUS(true),
     //SCREEN_WIDTH(800),
     //SCREEN_HEIGHT(600);
+
+    private static final String FILE_TAG = "<Game>";
+    private static final String FILE_TAG_CLOSE = "</Game>";
 
     private final String defaults;
     private String value;
@@ -46,45 +43,31 @@ public enum SettingsGame {
         this.value = Integer.toString(value);
     }
 
-    public static void load() {
-        try {
-            dFile settings = new dFile(Files.SETTINGS);
-            if (settings.exists()) {
-                FileReader reader = new FileReader(settings);
+    public static void load() throws IOException {
+        FileReader reader = new FileReader(new dFile(Files.SETTINGS));
 
-                Entry next;
-                while ((next = reader.next()) != null) {
-                    SettingsGame.valueOf(next.getHeader()).setValue(next.getValue());
-                }
-            } else {
-                save();//remove if there are no settings that get saved even if export all is false
+        Entry next;
+        while ((next = reader.next()) != null) {
+            try {
+                SettingsGame.valueOf(next.getHeader()).setValue(next.getValue());
+            } catch (IllegalArgumentException ex) {
+
             }
-        } catch (IOException ex) {
-            SysLog.err(Errors.FILE_READ, ex);
         }
     }
 
-    public static void save() {
-        String toExport = Files.XML_HEADER + Files.NEWLINE;
-        toExport += Files.FILE_TAG_SETTINGS + Files.NEWLINE;
+    public static String formatForExport() {
+        String toExport = FILE_TAG + Files.NEWLINE;
         //toExport += SettingsGame.AUTO_LOGIN.formatExportCheck();
-        //toExport += SettingsGame.DEBUG.formatExportCheck();
-        //toExport += SettingsGame.EXPORTALL.formatExportCheck();
         toExport += SettingsGame.HOST_IP.formatExportCheck();
         toExport += SettingsGame.HOST_PORT.formatExportCheck();
-        //toExport += SettingsGame.NIMBUS.formatExportCheck();
         //toExport += SettingsGame.PASSWORD.formatExportCheck();
         //toExport += SettingsGame.USERNAME.formatExportCheck();
         //toExport += SettingsGame.SCREEN_HEIGHT.formatExportCheck();
         //toExport += SettingsGame.SCREEN_WIDTH.formatExportCheck();
-        toExport += Files.FILE_TAG_SETTINGS_CLOSE;
-
-        try {
-            dFile settings = new dFile(Files.SETTINGS.getPath());
-            FileUtils.writeStringToFile(settings, toExport);
-        } catch (IOException ex) {
-            SysLog.err(Errors.FILE_WRITE, ex);
-        }
+        toExport += FILE_TAG_CLOSE;
+        
+        return toExport;
     }
 
     private String formatExportCheck() {

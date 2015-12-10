@@ -11,8 +11,9 @@ public enum Errors implements IErrors {
     GENERIC(-1, "An Error has occurred"),
     NO_ERROR(0, "No Errors"),
     FILE_READ(-2, "Error reading file"),
-    FILE_WRITE(-3, "Error writing to file");
-    //NIMBUS(-2, "An error occured loading nimbus look and feel"),
+    FILE_WRITE(-3, "Error writing to file"),
+    NIMBUS(-100, "An error occured loading nimbus look and feel"),
+    TIMED_DISPLAY_FRAME_WAIT_INTTERUPT(-101, "TimedDisplayFrame was intterupted");
     //ENUM_DOES_NOT_EXIST(-1000, "The Enum.valueOf(String) for the value you specified does not exist"),
     //THREAD_RUNNING(-1001, "An error occured within a running thread"),
     //THREAD_STOP(-1002, "An error occured stopping a thread"),

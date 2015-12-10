@@ -2,12 +2,11 @@ package com.khaos;
 
 import com.khaos.core.Entry;
 import com.khaos.core.FileReader;
-import com.khaos.system.SysLog;
 import com.khaos.core.dFile;
+import com.khaos.system.SysLog;
 import com.khaos.system.core.Errors;
 import com.khaos.system.core.Files;
 import java.io.IOException;
-import org.apache.commons.io.FileUtils;
 
 /**
  *
@@ -17,16 +16,12 @@ import org.apache.commons.io.FileUtils;
  */
 public enum SettingsCore {
 
-    //AUTO_LOGIN(false),
     DEBUG(true),
     EXPORTALL(true),
-    //USERNAME("username"),
-    //PASSWORD("password"),
-    //HOST_IP("localhost"),
-    //HOST_PORT(10101),
     NIMBUS(true);
-    //SCREEN_WIDTH(800),
-    //SCREEN_HEIGHT(600);
+
+    private static final String FILE_TAG = "<Core>";
+    private static final String FILE_TAG_CLOSE = "</Core>";
 
     private final String defaults;
     private String value;
@@ -46,47 +41,29 @@ public enum SettingsCore {
         this.value = Integer.toString(value);
     }
 
-    public static void load() {
-        try {
-            dFile settings = new dFile(Files.SETTINGS);
-            if (settings.exists()) {
-                FileReader reader = new FileReader(settings);
+    public static void load() throws IOException {
+        FileReader reader = new FileReader(new dFile(Files.SETTINGS));
 
-                Entry next;
-                while ((next = reader.next()) != null) {
-                    SettingsCore.valueOf(next.getHeader()).setValue(next.getValue());
-                }
-            } else {
-                save();//remove if there are no settings that get saved even if export all is false
+        Entry next;
+        while ((next = reader.next()) != null) {
+            try {
+                SettingsCore.valueOf(next.getHeader()).setValue(next.getValue());
+            } catch (IllegalArgumentException ex) {
+
             }
-        } catch (IOException ex) {
-            SysLog.err(Errors.FILE_READ, ex);
         }
 
-        lookAndFeel();
+        SettingsCore.lookAndFeel();
     }
 
-    public static void save() {
-        String toExport = Files.XML_HEADER + Files.NEWLINE;
-        toExport += Files.FILE_TAG_SETTINGS + Files.NEWLINE;
-        //toExport += SettingsCore.AUTO_LOGIN.formatExportCheck();
+    public static String formatForExport() {
+        String toExport = FILE_TAG + Files.NEWLINE;
         toExport += SettingsCore.DEBUG.formatExportCheck();
         toExport += SettingsCore.EXPORTALL.formatExportCheck();
-        //toExport += SettingsCore.HOST_IP.formatExportCheck();
-        //toExport += SettingsCore.HOST_PORT.formatExportCheck();
         toExport += SettingsCore.NIMBUS.formatExportCheck();
-        //toExport += SettingsCore.PASSWORD.formatExportCheck();
-        //toExport += SettingsCore.USERNAME.formatExportCheck();
-        //toExport += SettingsCore.SCREEN_HEIGHT.formatExportCheck();
-        //toExport += SettingsCore.SCREEN_WIDTH.formatExportCheck();
-        toExport += Files.FILE_TAG_SETTINGS_CLOSE;
+        toExport += FILE_TAG_CLOSE;
 
-        try {
-            dFile settings = new dFile(Files.SETTINGS.getPath());
-            FileUtils.writeStringToFile(settings, toExport);
-        } catch (IOException ex) {
-            SysLog.err(Errors.FILE_WRITE, ex);
-        }
+        return toExport;
     }
 
     private String formatExportCheck() {
@@ -116,7 +93,7 @@ public enum SettingsCore {
                     }
                 }
             } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-                java.util.logging.Logger.getLogger(SettingsCore.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+                SysLog.err(Errors.NIMBUS, ex);
             }
         }
     }

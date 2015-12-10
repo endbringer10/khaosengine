@@ -7,12 +7,15 @@ package com.khaos;
  */
 public class AboutCore extends javax.swing.JFrame {
     
+    public static final String VERSION = "1.0";
+    
     public AboutCore() {
         initComponents();
     }
     
     public void init() {
         this.setTitle("Core Module");
+        this.labelVersion.setText("Version: " + VERSION);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
     }
@@ -21,17 +24,27 @@ public class AboutCore extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        labelVersion = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        labelVersion.setText("jLabel1");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(labelVersion)
+                .addContainerGap(256, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(labelVersion)
+                .addContainerGap(175, Short.MAX_VALUE))
         );
 
         pack();
@@ -62,5 +75,6 @@ public class AboutCore extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel labelVersion;
     // End of variables declaration//GEN-END:variables
 }//End Class

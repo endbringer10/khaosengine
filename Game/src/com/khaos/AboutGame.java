@@ -7,12 +7,17 @@ package com.khaos;
  */
 public class AboutGame extends javax.swing.JFrame {
     
+    private static final String CONNECTION_TYPE = "Online/Offline";
+    public static final String VERSION = "1.0";
+    
     public AboutGame() {
         initComponents();
     }
     
     public void init() {
         this.setTitle("Game Module");
+        this.labelVersion.setText("Version: " + VERSION);
+        this.labelConnectionType.setText("Connection Type: " + CONNECTION_TYPE);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
     }
@@ -21,17 +26,34 @@ public class AboutGame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        labelConnectionType = new javax.swing.JLabel();
+        labelVersion = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        labelConnectionType.setText("jLabel1");
+
+        labelVersion.setText("jLabel1");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelVersion)
+                    .addComponent(labelConnectionType))
+                .addContainerGap(256, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(labelVersion)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(labelConnectionType)
+                .addContainerGap(155, Short.MAX_VALUE))
         );
 
         pack();
@@ -62,5 +84,7 @@ public class AboutGame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel labelConnectionType;
+    private javax.swing.JLabel labelVersion;
     // End of variables declaration//GEN-END:variables
 }//End Class

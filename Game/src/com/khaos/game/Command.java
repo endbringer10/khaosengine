@@ -1,6 +1,5 @@
 package com.khaos.game;
 
-import com.khaos.game.Database;
 import java.io.Serializable;
 
 /**
