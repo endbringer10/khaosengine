@@ -1,8 +1,8 @@
 package com.khaos.core.gui.frame;
 
-import com.khaos.core.Localized;
 import com.khaos.core.data.packets.GameInitPacket;
 import com.khaos.core.interfaces.EngineHook;
+import zom.core.Localized;
 
 /**
  *

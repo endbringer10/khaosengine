@@ -1,10 +1,10 @@
-package com.khaos.core;
+package zom.core;
 
 import com.khaos.core.data.Entry;
 import com.khaos.core.file.FileReader;
+import com.khaos.system.Errors;
+import com.khaos.system.Files;
 import com.khaos.system.SysLog;
-import com.khaos.system.core.Errors;
-import com.khaos.system.core.Files;
 import java.io.IOException;
 
 /**
@@ -13,7 +13,7 @@ import java.io.IOException;
  * @since 20151207
  * @idea make this to implement SystemSettings interface stub
  */
-public enum SettingsCore {
+public enum Settings {
 
     //Core
     DEBUG(true),
@@ -34,17 +34,17 @@ public enum SettingsCore {
     private final String defaults;
     private String value;
 
-    SettingsCore(String value) {
+    Settings(String value) {
         this.defaults = value;
         this.value = value;
     }
 
-    SettingsCore(boolean value) {
+    Settings(boolean value) {
         this.defaults = Boolean.toString(value);
         this.value = Boolean.toString(value);
     }
 
-    SettingsCore(int value) {
+    Settings(int value) {
         this.defaults = Integer.toString(value);
         this.value = Integer.toString(value);
     }
@@ -55,32 +55,32 @@ public enum SettingsCore {
         Entry next;
         while ((next = reader.next()) != null) {
             try {
-                SettingsCore.valueOf(next.getHeader()).setValue(next.getValue());
+                Settings.valueOf(next.getHeader()).setValue(next.getValue());
             } catch (IllegalArgumentException ex) {
 
             }
         }
 
-        SettingsCore.lookAndFeel();
+        Settings.lookAndFeel();
     }
 
     public static String formatForExport() {
         //Core
         String toExport = FILE_TAG + Files.NEWLINE;
-        toExport += SettingsCore.DEBUG.formatExportCheck();
-        toExport += SettingsCore.EXPORTALL.formatExportCheck();
-        toExport += SettingsCore.NIMBUS.formatExportCheck();
+        toExport += Settings.DEBUG.formatExportCheck();
+        toExport += Settings.EXPORTALL.formatExportCheck();
+        toExport += Settings.NIMBUS.formatExportCheck();
 
         //Game
-        toExport += SettingsCore.HOST_IP.formatExportCheck();
-        toExport += SettingsCore.HOST_PORT.formatExportCheck();
+        toExport += Settings.HOST_IP.formatExportCheck();
+        toExport += Settings.HOST_PORT.formatExportCheck();
         toExport += FILE_TAG_CLOSE;
 
         return toExport;
     }
 
     private String formatExportCheck() {
-        if (SettingsCore.EXPORTALL.parseBoolean() == true
+        if (Settings.EXPORTALL.parseBoolean() == true
                 || this.value.equalsIgnoreCase(this.defaults) == false) {
             return this.formatExport();
         }
@@ -97,7 +97,7 @@ public enum SettingsCore {
     }
 
     private static void lookAndFeel() {
-        if (SettingsCore.NIMBUS.parseBoolean() == true) {
+        if (Settings.NIMBUS.parseBoolean() == true) {
             try {
                 for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                     if ("Nimbus".equals(info.getName())) {

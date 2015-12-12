@@ -1,4 +1,4 @@
-package com.khaos.core;
+package zom.core;
 
 import java.awt.event.KeyEvent;
 import javax.swing.KeyStroke;

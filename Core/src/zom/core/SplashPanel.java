@@ -1,4 +1,4 @@
-package com.khaos.engine.gui;
+package zom.core;
 
 /**
  *

@@ -1,4 +1,4 @@
-package com.khaos.core.gui.frame;
+package zom.core;
 
 import com.khaos.core.interfaces.EngineHook;
 

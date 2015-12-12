@@ -1,4 +1,4 @@
-package com.khaos.system.core;
+package com.khaos.system;
 
 /**
  *

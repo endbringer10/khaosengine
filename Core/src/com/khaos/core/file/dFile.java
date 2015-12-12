@@ -1,6 +1,6 @@
 package com.khaos.core.file;
 
-import com.khaos.system.core.Files;
+import com.khaos.system.Files;
 import java.io.File;
 
 /**

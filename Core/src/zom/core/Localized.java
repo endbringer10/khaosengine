@@ -1,6 +1,4 @@
-package com.khaos.core;
-
-import com.khaos.core.SettingsCore;
+package zom.core;
 
 /**
  *
@@ -35,7 +33,7 @@ public enum Localized {
     }
 
     public String getLocalized() {
-        if (SettingsCore.DEBUG.parseBoolean()) {
+        if (Settings.DEBUG.parseBoolean()) {
             return "_" + localized;
         }
         return localized;

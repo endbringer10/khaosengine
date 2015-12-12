@@ -1,10 +1,12 @@
 package com.khaos;
 
-import com.khaos.core.KeyBinds;
 import com.khaos.core.gui.frame.SplashFrame;
 import com.khaos.engine.KhaosEngine;
 import com.khaos.engine.Manager;
-import com.khaos.engine.gui.SplashPanel;
+import zom.core.KeyBinds;
+import zom.core.SplashPanel;
+
+
 
 /**
  *

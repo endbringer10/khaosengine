@@ -1,7 +1,7 @@
 package com.khaos.core.file;
 
 import com.khaos.core.data.Entry;
-import com.khaos.system.core.Files;
+import com.khaos.system.Files;
 import java.io.IOException;
 import org.apache.commons.io.FileUtils;
 
@@ -9,15 +9,13 @@ import org.apache.commons.io.FileUtils;
  *
  * @author endbringer10
  * @since 20151207
- * @idea need a second caret if entries have more then one value; have nextEntry() return a string with a caret
- * @note </settings> tag cases caret to not be at the end of the string
  */
 public class FileReader {
 
     private final String raw;
     private int caret = 0;
 
-    public FileReader(Files source) throws IOException   {
+    public FileReader(Files source) throws IOException {
         raw = FileUtils.readFileToString(new dFile(source.getPath()));
     }
 

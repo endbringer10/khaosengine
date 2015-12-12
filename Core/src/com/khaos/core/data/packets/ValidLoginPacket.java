@@ -9,7 +9,7 @@ import com.khaos.core.interfaces.Packet;
  * @author endbringer10
  * @since 20151211
  */
-public class ValidLoginPacket2 implements Packet {
+public class ValidLoginPacket implements Packet {
     
     @Override
     public void process(EngineHook engine) {

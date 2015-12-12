@@ -1,11 +1,11 @@
 package com.khaos.core.gui.frame;
 
-import com.khaos.core.Localized;
-import com.khaos.core.Resources;
+import com.khaos.system.Errors;
 import com.khaos.system.SysLog;
-import com.khaos.system.core.Errors;
 import java.awt.Insets;
 import javax.swing.JPanel;
+import zom.core.Localized;
+import zom.core.Resources;
 
 /**
  *

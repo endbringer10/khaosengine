@@ -1,14 +1,16 @@
 package com.khaos.engine;
 
-import com.khaos.core.SettingsCore;
 import com.khaos.core.file.dFile;
-import com.khaos.core.interfaces.EngineHook;
 import com.khaos.core.interfaces.ConnectionHook;
+import com.khaos.core.interfaces.EngineHook;
+import com.khaos.system.Errors;
+import com.khaos.system.Files;
 import com.khaos.system.SysLog;
-import com.khaos.system.core.Errors;
-import com.khaos.system.core.Files;
 import java.io.IOException;
 import org.apache.commons.io.FileUtils;
+import zom.core.Settings;
+
+
 
 /**
  *
@@ -27,7 +29,7 @@ public abstract class Manager {
 
     public static void load() {
         try {
-            SettingsCore.load();
+            Settings.load();
         } catch (IOException ex) {
             Manager.generate();
         }
@@ -35,7 +37,7 @@ public abstract class Manager {
 
     private static void generate() {
         String toExport = Files.XML_HEADER + Files.NEWLINE;
-        toExport += SettingsCore.formatForExport();
+        toExport += Settings.formatForExport();
 
         try {
             FileUtils.writeStringToFile(new dFile(Files.SETTINGS.getPath()), toExport);

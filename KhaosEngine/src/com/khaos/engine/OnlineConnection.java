@@ -1,18 +1,20 @@
 package com.khaos.engine;
 
-import com.khaos.core.interfaces.EngineHook;
-import com.khaos.core.SettingsCore;
 import com.khaos.core.interfaces.Command;
 import com.khaos.core.interfaces.ConnectionHook;
+import com.khaos.core.interfaces.EngineHook;
 import com.khaos.core.interfaces.Packet;
+import com.khaos.system.Errors;
+import com.khaos.system.Messages;
 import com.khaos.system.SysLog;
-import com.khaos.system.core.Errors;
-import com.khaos.system.core.Messages;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.concurrent.LinkedBlockingQueue;
+import zom.core.Settings;
+
+
 
 /**
  *
@@ -27,7 +29,7 @@ public class OnlineConnection implements ConnectionHook {
 
     public OnlineConnection(EngineHook engine) throws IOException {
         try {
-            Socket socket = new Socket(SettingsCore.HOST_IP.parseString(), SettingsCore.HOST_PORT.parseInteger());
+            Socket socket = new Socket(Settings.HOST_IP.parseString(), Settings.HOST_PORT.parseInteger());
 
             send = new SendThread(new ObjectOutputStream(socket.getOutputStream()));
             receive = new ReceiveThread(new ObjectInputStream(socket.getInputStream()), engine);

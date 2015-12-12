@@ -1,6 +1,6 @@
 package com.khaos.core.data.packets;
 
-import com.khaos.core.gui.frame.EngineFrame;
+import zom.core.EngineFrame;
 import com.khaos.core.interfaces.EngineHook;
 import com.khaos.core.interfaces.Packet;
 

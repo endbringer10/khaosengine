@@ -1,8 +1,6 @@
 package com.khaos.system;
 
-import com.khaos.core.SettingsCore;
-import com.khaos.system.core.Errors;
-import com.khaos.system.core.Messages;
+import zom.core.Settings;
 
 /**
  *
@@ -16,7 +14,7 @@ public class SysLog {
         String line = "[ Log ]" + msg.getMessage();
         //console.append(line);
 
-        if (SettingsCore.DEBUG.parseBoolean()) {
+        if (Settings.DEBUG.parseBoolean()) {
             System.out.println(line);
         }
     }
@@ -25,7 +23,7 @@ public class SysLog {
         String line = "[ Log ]" + msg;
         //console.append(line);
 
-        if (SettingsCore.DEBUG.parseBoolean()) {
+        if (Settings.DEBUG.parseBoolean()) {
             System.out.println(line);
         }
     }
@@ -34,7 +32,7 @@ public class SysLog {
         String line = "[Error][" + code.getCode() + "] " + code.getMessage();
         //console.append(line);
 
-        if (SettingsCore.DEBUG.parseBoolean()) {
+        if (Settings.DEBUG.parseBoolean()) {
             System.out.println(line);
         }
     }

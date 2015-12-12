@@ -1,11 +1,11 @@
 package com.khaos.core.gui.frame;
 
-import com.khaos.core.Localized;
-import com.khaos.core.Resources;
-import com.khaos.core.SettingsCore;
 import com.khaos.core.data.commands.LoginCommand;
 import com.khaos.core.interfaces.EngineHook;
-import com.khaos.system.core.Errors;
+import com.khaos.system.Errors;
+import zom.core.Localized;
+import zom.core.Resources;
+import zom.core.Settings;
 
 /**
  *
@@ -36,21 +36,21 @@ public class LoginFrame extends javax.swing.JFrame {
     }
 
     private void setComponents() {
-        this.checkBoxAuto.setSelected(SettingsCore.AUTO_LOGIN.parseBoolean());
-        this.textFieldPassword.setText(SettingsCore.PASSWORD.parseString());
-        this.textFieldUsername.setText(SettingsCore.USERNAME.parseString());
+        this.checkBoxAuto.setSelected(Settings.AUTO_LOGIN.parseBoolean());
+        this.textFieldPassword.setText(Settings.PASSWORD.parseString());
+        this.textFieldUsername.setText(Settings.USERNAME.parseString());
     }
 
     private void login() {
         engine.getManager().addCommand(new LoginCommand(this.textFieldUsername.getText(), this.textFieldPassword.getText()));
         if (this.checkBoxAuto.isSelected()) {
-            SettingsCore.AUTO_LOGIN.setValue(true);
-            SettingsCore.USERNAME.setValue(this.textFieldUsername.getText());
-            SettingsCore.PASSWORD.setValue(this.textFieldPassword.getText());
+            Settings.AUTO_LOGIN.setValue(true);
+            Settings.USERNAME.setValue(this.textFieldUsername.getText());
+            Settings.PASSWORD.setValue(this.textFieldPassword.getText());
         } else {
-            SettingsCore.AUTO_LOGIN.setValue(false);
-            SettingsCore.USERNAME.clear();
-            SettingsCore.PASSWORD.clear();
+            Settings.AUTO_LOGIN.setValue(false);
+            Settings.USERNAME.clear();
+            Settings.PASSWORD.clear();
         }
         this.dispose();
     }

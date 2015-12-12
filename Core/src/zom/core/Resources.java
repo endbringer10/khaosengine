@@ -1,6 +1,6 @@
-package com.khaos.core;
+package zom.core;
 
-import com.khaos.system.core.Files;
+import com.khaos.system.Files;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 

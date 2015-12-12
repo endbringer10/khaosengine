@@ -6,8 +6,8 @@ import com.khaos.core.interfaces.Command;
 import com.khaos.core.interfaces.ConnectionHook;
 import com.khaos.core.interfaces.Packet;
 import com.khaos.system.SysLog;
-import com.khaos.system.core.Errors;
-import com.khaos.system.core.Messages;
+import com.khaos.system.Errors;
+import com.khaos.system.Messages;
 import java.util.concurrent.LinkedBlockingQueue;
 
 /**
