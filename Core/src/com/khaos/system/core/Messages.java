@@ -9,12 +9,11 @@ import com.khaos.system.IMessages;
  */
 public enum Messages implements IMessages {
 
-    DEFAULT("Null message");
-    //NO_SETTINGS_FILE("Settings file generated"),
-    //NO_KEYBINDS_FILE("Keybinds file generated"),
-    //CONNECTED_TO_SERVER("Connected to server");
-    //UNSUPPORTED_PACKET("Unsupported packet found"),
-    //TEXTURES_LOADED("Textures loaded");
+    //Core
+    DEFAULT("Null message"),
+    //Game
+    CONNECTED_TO_SERVER("Connected to server"),
+    RUNNING_OFFLINE("Running in offline mode");
 
     private final String message;
 

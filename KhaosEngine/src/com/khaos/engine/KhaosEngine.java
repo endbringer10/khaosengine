@@ -1,7 +1,8 @@
 package com.khaos.engine;
 
-import com.khaos.game.EngineHook;
-import com.khaos.game.Manager;
+import com.khaos.core.gui.frame.Login;
+import com.khaos.core.interfaces.ConnectionHook;
+import com.khaos.core.interfaces.EngineHook;
 
 /**
  *
@@ -10,11 +11,17 @@ import com.khaos.game.Manager;
  */
 public class KhaosEngine implements EngineHook {
 
-    private Manager manager;
+    private ConnectionHook manager;
 
     public void start() {
         manager = Manager.open(this);
         manager.start();
+        Login.invokeLater(this);
+    }
+
+    @Override
+    public ConnectionHook getManager() {
+        return manager;
     }
 
 }//End Class

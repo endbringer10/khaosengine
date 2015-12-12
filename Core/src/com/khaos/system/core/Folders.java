@@ -10,7 +10,9 @@ import java.io.File;
  */
 public enum Folders implements IFolders {
 
-    USERDATA("userdata");
+    USERDATA("userdata"),
+    CONFIG(USERDATA.getPath() + "config"),
+    RESOURCE_CLASSPATH("resources/");
 
     private final String name;
     private final String parent;

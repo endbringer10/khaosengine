@@ -6,12 +6,12 @@ import com.khaos.system.IFiles;
  *
  * @author endbringer10
  * @since 20151207
- * @idea make to implement a interface with abstract methods for behavior shared accros files and folders, default and
- * game
  */
 public enum Files implements IFiles {
 
-    SETTINGS("settings.xml", Folders.USERDATA.getPath());
+    SETTINGS("settings.xml", Folders.CONFIG.getPath()),
+    KEYBINDS("keybinds.xml", Folders.CONFIG.getPath()),
+    LOGO("logo.png", Folders.RESOURCE_CLASSPATH.getPath());
 
     public static final String ENTRY_START = "<entry>";
     public static final String ENTRY_END = "</entry>";

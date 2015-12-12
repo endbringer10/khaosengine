@@ -1,5 +1,7 @@
 package com.khaos;
 
+import com.khaos.core.Resources;
+
 /**
  *
  * @author endbringer10
@@ -14,6 +16,7 @@ public class AboutCore extends javax.swing.JFrame {
     }
     
     public void init() {
+        this.setIconImage(Resources.LOGO);
         this.setTitle("Core Module");
         this.labelVersion.setText("Version: " + VERSION);
         this.setLocationRelativeTo(null);

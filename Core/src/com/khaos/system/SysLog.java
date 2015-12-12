@@ -1,6 +1,6 @@
 package com.khaos.system;
 
-import com.khaos.SettingsCore;
+import com.khaos.core.SettingsCore;
 
 /**
  *
