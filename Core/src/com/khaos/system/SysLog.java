@@ -1,6 +1,8 @@
 package com.khaos.system;
 
 import com.khaos.core.SettingsCore;
+import com.khaos.system.core.Errors;
+import com.khaos.system.core.Messages;
 
 /**
  *
@@ -10,7 +12,7 @@ import com.khaos.core.SettingsCore;
 public class SysLog {
 
     //private static JTextArea console = new ConsoleTextArea();
-    public synchronized static void log(IMessages msg) {
+    public synchronized static void log(Messages msg) {
         String line = "[ Log ]" + msg.getMessage();
         //console.append(line);
 
@@ -28,7 +30,7 @@ public class SysLog {
         }
     }
 
-    public synchronized static void err(IErrors code, Exception ex) {
+    public synchronized static void err(Errors code, Exception ex) {
         String line = "[Error][" + code.getCode() + "] " + code.getMessage();
         //console.append(line);
 

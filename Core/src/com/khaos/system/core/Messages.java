@@ -1,13 +1,11 @@
 package com.khaos.system.core;
 
-import com.khaos.system.IMessages;
-
 /**
  *
  * @author endbr
  * @idea localize this later
  */
-public enum Messages implements IMessages {
+public enum Messages {
 
     //Core
     DEFAULT("Null message"),
@@ -22,7 +20,6 @@ public enum Messages implements IMessages {
         this.message = message;
     }
 
-    @Override
     public String getMessage() {
         return message;
     }

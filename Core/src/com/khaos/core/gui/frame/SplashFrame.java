@@ -1,5 +1,6 @@
 package com.khaos.core.gui.frame;
 
+import com.khaos.core.Localized;
 import com.khaos.core.Resources;
 import com.khaos.system.SysLog;
 import com.khaos.system.core.Errors;
@@ -12,16 +13,17 @@ import javax.swing.JPanel;
  * @since 20151209
  * @note handle negative numbers with Math.abs
  */
-public class TimedDisplayFrame extends javax.swing.JFrame {
+public class SplashFrame extends javax.swing.JFrame {
 
     private static final int PADDING = 10;
-    private static final int DEFAULT_WAIT = 500; //0 for infinite timeout
+    private static final int DEFAULT_WAIT = 5000; //0 for infinite timeout
     private final int wait;
     private final JPanel display;
 
-    public TimedDisplayFrame(JPanel display) {
+    public SplashFrame(JPanel display) {
         initComponents();
         this.setIconImage(Resources.LOGO);
+        this.setTitle(Localized.LOADING.getLocalized());
         this.display = display;
         this.wait = DEFAULT_WAIT;
     }
@@ -67,7 +69,7 @@ public class TimedDisplayFrame extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new TimedDisplayFrame(panel).start();
+                new SplashFrame(panel).start();
             }
         });
     }

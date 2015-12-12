@@ -1,6 +1,5 @@
 package com.khaos.system.core;
 
-import com.khaos.system.IFolders;
 import java.io.File;
 
 /**
@@ -8,7 +7,7 @@ import java.io.File;
  * @author endbringer10
  * @since 20151207
  */
-public enum Folders implements IFolders {
+public enum Folders {
 
     USERDATA("userdata"),
     CONFIG(USERDATA.getPath() + "config"),
@@ -27,7 +26,6 @@ public enum Folders implements IFolders {
         this.parent = parent;
     }
 
-    @Override
     public String getPath() {
         return parent + name;
     }

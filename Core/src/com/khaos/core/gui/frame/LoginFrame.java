@@ -11,11 +11,11 @@ import com.khaos.system.core.Errors;
  *
  * @author endbr
  */
-public class Login extends javax.swing.JFrame {
+public class LoginFrame extends javax.swing.JFrame {
 
     private final EngineHook engine;
 
-    public Login(EngineHook engine) {
+    public LoginFrame(EngineHook engine) {
         initComponents();
         this.engine = engine;
 
@@ -59,7 +59,7 @@ public class Login extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new Login(engine).init();
+                new LoginFrame(engine).init();
             }
         });
     }

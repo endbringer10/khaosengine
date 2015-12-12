@@ -1,12 +1,10 @@
 package com.khaos.system.core;
 
-import com.khaos.system.IErrors;
-
 /**
  *
  * @author endbr
  */
-public enum Errors implements IErrors {
+public enum Errors  {
 
     //Core
     GENERIC(-1, "An Error has occurred"),
@@ -29,12 +27,10 @@ public enum Errors implements IErrors {
         this.message = message;
     }
 
-    @Override
     public String getMessage() {
         return message;
     }
 
-    @Override
     public int getCode() {
         return code;
     }

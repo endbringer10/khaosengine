@@ -1,5 +1,6 @@
 package com.khaos.engine;
 
+import com.khaos.engine.data.Database;
 import com.khaos.core.interfaces.EngineHook;
 import com.khaos.core.interfaces.Command;
 import com.khaos.core.interfaces.ConnectionHook;

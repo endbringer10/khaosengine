@@ -1,6 +1,6 @@
 package com.khaos.engine;
 
-import com.khaos.core.gui.frame.Login;
+import com.khaos.core.gui.frame.LoginFrame;
 import com.khaos.core.interfaces.ConnectionHook;
 import com.khaos.core.interfaces.EngineHook;
 
@@ -16,11 +16,11 @@ public class KhaosEngine implements EngineHook {
     public void start() {
         manager = Manager.open(this);
         manager.start();
-        Login.invokeLater(this);
+        LoginFrame.invokeLater(this);
     }
 
     @Override
-    public ConnectionHook getManager() {
+    public synchronized ConnectionHook getManager() {
         return manager;
     }
 

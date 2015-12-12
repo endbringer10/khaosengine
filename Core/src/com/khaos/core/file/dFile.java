@@ -1,6 +1,6 @@
 package com.khaos.core.file;
 
-import com.khaos.system.IFiles;
+import com.khaos.system.core.Files;
 import java.io.File;
 
 /**
@@ -14,7 +14,7 @@ public class dFile extends File {
         super(pathname);
     }
 
-    public dFile(IFiles pathname) {
+    public dFile(Files pathname) {
         super(pathname.getPath());
     }
 

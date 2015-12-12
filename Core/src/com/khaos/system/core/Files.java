@@ -1,18 +1,18 @@
 package com.khaos.system.core;
 
-import com.khaos.system.IFiles;
-
 /**
  *
  * @author endbringer10
  * @since 20151207
  */
-public enum Files implements IFiles {
+public enum Files {
 
     SETTINGS("settings.xml", Folders.CONFIG.getPath()),
     KEYBINDS("keybinds.xml", Folders.CONFIG.getPath()),
     LOGO("logo.png", Folders.RESOURCE_CLASSPATH.getPath());
 
+    public static final String XML_HEADER = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>";
+    public static final String NEWLINE = System.getProperty("line.separator");
     public static final String ENTRY_START = "<entry>";
     public static final String ENTRY_END = "</entry>";
     public static final String HEADER_START = "<meta>";
@@ -28,7 +28,6 @@ public enum Files implements IFiles {
         this.directory = directory;
     }
 
-    @Override
     public String getPath() {
         return directory + name;
     }
