@@ -1,7 +1,7 @@
 package com.khaos.core.gui.frame;
 
 import com.khaos.core.data.packets.GameInitPacket;
-import com.khaos.core.interfaces.EngineHook;
+import com.khaos.core.interfaces.GuiHook;
 import zom.core.Localized;
 
 /**
@@ -11,9 +11,9 @@ import zom.core.Localized;
  */
 public class UpdateFrame extends javax.swing.JFrame {
 
-    private final EngineHook engine;
+    private final GuiHook engine;
 
-    public UpdateFrame(EngineHook engine) {
+    private UpdateFrame(GuiHook engine) {
         initComponents();
         this.progressBar.setIndeterminate(true);
         this.setTitle(Localized.UPDATING.getLocalized());
@@ -44,7 +44,7 @@ public class UpdateFrame extends javax.swing.JFrame {
         });
     }
 
-    public static void invokeLater(EngineHook engine) {
+    public static void newInstance(GuiHook engine) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {

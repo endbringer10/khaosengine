@@ -20,7 +20,7 @@ public class SplashFrame extends javax.swing.JFrame {
     private final int wait;
     private final JPanel display;
 
-    public SplashFrame(JPanel display) {
+    private SplashFrame(JPanel display) {
         initComponents();
         this.setIconImage(Resources.LOGO);
         this.setTitle(Localized.LOADING.getLocalized());
@@ -65,7 +65,7 @@ public class SplashFrame extends javax.swing.JFrame {
         });
     }
 
-    public static void invokeLater(JPanel panel) {
+    public static void newInstance(JPanel panel) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {

@@ -1,20 +1,20 @@
 package com.khaos.engine;
 
-import com.khaos.engine.data.Database;
-import com.khaos.core.interfaces.EngineHook;
 import com.khaos.core.interfaces.Command;
+import com.khaos.core.interfaces.Connection;
 import com.khaos.core.interfaces.ConnectionHook;
 import com.khaos.core.interfaces.Packet;
-import com.khaos.system.SysLog;
+import com.khaos.engine.data.Database;
 import com.khaos.system.Errors;
 import com.khaos.system.Messages;
+import com.khaos.system.SysLog;
 import java.util.concurrent.LinkedBlockingQueue;
 
 /**
  *
  * @author endbr
  */
-public class OfflineConnection implements ConnectionHook {
+public class OfflineConnection implements Connection {
 
     private final LinkedBlockingQueue<Command> commands = new LinkedBlockingQueue<>();
     private final LinkedBlockingQueue<Packet> packets = new LinkedBlockingQueue<>();
@@ -23,7 +23,7 @@ public class OfflineConnection implements ConnectionHook {
     private final ProcessThread process;
     private final Database database;
 
-    public OfflineConnection(EngineHook engine) {
+    public OfflineConnection(ConnectionHook engine) {
         database = new Database();
         this.execute = new ExecuteThread();
         this.process = new ProcessThread(engine);
@@ -38,7 +38,7 @@ public class OfflineConnection implements ConnectionHook {
     }
 
     @Override
-    public void addCommand(Command command) {
+    public void send(Command command) {
         commands.add(command);
     }
 
@@ -64,13 +64,14 @@ public class OfflineConnection implements ConnectionHook {
             super.interrupt();
             running = false;
         }
+
     }//End Class
 
     private class ProcessThread extends Thread {
 
-        private final EngineHook engine;
+        private final ConnectionHook engine;
 
-        public ProcessThread(EngineHook parent) {
+        public ProcessThread(ConnectionHook parent) {
             this.engine = parent;
         }
 

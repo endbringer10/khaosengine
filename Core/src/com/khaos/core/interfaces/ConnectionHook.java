@@ -2,13 +2,11 @@ package com.khaos.core.interfaces;
 
 /**
  *
- * @author endbringer10
- * @since 20151211
+ * @author endbr
+ * @since 20151212
  */
-public interface ConnectionHook {
+public interface ConnectionHook extends EngineHooks {
 
-    public void addCommand(Command command);
-
-    public void start();
+    public void sendCommand(Command command);
 
 }//End Class

@@ -1,19 +1,18 @@
 package com.khaos.core.data.packets;
 
-import zom.core.EngineFrame;
-import com.khaos.core.interfaces.EngineHook;
+import com.khaos.core.interfaces.GuiHook;
 import com.khaos.core.interfaces.Packet;
-
+import zom.core.EngineFrame;
 
 /**
  *
  * @author endbringer10
- * @since 20151211 
+ * @since 20151211
  */
-public class GameInitPacket implements Packet{
+public class GameInitPacket implements Packet<GuiHook> {
 
     @Override
-    public void process(EngineHook engine) {
+    public void process(GuiHook engine) {
         EngineFrame.invokeLater(engine);
     }
 

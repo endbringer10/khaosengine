@@ -1,8 +1,8 @@
 package com.khaos.engine;
 
 import com.khaos.core.interfaces.Command;
+import com.khaos.core.interfaces.Connection;
 import com.khaos.core.interfaces.ConnectionHook;
-import com.khaos.core.interfaces.EngineHook;
 import com.khaos.core.interfaces.Packet;
 import com.khaos.system.Errors;
 import com.khaos.system.Messages;
@@ -14,20 +14,18 @@ import java.net.Socket;
 import java.util.concurrent.LinkedBlockingQueue;
 import zom.core.Settings;
 
-
-
 /**
  *
  * @author endbr
  */
-public class OnlineConnection implements ConnectionHook {
+public class OnlineConnection implements Connection {
 
     private final LinkedBlockingQueue<Command> commands = new LinkedBlockingQueue<>();
     private volatile boolean running = true;
     private final SendThread send;
     private final ReceiveThread receive;
 
-    public OnlineConnection(EngineHook engine) throws IOException {
+    public OnlineConnection(ConnectionHook engine) throws IOException {
         try {
             Socket socket = new Socket(Settings.HOST_IP.parseString(), Settings.HOST_PORT.parseInteger());
 
@@ -47,7 +45,7 @@ public class OnlineConnection implements ConnectionHook {
     }
 
     @Override
-    public void addCommand(Command command) {
+    public void send(Command command) {
         commands.add(command);
     }
 
@@ -95,9 +93,9 @@ public class OnlineConnection implements ConnectionHook {
     private class ReceiveThread extends Thread {
 
         private final ObjectInputStream in;
-        private final EngineHook engine;
+        private final ConnectionHook engine;
 
-        public ReceiveThread(ObjectInputStream in, EngineHook engine) {
+        public ReceiveThread(ObjectInputStream in, ConnectionHook engine) {
             this.in = in;
             this.engine = engine;
         }

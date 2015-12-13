@@ -1,6 +1,6 @@
 package zom.core;
 
-import com.khaos.core.interfaces.EngineHook;
+import com.khaos.core.interfaces.GuiHook;
 
 /**
  *
@@ -9,8 +9,11 @@ import com.khaos.core.interfaces.EngineHook;
  */
 public class EngineFrame extends javax.swing.JFrame {
 
-    public EngineFrame(EngineHook engine) {
+    private final GuiHook engine;
+
+    private EngineFrame(GuiHook engine) {
         initComponents();
+        this.engine = engine;
     }
 
     public void init() {
@@ -18,11 +21,15 @@ public class EngineFrame extends javax.swing.JFrame {
         this.setVisible(true);
     }
 
-    public static void invokeLater(EngineHook engine) {
+    public static void invokeLater(GuiHook engine) {
         java.awt.EventQueue.invokeLater(new Runnable() {
+
             @Override
             public void run() {
-                new EngineFrame(engine).init();
+                EngineFrame frame = new EngineFrame(engine);
+                frame.init();
+
+                engine.openGUI(frame);
             }
         });
     }

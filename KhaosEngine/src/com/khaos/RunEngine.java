@@ -3,10 +3,7 @@ package com.khaos;
 import com.khaos.core.gui.frame.SplashFrame;
 import com.khaos.engine.KhaosEngine;
 import com.khaos.engine.Manager;
-import zom.core.KeyBinds;
 import zom.core.SplashPanel;
-
-
 
 /**
  *
@@ -16,9 +13,8 @@ import zom.core.SplashPanel;
 public class RunEngine {
 
     public static void main(String[] args) {
-        Manager.load();
-        KeyBinds.load();
-        SplashFrame.invokeLater(new SplashPanel());
+        Manager.loadSettings();
+        SplashFrame.newInstance(new SplashPanel());
 
         KhaosEngine engine = new KhaosEngine();
         engine.start();

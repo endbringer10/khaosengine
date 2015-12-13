@@ -7,7 +7,7 @@ import java.io.Serializable;
  * @author endbr
  * @param <E>
  */
-public interface Packet<E extends EngineHook> extends Serializable {
+public interface Packet<E extends EngineHooks> extends Serializable {
 
     public static final long serialVersionUID = 0L;
 
