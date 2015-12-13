@@ -2,7 +2,7 @@ package com.khaos.engine;
 
 import com.khaos.core.interfaces.Command;
 import com.khaos.core.interfaces.Connection;
-import com.khaos.core.interfaces.ConnectionHook;
+import com.khaos.core.interfaces.EngineHook;
 import com.khaos.core.interfaces.Packet;
 import com.khaos.engine.data.Database;
 import com.khaos.system.Errors;
@@ -23,7 +23,7 @@ public class OfflineConnection implements Connection {
     private final ProcessThread process;
     private final Database database;
 
-    public OfflineConnection(ConnectionHook engine) {
+    public OfflineConnection(EngineHook engine) {
         database = new Database();
         this.execute = new ExecuteThread();
         this.process = new ProcessThread(engine);
@@ -69,9 +69,9 @@ public class OfflineConnection implements Connection {
 
     private class ProcessThread extends Thread {
 
-        private final ConnectionHook engine;
+        private final EngineHook engine;
 
-        public ProcessThread(ConnectionHook parent) {
+        public ProcessThread(EngineHook parent) {
             this.engine = parent;
         }
 

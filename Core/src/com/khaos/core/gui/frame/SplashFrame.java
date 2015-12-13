@@ -16,7 +16,7 @@ import zom.core.Resources;
 public class SplashFrame extends javax.swing.JFrame {
 
     private static final int PADDING = 10;
-    private static final int DEFAULT_WAIT = 5000; //0 for infinite timeout
+    private static final int DEFAULT_WAIT = 500; //0 for infinite timeout
     private final int wait;
     private final JPanel display;
 
@@ -24,11 +24,12 @@ public class SplashFrame extends javax.swing.JFrame {
         initComponents();
         this.setIconImage(Resources.LOGO);
         this.setTitle(Localized.LOADING.getLocalized());
+        this.setResizable(false);
         this.display = display;
         this.wait = DEFAULT_WAIT;
     }
 
-    public void start() {
+    private void start() {
         Insets iFrame = this.getInsets();
 
         this.add(display);

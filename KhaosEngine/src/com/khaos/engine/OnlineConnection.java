@@ -2,7 +2,7 @@ package com.khaos.engine;
 
 import com.khaos.core.interfaces.Command;
 import com.khaos.core.interfaces.Connection;
-import com.khaos.core.interfaces.ConnectionHook;
+import com.khaos.core.interfaces.EngineHook;
 import com.khaos.core.interfaces.Packet;
 import com.khaos.system.Errors;
 import com.khaos.system.Messages;
@@ -25,7 +25,7 @@ public class OnlineConnection implements Connection {
     private final SendThread send;
     private final ReceiveThread receive;
 
-    public OnlineConnection(ConnectionHook engine) throws IOException {
+    public OnlineConnection(EngineHook engine) throws IOException {
         try {
             Socket socket = new Socket(Settings.HOST_IP.parseString(), Settings.HOST_PORT.parseInteger());
 
@@ -93,9 +93,9 @@ public class OnlineConnection implements Connection {
     private class ReceiveThread extends Thread {
 
         private final ObjectInputStream in;
-        private final ConnectionHook engine;
+        private final EngineHook engine;
 
-        public ReceiveThread(ObjectInputStream in, ConnectionHook engine) {
+        public ReceiveThread(ObjectInputStream in, EngineHook engine) {
             this.in = in;
             this.engine = engine;
         }

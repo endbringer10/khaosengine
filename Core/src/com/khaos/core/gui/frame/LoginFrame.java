@@ -1,7 +1,7 @@
 package com.khaos.core.gui.frame;
 
 import com.khaos.core.data.commands.LoginCommand;
-import com.khaos.core.interfaces.ConnectionHook;
+import com.khaos.core.interfaces.EngineHook;
 import com.khaos.system.Errors;
 import zom.core.Localized;
 import zom.core.Resources;
@@ -13,9 +13,9 @@ import zom.core.Settings;
  */
 public class LoginFrame extends javax.swing.JFrame {
 
-    private final ConnectionHook engine;
+    private final EngineHook engine;
 
-    private LoginFrame(ConnectionHook engine) {
+    private LoginFrame(EngineHook engine) {
         initComponents();
         this.engine = engine;
 
@@ -28,7 +28,7 @@ public class LoginFrame extends javax.swing.JFrame {
         this.checkBoxAuto.setText(Localized.AUTO_LOGIN.getLocalized());
     }
 
-    public void init() {
+    private void init() {
         this.setComponents();
 
         this.setLocationRelativeTo(null);
@@ -42,7 +42,7 @@ public class LoginFrame extends javax.swing.JFrame {
     }
 
     private void login() {
-        engine.sendCommand(new LoginCommand(this.textFieldUsername.getText(), this.textFieldPassword.getText()));
+        engine.getConnection().send(new LoginCommand(this.textFieldUsername.getText(), this.textFieldPassword.getText()));
         if (this.checkBoxAuto.isSelected()) {
             Settings.AUTO_LOGIN.setValue(true);
             Settings.USERNAME.setValue(this.textFieldUsername.getText());
@@ -55,7 +55,7 @@ public class LoginFrame extends javax.swing.JFrame {
         this.dispose();
     }
 
-    public static void newInstance(ConnectionHook engine) {
+    public static void newInstance(EngineHook engine) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {

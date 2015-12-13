@@ -1,37 +1,53 @@
 package zom.core;
 
-import com.khaos.core.interfaces.GuiHook;
+import com.khaos.core.gui.DisplayPane;
+import com.khaos.core.gui.enums.Alignment;
+import com.khaos.core.gui.enums.Resizeable;
+import com.khaos.core.gui.internalframe.GuiWindow;
+import com.khaos.core.gui.panel.ConsolePanel;
+import com.khaos.core.interfaces.EngineHook;
 
-/**
- *
- * @author endbringer10
- * @since 20151211
- */
 public class EngineFrame extends javax.swing.JFrame {
 
-    private final GuiHook engine;
+    private final EngineHook engine;
+    private final DisplayPane pane;
 
-    private EngineFrame(GuiHook engine) {
+    private EngineFrame(EngineHook engine) {
         initComponents();
         this.engine = engine;
+        pane = new DisplayPane();
     }
 
-    public void init() {
+    private void init() {
+        this.add(pane);
+        pane.init();
+
+        this.setIconImage(Resources.LOGO);
+        this.setTitle(Localized.KHAOS_ENGINE.getLocalized());
         this.setLocationRelativeTo(null);
         this.setVisible(true);
     }
 
-    public static void invokeLater(GuiHook engine) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
+    public void start() {
+        GuiWindow.newInstance(engine, new ConsolePanel(), Localized.CONSOLE.getLocalized(), Resizeable.TRUE, Alignment.BOTTOM_LEFT);
+    }
 
+    public void addWindow(GuiWindow window) {
+        this.pane.add(window);
+    }
+
+    public static EngineFrame newInstance(EngineHook engine) {
+        final EngineFrame frame = new EngineFrame(engine);
+
+        java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                EngineFrame frame = new EngineFrame(engine);
+                //EngineFrame frame = new EngineFrame(engine);
                 frame.init();
-
-                engine.openGUI(frame);
             }
         });
+
+        return frame;
     }
 
     @SuppressWarnings("unchecked")

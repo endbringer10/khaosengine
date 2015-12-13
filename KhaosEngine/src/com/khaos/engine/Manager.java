@@ -2,7 +2,7 @@ package com.khaos.engine;
 
 import com.khaos.core.file.dFile;
 import com.khaos.core.interfaces.Connection;
-import com.khaos.core.interfaces.ConnectionHook;
+import com.khaos.core.interfaces.EngineHook;
 import com.khaos.system.Errors;
 import com.khaos.system.Files;
 import com.khaos.system.SysLog;
@@ -18,7 +18,7 @@ import zom.core.Settings;
  */
 public abstract class Manager {
 
-    public static Connection open(ConnectionHook engine) {
+    public static Connection open(EngineHook engine) {
         try {
             return new OnlineConnection(engine);
         } catch (IOException ex) {
