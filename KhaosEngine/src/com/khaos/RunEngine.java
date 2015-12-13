@@ -15,7 +15,7 @@ public class RunEngine {
     public static void main(String[] args) {
         Manager.loadSettings();
         SplashFrame.newInstance(new SplashPanel());
-
+        //remove
         KhaosEngine engine = new KhaosEngine();
         engine.start();
     }
