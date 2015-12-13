@@ -1,6 +1,6 @@
 package com.khaos.system;
 
-import com.khaos.SettingsCore;
+import zom.core.Settings;
 
 /**
  *
@@ -10,11 +10,11 @@ import com.khaos.SettingsCore;
 public class SysLog {
 
     //private static JTextArea console = new ConsoleTextArea();
-    public synchronized static void log(IMessages msg) {
+    public synchronized static void log(Messages msg) {
         String line = "[ Log ]" + msg.getMessage();
         //console.append(line);
 
-        if (SettingsCore.DEBUG.parseBoolean()) {
+        if (Settings.DEBUG.parseBoolean()) {
             System.out.println(line);
         }
     }
@@ -23,16 +23,16 @@ public class SysLog {
         String line = "[ Log ]" + msg;
         //console.append(line);
 
-        if (SettingsCore.DEBUG.parseBoolean()) {
+        if (Settings.DEBUG.parseBoolean()) {
             System.out.println(line);
         }
     }
 
-    public synchronized static void err(IErrors code, Exception ex) {
+    public synchronized static void err(Errors code, Exception ex) {
         String line = "[Error][" + code.getCode() + "] " + code.getMessage();
         //console.append(line);
 
-        if (SettingsCore.DEBUG.parseBoolean()) {
+        if (Settings.DEBUG.parseBoolean()) {
             System.out.println(line);
         }
     }

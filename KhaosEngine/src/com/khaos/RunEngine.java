@@ -1,9 +1,9 @@
 package com.khaos;
 
-import com.khaos.core.TimedDisplayFrame;
+import com.khaos.core.gui.frame.SplashFrame;
 import com.khaos.engine.KhaosEngine;
-import com.khaos.engine.SettingsManager;
-import com.khaos.engine.SplashPanel;
+import com.khaos.engine.Manager;
+import zom.core.SplashPanel;
 
 /**
  *
@@ -13,13 +13,11 @@ import com.khaos.engine.SplashPanel;
 public class RunEngine {
 
     public static void main(String[] args) {
-        SettingsManager.load();
-
-        TimedDisplayFrame.invokeLater(new SplashPanel());
+        Manager.loadSettings();
+        SplashFrame.newInstance(new SplashPanel());
 
         KhaosEngine engine = new KhaosEngine();
         engine.start();
-
     }
 
 }//End Class
